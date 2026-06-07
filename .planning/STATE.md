@@ -6,7 +6,7 @@ status: planning
 last_updated: "2026-06-07T16:10:15.497Z"
 last_activity: 2026-06-07
 progress:
-  total_phases: 0
+  total_phases: 3
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -16,53 +16,73 @@ progress:
 # State: mermaid-tw5
 
 **Project:** mermaid-tw5
-**Current Phase:** 5
-**Current Milestone:** Milestone 2 (v0.5.0)
-**Status:** Milestone v0.5.0 complete — archived 2026-04-27
+**Current Phase:** 6 (Config Wiring Foundation)
+**Current Milestone:** v0.6.0 — Capability Parity & Advanced Examples
+**Status:** Roadmap created — ready to plan Phase 6
 
 ## Project Reference
 
-See: `.planning/PROJECT.md` (updated 2026-04-27)
+See: `.planning/PROJECT.md` (updated 2026-06-07)
 
 **Core value:** TiddlyWiki users can create and view rich Mermaid diagrams natively within their notebooks without leaving the wiki environment.
-**Current focus:** Planning next milestone
+**Current focus:** Phase 6 — fix the config wiring so user-supplied config actually applies.
+
+## Current Position
+
+Phase: 6 of 8 (Config Wiring Foundation) — first phase of v0.6.0
+Plan: — (not yet planned)
+Status: Ready to plan
+Last activity: 2026-06-07 — v0.6.0 roadmap created (phases 6-8)
+
+Progress: [░░░░░░░░░░] 0%
 
 ## Phase Tracker
 
-| Phase | Status | Requirements | Plans | Progress |
-|-------|--------|--------------|-------|----------|
-| 1 | ✓ | 3/3 | 2/2 | 100% |
-| 2 | ✓ | 2/2 | 2/2 | 100% |
-| 3 | ✓ | 1/1 | 2/2 | 100% |
-| 4 | ✓ | 1/1 | 2/2 | 100% |
-| 5 | ✓ | 2/2 | 2/2 | 100% |
+| Phase | Milestone | Status | Requirements | Plans | Progress |
+|-------|-----------|--------|--------------|-------|----------|
+| 1 | v0.5.0 | ✓ | 3/3 | 2/2 | 100% |
+| 2 | v0.5.0 | ✓ | 2/2 | 2/2 | 100% |
+| 3 | v0.5.0 | ✓ | 1/1 | 2/2 | 100% |
+| 4 | v0.5.0 | ✓ | 1/1 | 2/2 | 100% |
+| 5 | v0.5.0 | ✓ | 2/2 | 2/2 | 100% |
+| 6 | v0.6.0 | ○ | 0/5 | 0/? | 0% |
+| 7 | v0.6.0 | ○ | 0/5 | 0/? | 0% |
+| 8 | v0.6.0 | ○ | 0/2 | 0/? | 0% |
+
+## Accumulated Context
+
+### Decisions
+
+Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecting current work:
+
+- v0.6.0 roadmap: 3-phase build order forced by hard dependency — config fix (6) before examples (7) before docs (8).
+- v0.6.0 scope: No new bundled assets (ELK, ZenUML, icon packs, KaTeX-as-feature deferred); all advanced examples use `$$$text/vnd.tiddlywiki.mermaid` block syntax only.
+
+### Pending Todos
+
+None yet.
+
+### Blockers/Concerns
+
+- Phase 6 prerequisite for Phase 7: Sankey `R&D` parse error (issue #7528) must be fixed before Phase 7 Sankey authoring.
+- Phase 7 flag: 5 newer beta types (treeView/wardley/ishikawa/treemap/venn) have sparse docs — consider `--research-phase`.
+- Verify against vendored 11.14.0 bundle: `renderAsync` availability, Sankey v11.15.0+ keys, architecture built-in icon names.
 
 ## Recent Activity
 
-- 2026-04-26: Project initialized via `/gsd-new-project`
-- 2026-04-26: Codebase mapped (existing brownfield detection)
-- 2026-04-26: PROJECT.md, REQUIREMENTS.md, ROADMAP.md, STATE.md created
-- 2026-04-27: Phase 2 executed — error handling improvements and test suite (10 tests passing)
-- 2026-04-27: Phase 3 executed — lazy loading of mermaid.js and D3.js (13 tests passing)
-- 2026-04-27: Phase 4 executed — evaluated Mermaid 10.9.0, 11.14.0, and @mermaid-js/tiny; all exceed size threshold; deferral documented in PROJECT.md
-- 2026-04-27: Phase 5 executed — GitHub Actions workflows (test + deploy) and developer docs (README + CONTRIBUTING.md) added; 13 tests passing
 - 2026-04-27: Milestone v0.5.0 completed and archived
-
-## Blockers
-
-None.
+- 2026-06-07: Milestone v0.6.0 started; requirements defined (12)
+- 2026-06-07: Project research completed (HIGH confidence)
+- 2026-06-07: v0.6.0 roadmap created — phases 6-8, 12/12 requirements mapped
 
 ## Notes
 
 - Brownfield project with existing codebase map in `.planning/codebase/`
-- Single-maintainer project; automation (Phase 5) will reduce manual toil
-- Bundle size is the primary constraint for dependency updates
-- Modern Mermaid 11.x may be smaller (~624 KB) than current 9.3.0 (~899 KB) per Bundlephobia
-- Milestone v0.5.0 archived to `.planning/milestones/v0.5.0-ROADMAP.md` and `.planning/milestones/v0.5.0-REQUIREMENTS.md`
+- Mermaid 11.14.0 active; 26 in-scope diagram types renderable without extra assets
+- v0.5.0 archived to `.planning/milestones/v0.5.0-ROADMAP.md` and `.planning/milestones/v0.5.0-REQUIREMENTS.md`
 
-## Current Position
+## Session Continuity
 
-Phase: Not started (defining requirements)
-Plan: —
-Status: Defining requirements
-Last activity: 2026-06-07 — Milestone v0.6.0 started
+Last session: 2026-06-07
+Stopped at: v0.6.0 roadmap created (ROADMAP.md, STATE.md, REQUIREMENTS.md traceability)
+Resume file: None — next step is `/gsd-plan-phase 6`

@@ -56,17 +56,17 @@
 
 | Requirement | Phase | Status | Outcome |
 |-------------|-------|--------|---------|
-| CONFIG-02 | — | Pending | |
-| CONFIG-03 | — | Pending | |
-| CONFIG-04 | — | Pending | |
-| CONFIG-05 | — | Pending | |
-| CONFIG-06 | — | Pending | |
-| CONFIG-07 | — | Pending | |
-| EXAMPLE-01 | — | Pending | |
-| EXAMPLE-02 | — | Pending | |
-| EXAMPLE-03 | — | Pending | |
-| LEGEND-01 | — | Pending | |
-| LEGEND-02 | — | Pending | |
-| DOCS-03 | — | Pending | |
+| CONFIG-02 | Phase 6 | Pending | |
+| CONFIG-03 | Phase 6 | Pending | |
+| CONFIG-04 | Phase 6 | Pending | |
+| CONFIG-05 | Phase 6 | Pending | |
+| CONFIG-06 | Phase 6 | Pending | |
+| CONFIG-07 | Phase 8 | Pending | |
+| EXAMPLE-01 | Phase 7 | Pending | |
+| EXAMPLE-02 | Phase 7 | Pending | |
+| EXAMPLE-03 | Phase 7 | Pending | |
+| LEGEND-01 | Phase 7 | Pending | |
+| LEGEND-02 | Phase 7 | Pending | |
+| DOCS-03 | Phase 8 | Pending | |
 
 *(Phase column filled by roadmap creation.)*

@@ -7,7 +7,7 @@
 ## Milestones
 
 - ✅ **v0.5.0 Maintenance & Automation** — Phases 1-5 (shipped 2026-04-27)
-- 📋 **v0.6.0+** — Future enhancements (planned)
+- 📋 **v0.6.0 Capability Parity & Advanced Examples** — Phases 6-8 (active)
 
 ## Phases
 
@@ -67,6 +67,60 @@
 
 </details>
 
+### v0.6.0 — Capability Parity & Advanced Examples (Phases 6-8)
+
+- [ ] **Phase 6: Config Wiring Foundation** - Make user-supplied config (theme, look, fontFamily, securityLevel, per-type) actually apply to rendering
+- [ ] **Phase 7: Advanced Examples & Legends** - Author an advanced, well-commented example for all 26 in-scope diagram types with legends and a catalog
+- [ ] **Phase 8: Capability Matrix & Config Reference** - Document supported vs deferred features and all config keys, with catalog navigation
+
+## Phase Details
+
+### Phase 6: Config Wiring Foundation
+
+**Goal:** User-supplied configuration (theme, look, fontFamily, securityLevel, and per-diagram-type options) is actually applied when diagrams render, instead of being silently ignored.
+**Depends on:** Nothing within v0.6.0 (first phase of the milestone; builds on shipped v0.5.0 plugin)
+**Requirements:** CONFIG-02, CONFIG-03, CONFIG-04, CONFIG-05, CONFIG-06
+**Success Criteria** (what must be TRUE):
+  1. A user who sets `<$mermaid theme="forest">` (or the equivalent `mermaid-theme` field) sees the diagram render in the forest theme — config is no longer a silent no-op (CONFIG-02)
+  2. On a page with multiple diagrams, `initialize()` runs once and all diagrams share one consistent global config — no "last diagram wins" interference (CONFIG-03)
+  3. A user can override `securityLevel` via the `$:/plugins/orange/mermaid-tw5/config` shadow tiddler, with `'loose'` remaining the documented default that keeps click navigation working (CONFIG-04)
+  4. A user can set `theme`, `themeVariables`, `look` (handDrawn/classic), and `fontFamily` globally and per-diagram, and see them applied (CONFIG-05)
+  5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)
+**Plans:** TBD
+
+*Hard-dependency note:* This phase is the milestone foundation. Per research SUMMARY.md, advanced examples demonstrating theme/look/fontFamily/securityLevel cannot be proven until the `getOptions()` → `mermaidAPI.initialize()` merge lands here. The Sankey `R&D` parse-error fix (owned as a requirement by Phase 7's EXAMPLE-02) is also validated as a prerequisite during this phase so Phase 7 Sankey authoring is unblocked. All existing 13 tests must continue to pass.
+
+### Phase 7: Advanced Examples & Legends
+
+**Goal:** Every in-scope diagram type the vendored Mermaid 11.14.0 bundle supports has an advanced, well-commented example, with legends where color-by-category is used, all discoverable from a catalog.
+**Depends on:** Phase 6 (config must apply before config-demonstrating examples are meaningful; Sankey `R&D` bug must be fixed)
+**Requirements:** EXAMPLE-01, EXAMPLE-02, EXAMPLE-03, LEGEND-01, LEGEND-02
+**Success Criteria** (what must be TRUE):
+  1. Each of the 26 in-scope diagram types has an advanced, well-commented example that renders correctly in the demo wiki, authored exclusively with `$$$text/vnd.tiddlywiki.mermaid` block syntax (EXAMPLE-01)
+  2. The previously broken Sankey example renders cleanly (no `R&D` parse error) and older bare-content tiddlers are migrated to consistent `.tid` format (EXAMPLE-02)
+  3. A user can find every advanced example from a shared tag and a catalog/index tiddler (EXAMPLE-03)
+  4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
+  5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
+**Plans:** TBD
+**UI hint:** yes
+
+*Authoring constraints:* All advanced examples use `$$$text/vnd.tiddlywiki.mermaid` block syntax only — the `getScriptBody()` WikiText un-parser is fragile and the block path is the safe route. No new bundled assets (ELK, ZenUML, icon packs, KaTeX-as-feature all deferred). No `%%{init}%%` theme directives in examples — reserve `%%{init}%%` for structural per-type config so it does not override the user's global theme. The 5 newer beta types (treeView-beta, wardley-beta, ishikawa-beta, treemap-beta, venn-beta) have sparse docs — consider `--research-phase` during planning.
+
+### Phase 8: Capability Matrix & Config Reference
+
+**Goal:** Users understand exactly what the plugin supports, what is deferred and why, and how to configure every supported key — with the catalog linking it all together.
+**Depends on:** Phase 7 (the capability matrix links to the example tiddlers, which must exist first)
+**Requirements:** CONFIG-07, DOCS-03
+**Success Criteria** (what must be TRUE):
+  1. A Configuration Reference tiddler documents all supported config keys (global, per-type, `%%{init}%%`, YAML frontmatter) plus accessibility `accTitle`/`accDescr` usage (CONFIG-07)
+  2. A Capability Matrix tiddler maps plugin support vs full Mermaid, marking ELK layout, ZenUML, and external icon packs as deferred with rationale (DOCS-03)
+  3. The capability matrix notes which diagram types have native legends (pie, radar) vs. need the manual legend pattern from Phase 7 (DOCS-03)
+  4. The Mermaid Chart Catalog links to both the Configuration Reference and the Capability Matrix, and the README capability section matches the in-wiki matrix (DOCS-03)
+**Plans:** TBD
+**UI hint:** yes
+
+*Note:* Content is fully specified in research files; standard patterns — phase research can be skipped. Config Reference and catalog updates are partially independent of individual Phase 7 examples and may start early.
+
 ## Progress
 
 | Phase | Milestone | Plans Complete | Status | Completed |
@@ -76,8 +130,11 @@
 | 3. Performance Optimization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
+| 6. Config Wiring Foundation | v0.6.0 | 0/? | Not started | - |
+| 7. Advanced Examples & Legends | v0.6.0 | 0/? | Not started | - |
+| 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
 ---
 
 *Roadmap created: 2026-04-26*
-*Last updated: 2026-04-27 after v0.5.0 milestone completion*
+*Last updated: 2026-06-07 — added v0.6.0 phases 6-8 (Capability Parity & Advanced Examples)*
