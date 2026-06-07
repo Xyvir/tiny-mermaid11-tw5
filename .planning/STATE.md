@@ -1,16 +1,16 @@
 ---
 gsd_state_version: 1.0
-milestone: v0.5.0
-milestone_name: milestone
-current_phase: 5
-status: completed
-last_updated: "2026-04-27T23:40:00.000Z"
+milestone: v0.6.0
+milestone_name: Capability Parity & Advanced Examples
+status: planning
+last_updated: "2026-06-07T16:10:15.497Z"
+last_activity: 2026-06-07
 progress:
-  total_phases: 5
-  completed_phases: 5
-  total_plans: 10
-  completed_plans: 10
-  percent: 100
+  total_phases: 0
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 0
 ---
 
 # State: mermaid-tw5
@@ -59,3 +59,10 @@ None.
 - Bundle size is the primary constraint for dependency updates
 - Modern Mermaid 11.x may be smaller (~624 KB) than current 9.3.0 (~899 KB) per Bundlephobia
 - Milestone v0.5.0 archived to `.planning/milestones/v0.5.0-ROADMAP.md` and `.planning/milestones/v0.5.0-REQUIREMENTS.md`
+
+## Current Position
+
+Phase: Not started (defining requirements)
+Plan: —
+Status: Defining requirements
+Last activity: 2026-06-07 — Milestone v0.6.0 started

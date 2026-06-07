@@ -8,6 +8,17 @@ A TiddlyWiki 5 plugin that embeds the Mermaid.js diagramming library, enabling u
 
 TiddlyWiki users can create and view rich Mermaid diagrams natively within their notebooks without leaving the wiki environment.
 
+## Current Milestone: v0.6.0 Capability Parity & Advanced Examples
+
+**Goal:** Expose Mermaid's complete configuration surface and ship an advanced, documented example for every diagram type renderable with the vendored Mermaid 11.14.0 bundle — without adding heavy external assets.
+
+**Target features:**
+- **Configuration parity** — first-class, documented support for `theme`/`themeVariables`, `look` (handDrawn/classic), `fontFamily`, `securityLevel` override, per-type config (flowchart, sequence, gantt, etc.), accessibility (`accTitle`/`accDescr`), and `%%{init}%%` directives — all without extra assets.
+- **Advanced examples per type** — one advanced, well-commented example tiddler for every diagram type supported by the bundle.
+- **Capability matrix doc** — a tiddler/doc mapping plugin support vs full Mermaid, flagging ELK / KaTeX / icon packs / ZenUML as deferred with rationale.
+
+**Constraints:** No extra bundled assets (ELK, KaTeX, icon packs, ZenUML, Math are deferred). Aggressive lazy-loading; bundle stays ~current size. `securityLevel` becomes configurable (`'loose'` default).
+
 ## Requirements
 
 ### Validated
@@ -33,7 +44,7 @@ TiddlyWiki users can create and view rich Mermaid diagrams natively within their
 
 ### Active
 
-(None — all v1 requirements shipped. Next milestone requirements to be defined.)
+(v0.6.0 requirements being defined — see REQUIREMENTS.md)
 
 ### Out of Scope
 
@@ -89,4 +100,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-04-27 after Mermaid 11.14.0 upgrade*
+*Last updated: 2026-06-07 — started milestone v0.6.0 Capability Parity & Advanced Examples*
