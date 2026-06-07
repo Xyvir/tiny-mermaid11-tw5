@@ -55,6 +55,53 @@ modified: E Furlan 2022-05-08
         return frames.join('\n');
     }
 
+    var SECURE_KEYS = ['secure', 'securityLevel', 'startOnLoad',
+                       'maxTextSize', 'maxEdges', 'suppressErrorRendering'];
+
+    var CONFIG_WHITELIST = [
+        'theme', 'themeVariables', 'themeCSS', 'look', 'handDrawnSeed',
+        'fontFamily', 'altFontFamily', 'fontSize', 'darkMode', 'wrap',
+        'htmlLabels', 'markdownAutoWrap', 'logLevel',
+        'arrowMarkerAbsolute', 'deterministicIds', 'deterministicIDSeed',
+        'flowchart', 'sequence', 'gantt', 'pie', 'class', 'state', 'er',
+        'journey', 'gitGraph', 'quadrantChart', 'xyChart', 'sankey',
+        'timeline', 'mindmap', 'packet', 'block', 'architecture', 'kanban',
+        'c4', 'requirement', 'radar',
+        'securityLevel', 'maxTextSize', 'maxEdges', 'suppressErrorRendering'
+    ];
+
+    var NON_SECURE_INJECT_KEYS = ['theme', 'look', 'fontFamily', 'fontSize',
+                                   'themeVariables', 'darkMode'];
+
+    function buildSiteConfig() {
+        var config = {
+            startOnLoad: false,
+            securityLevel: 'loose',
+            flowchart: { useMaxWidth: true, htmlLabels: true }
+        };
+        var configTitle = '$:/plugins/orange/mermaid-tw5/config';
+        var data = $tw.wiki.getTiddlerData(configTitle, {});
+        for (var k in data) {
+            if (Object.prototype.hasOwnProperty.call(data, k) &&
+                CONFIG_WHITELIST.indexOf(k) !== -1) {
+                if (k === 'startOnLoad') continue;  // D-07: never allow override
+                config[k] = data[k];                // shallow replace per D-04
+            }
+        }
+        return config;
+    }
+
+    function buildPerWidgetInit(options) {
+        var init = {};
+        for (var i = 0; i < NON_SECURE_INJECT_KEYS.length; i++) {
+            var k = NON_SECURE_INJECT_KEYS[i];
+            if (options[k] !== undefined && options[k] !== '') {
+                init[k] = options[k];
+            }
+        }
+        return Object.keys(init).length > 0 ? init : null;
+    }
+
     var MermaidWidget = function(parseTreeNode, options) {
         this.initialise(parseTreeNode, options);
     };
@@ -97,18 +144,14 @@ modified: E Furlan 2022-05-08
                 mermaidModule = require('$:/plugins/orange/mermaid-tw5/mermaid.min.js');
                 mermaidAPI = mermaidModule.mermaidAPI || mermaidModule;
                 d3 = require('$:/plugins/orange/mermaid-tw5/d3.v6.min.js');
+                mermaidAPI.initialize(buildSiteConfig());  // D-05: once per page load
             }
 
             var options = {
                 theme: ''
             };
             rocklib.getOptions(this, tag, options);
-
-            mermaidAPI.initialize({
-                startOnLoad: false,
-                flowchart: { useMaxWidth: true, htmlLabels: true },
-                securityLevel: 'loose',
-            });
+            // mermaidAPI.initialize() removed from per-render path (was hardcoded lines)
             // START ZOOM LOGIC: Enable zooming the mermaid diagram with D3
             // by fkmiec 2023-05-21
             var zoomEventListenersApplied = false;
@@ -133,6 +176,13 @@ modified: E Furlan 2022-05-08
 
             scriptBody = decodeHtmlEntities(scriptBody);
 
+            // D-02: inject per-widget non-secure config as %%{init}%% PREPENDED
+            // before any author's %%{init}%% so the author's in-source directive wins.
+            var perWidgetInit = buildPerWidgetInit(options);
+            if (perWidgetInit) {
+                scriptBody = '%%{init: ' + JSON.stringify(perWidgetInit) + '}%%\n' + scriptBody;
+            }
+
             var renderDiagram = function() {
                 // Mermaid 11 calls document.getElementById(id)?.remove() before rendering
                 // to clean up stale elements. We must NOT pass divNode.id as the SVG id,
@@ -145,7 +195,9 @@ modified: E Furlan 2022-05-08
                     result.then(function(res) {
                         _insertSVG(res.svg, res.bindFunctions);
                     }).catch(function(renderErr) {
-                        // If the Promise rejection says the diagram is async, try renderAsync
+                        // renderAsync is absent from the vendored Mermaid 11.14.0 bundle
+                        // (grep confirms 0 occurrences). This guard never fires but is kept
+                        // as a forward-compatibility safety net for future bundle upgrades.
                         if (renderErr.message && renderErr.message.indexOf('Diagram is a promise') !== -1 && mermaidModule.renderAsync) {
                             mermaidModule.renderAsync(divNode.id, scriptBody, _insertSVG).catch(function(asyncEx) {
                                 var errorHtml = '<div style="border-left:3px solid #ff4444;background:#fff0f0;padding:8px 12px;">' +
