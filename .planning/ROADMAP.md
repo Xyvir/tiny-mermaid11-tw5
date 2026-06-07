@@ -91,11 +91,11 @@
   2. On a page with multiple diagrams, `initialize()` runs once and all diagrams share one consistent global config — no "last diagram wins" interference (CONFIG-03)
   3. A user can override `securityLevel` via the `$:/plugins/orange/mermaid-tw5/config` shadow tiddler, with `'loose'` remaining the documented default that keeps click navigation working (CONFIG-04)
   4. A user can set `theme`, `themeVariables`, `look` (handDrawn/classic), and `fontFamily` globally and per-diagram, and see them applied (CONFIG-05)
-  5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)**Plans:** 3 plans
+  5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)**Plans:** 1/3 plans executed
 
 **Wave 1**
 
-- [ ] 06-01-PLAN.md — Test mock extensions, JSON config tiddler, plugin.info, Sankey R&D fix (wave 1)
+- [x] 06-01-PLAN.md — Test mock extensions, JSON config tiddler, plugin.info, Sankey R&D fix (wave 1)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -155,7 +155,7 @@
 | 3. Performance Optimization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
-| 6. Config Wiring Foundation | v0.6.0 | 0/3 | Planned | - |
+| 6. Config Wiring Foundation | v0.6.0 | 1/3 | In Progress|  |
 | 7. Advanced Examples & Legends | v0.6.0 | 0/? | Not started | - |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 

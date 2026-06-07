@@ -12,9 +12,9 @@
 
 - [ ] **CONFIG-02**: User-supplied configuration (widget attributes and `mermaid-*` tiddler fields) is actually applied to rendering — fix the `getOptions()` → `mermaidAPI.initialize()` wiring so config is no longer a silent no-op
 - [ ] **CONFIG-03**: `initialize()` runs once per page (in the lazy-load block), so multi-diagram pages share consistent global config instead of the last diagram winning
-- [ ] **CONFIG-04**: User can override `securityLevel` via a config shadow tiddler, with `'loose'` as the documented default (required for click navigation)
+- [x] **CONFIG-04**: User can override `securityLevel` via a config shadow tiddler, with `'loose'` as the documented default (required for click navigation)
 - [ ] **CONFIG-05**: User can set global appearance — `theme`, `themeVariables`, `look` (handDrawn/classic), `fontFamily` — and have it applied to diagrams
-- [ ] **CONFIG-06**: User can set per-diagram-type config (flowchart, sequence, gantt, etc.) via a documented JSON attribute/field pattern
+- [x] **CONFIG-06**: User can set per-diagram-type config (flowchart, sequence, gantt, etc.) via a documented JSON attribute/field pattern
 - [ ] **CONFIG-07**: A Configuration Reference tiddler documents all supported config keys plus accessibility (`accTitle`/`accDescr`) usage
 
 ### Advanced Examples
@@ -58,9 +58,9 @@
 |-------------|-------|--------|---------|
 | CONFIG-02 | Phase 6 | Pending | |
 | CONFIG-03 | Phase 6 | Pending | |
-| CONFIG-04 | Phase 6 | Pending | |
+| CONFIG-04 | Phase 6 | Complete | |
 | CONFIG-05 | Phase 6 | Pending | |
-| CONFIG-06 | Phase 6 | Pending | |
+| CONFIG-06 | Phase 6 | Complete | |
 | CONFIG-07 | Phase 8 | Pending | |
 | EXAMPLE-01 | Phase 7 | Pending | |
 | EXAMPLE-02 | Phase 7 | Pending | |

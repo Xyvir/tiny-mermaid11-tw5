@@ -2,22 +2,22 @@
 gsd_state_version: 1.0
 milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
-current_phase: 6 (Config Wiring Foundation)
+current_phase: 06
 status: executing
-last_updated: "2026-06-07T22:58:26.442Z"
-last_activity: 2026-06-07 -- Phase 06 planning complete
+last_updated: "2026-06-07T23:07:56.287Z"
+last_activity: 2026-06-07
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 3
-  completed_plans: 0
+  completed_plans: 1
   percent: 0
 ---
 
 # State: mermaid-tw5
 
 **Project:** mermaid-tw5
-**Current Phase:** 6 (Config Wiring Foundation)
+**Current Phase:** 06
 **Current Milestone:** v0.6.0 — Capability Parity & Advanced Examples
 **Status:** Ready to execute
 
@@ -26,16 +26,16 @@ progress:
 See: `.planning/PROJECT.md` (updated 2026-06-07)
 
 **Core value:** TiddlyWiki users can create and view rich Mermaid diagrams natively within their notebooks without leaving the wiki environment.
-**Current focus:** Phase 6 — fix the config wiring so user-supplied config actually applies.
+**Current focus:** Phase 06 — config-wiring-foundation
 
 ## Current Position
 
-Phase: 6 of 8 (Config Wiring Foundation) — first phase of v0.6.0
-Plan: — (not yet planned)
+Phase: 06 (config-wiring-foundation) — EXECUTING
+Plan: 2 of 3
 Status: Ready to execute
-Last activity: 2026-06-07 -- Phase 06 planning complete
+Last activity: 2026-06-07
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [███░░░░░░░] 33%
 
 ## Phase Tracker
 
@@ -58,6 +58,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 
 - v0.6.0 roadmap: 3-phase build order forced by hard dependency — config fix (6) before examples (7) before docs (8).
 - v0.6.0 scope: No new bundled assets (ELK, ZenUML, icon packs, KaTeX-as-feature deferred); all advanced examples use `$$$text/vnd.tiddlywiki.mermaid` block syntax only.
+- [Phase ?]: Per-type blocks (flowchart/sequence/gantt) in config tiddler JSON, not dotted tiddler fields (deferred v0.7.0)
+- [Phase ?]: Config tiddler $:/plugins/orange/mermaid-tw5/config ships with securityLevel loose, startOnLoad false, flowchart defaults
+- [Phase ?]: Phase 7 Sankey authoring unblocked; ampersand invalid in Mermaid 11.12+ node names
 
 ### Pending Todos
 
@@ -84,6 +87,12 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-07T22:33:26.904Z
+Last session: 2026-06-07T23:07:56.282Z
 Stopped at: Phase 6 context gathered
-Resume file: .planning/phases/06-config-wiring-foundation/06-CONTEXT.md
+Resume file: None
+
+## Performance Metrics
+
+| Phase | Plan | Duration | Notes |
+|-------|------|----------|-------|
+| Phase 06 P01 | 10 | 3 tasks | 4 files |
