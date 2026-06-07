@@ -201,6 +201,59 @@ describe('wrapper', () => {
             assert.strictEqual(config.flowchart.curve, 'linear',
                 'flowchart.curve from config tiddler should reach initialize() (D-04 shallow replace)');
         });
+
+        it('prepends %%{init}%% for theme widget attribute (D-02)', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.attributes = { theme: 'forest' };
+            var parent = global.document.createElement('div');
+            widget.render(parent, null);
+
+            var lastSource = mockMermaidAPI.lastRenderSource;
+            assert.ok(lastSource && lastSource.indexOf('%%{init:') === 0,
+                '%%{init}%% should be prepended at index 0');
+            assert.ok(lastSource.indexOf('"theme":"forest"') !== -1 ||
+                      lastSource.indexOf('"theme": "forest"') !== -1,
+                'theme:forest should be in injected %%{init}%%');
+        });
+
+        it('injects fontFamily widget attribute', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.attributes = { fontFamily: 'monospace' };
+            var parent = global.document.createElement('div');
+            widget.render(parent, null);
+
+            var lastSource = mockMermaidAPI.lastRenderSource;
+            assert.ok(lastSource && lastSource.indexOf('%%{init:') === 0,
+                '%%{init}%% should be prepended for fontFamily (CONFIG-02)');
+            assert.ok(lastSource.indexOf('"fontFamily"') !== -1,
+                'fontFamily key should appear in injected %%{init}%%');
+            assert.ok(lastSource.indexOf('monospace') !== -1,
+                'fontFamily value monospace should appear in injected %%{init}%%');
+        });
+
+        it('does not inject %%{init}%% when no non-secure widget attrs set', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.attributes = {};
+            var parent = global.document.createElement('div');
+            widget.render(parent, null);
+
+            var lastSource = mockMermaidAPI.lastRenderSource;
+            assert.ok(!lastSource || lastSource.indexOf('%%{init:') !== 0,
+                'no %%{init}%% should be prepended when no non-secure attrs (Pitfall 3: theme empty seed filtered)');
+        });
+
+        it('does not inject class or style attrs into %%{init}%% (O-01 whitelist)', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.attributes = { class: 'my-diagram', style: 'color:red' };
+            var parent = global.document.createElement('div');
+            widget.render(parent, null);
+
+            var lastSource = mockMermaidAPI.lastRenderSource;
+            assert.ok(!lastSource || lastSource.indexOf('"class"') === -1,
+                'class should not appear in injected %%{init}%%');
+            assert.ok(!lastSource || lastSource.indexOf('"style"') === -1,
+                'style should not appear in injected %%{init}%%');
+        });
     });
 
     describe('lazy loading', () => {
