@@ -4,7 +4,7 @@
     "created": "",
     "dependents": "",
     "description": "wrapper for the Mermaid diagramming library",
-    "list": "readme usage example license",
+    "list": "readme usage example license config",
     "modified": "",
     "name": "Mermaid",
     "plugin-type": "plugin",
