@@ -19,6 +19,7 @@
 **Goal:** Remove accumulated technical debt and establish consistent code style.
 **Requirements:** CLEAN-01, CLEAN-02, STYLE-01
 **Success Criteria:**
+
 1. No `console.log` statements remain in `wrapper.js` zoom logic
 2. Commented-out Node.js/browser detection block is removed
 3. JavaScript style is consistent across all plugin source files
@@ -29,6 +30,7 @@
 **Goal:** Improve error handling and establish automated testing.
 **Requirements:** QUAL-01, QUAL-02
 **Success Criteria:**
+
 1. Rendering errors display user-friendly messages instead of raw exception text
 2. Test suite runs automatically and covers widget rendering path
 3. Test suite covers typed parser behavior
@@ -39,6 +41,7 @@
 **Goal:** Reduce the performance impact of loading mermaid.js and D3.js on pages without diagrams.
 **Requirements:** PERF-01
 **Success Criteria:**
+
 1. Lazy loading mechanism is implemented and functional
 2. Pages without mermaid content do not load mermaid.min.js or d3.v6.min.js
 3. Pages with mermaid content load libraries on demand with no visible delay
@@ -49,6 +52,7 @@
 **Goal:** Evaluate and adopt a modern Mermaid.js version while controlling bundle size.
 **Requirements:** UPDT-01
 **Success Criteria:**
+
 1. Modern Mermaid.js versions (10.x+) are evaluated for size and compatibility
 2. Lite build or modular import strategy is investigated
 3. Decision is documented in PROJECT.md Key Decisions
@@ -60,6 +64,7 @@
 **Goal:** Automate build verification and improve project documentation for contributors.
 **Requirements:** AUTO-01, DOCS-02
 **Success Criteria:**
+
 1. GitHub Actions workflow runs tests on push/PR
 2. GitHub Actions workflow builds and deploys demo to GitHub Pages
 3. Developer setup instructions are added to README or CONTRIBUTING.md
@@ -81,15 +86,28 @@
 **Depends on:** Nothing within v0.6.0 (first phase of the milestone; builds on shipped v0.5.0 plugin)
 **Requirements:** CONFIG-02, CONFIG-03, CONFIG-04, CONFIG-05, CONFIG-06
 **Success Criteria** (what must be TRUE):
+
   1. A user who sets `<$mermaid theme="forest">` (or the equivalent `mermaid-theme` field) sees the diagram render in the forest theme — config is no longer a silent no-op (CONFIG-02)
   2. On a page with multiple diagrams, `initialize()` runs once and all diagrams share one consistent global config — no "last diagram wins" interference (CONFIG-03)
   3. A user can override `securityLevel` via the `$:/plugins/orange/mermaid-tw5/config` shadow tiddler, with `'loose'` remaining the documented default that keeps click navigation working (CONFIG-04)
   4. A user can set `theme`, `themeVariables`, `look` (handDrawn/classic), and `fontFamily` globally and per-diagram, and see them applied (CONFIG-05)
-  5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)
-**Plans:** 3 plans
+  5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)**Plans:** 3 plans
+
+**Wave 1**
+
 - [ ] 06-01-PLAN.md — Test mock extensions, JSON config tiddler, plugin.info, Sankey R&D fix (wave 1)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 06-02-PLAN.md — buildSiteConfig() + once-per-page initialize() + global config tests (wave 2)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 06-03-PLAN.md — Per-widget %%{init}%% prepend injection + tests + live checkpoint (wave 3)
+
+**Cross-cutting constraints:**
+
+- The 14 currently-passing tests stay green (D-09 test gate — research-corrected from the stale '13' in CONTEXT.md)
 
 *Hard-dependency note:* This phase is the milestone foundation. Per research SUMMARY.md, advanced examples demonstrating theme/look/fontFamily/securityLevel cannot be proven until the `getOptions()` → `mermaidAPI.initialize()` merge lands here. The Sankey `R&D` parse-error fix (owned as a requirement by Phase 7's EXAMPLE-02) is also validated as a prerequisite during this phase so Phase 7 Sankey authoring is unblocked. All existing 13 tests must continue to pass.
 
@@ -99,11 +117,13 @@
 **Depends on:** Phase 6 (config must apply before config-demonstrating examples are meaningful; Sankey `R&D` bug must be fixed)
 **Requirements:** EXAMPLE-01, EXAMPLE-02, EXAMPLE-03, LEGEND-01, LEGEND-02
 **Success Criteria** (what must be TRUE):
+
   1. Each of the 26 in-scope diagram types has an advanced, well-commented example that renders correctly in the demo wiki, authored exclusively with `$$$text/vnd.tiddlywiki.mermaid` block syntax (EXAMPLE-01)
   2. The previously broken Sankey example renders cleanly (no `R&D` parse error) and older bare-content tiddlers are migrated to consistent `.tid` format (EXAMPLE-02)
   3. A user can find every advanced example from a shared tag and a catalog/index tiddler (EXAMPLE-03)
   4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
+
 **Plans:** TBD
 **UI hint:** yes
 
@@ -115,10 +135,12 @@
 **Depends on:** Phase 7 (the capability matrix links to the example tiddlers, which must exist first)
 **Requirements:** CONFIG-07, DOCS-03
 **Success Criteria** (what must be TRUE):
+
   1. A Configuration Reference tiddler documents all supported config keys (global, per-type, `%%{init}%%`, YAML frontmatter) plus accessibility `accTitle`/`accDescr` usage (CONFIG-07)
   2. A Capability Matrix tiddler maps plugin support vs full Mermaid, marking ELK layout, ZenUML, and external icon packs as deferred with rationale (DOCS-03)
   3. The capability matrix notes which diagram types have native legends (pie, radar) vs. need the manual legend pattern from Phase 7 (DOCS-03)
   4. The Mermaid Chart Catalog links to both the Configuration Reference and the Capability Matrix, and the README capability section matches the in-wiki matrix (DOCS-03)
+
 **Plans:** TBD
 **UI hint:** yes
 
