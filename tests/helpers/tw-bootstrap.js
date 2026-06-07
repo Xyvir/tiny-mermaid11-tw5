@@ -63,8 +63,13 @@ MockWidget.prototype.setVariable = function(name, value) {
 // ---------------------------------------------------------------------------
 
 var mockMermaidAPI = {
-    initialize: function() {},
+    initializeCalls: [],
+    lastRenderSource: null,
+    initialize: function(config) {
+        mockMermaidAPI.initializeCalls.push(config);
+    },
     render: function(id, source) {
+        mockMermaidAPI.lastRenderSource = source;
         if (source && source.indexOf('INVALID_SYNTAX') !== -1) {
             var err = new Error('Syntax error in graph');
             err.name = 'MermaidParseError';
