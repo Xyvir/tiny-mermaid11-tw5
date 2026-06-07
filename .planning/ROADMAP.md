@@ -86,7 +86,10 @@
   3. A user can override `securityLevel` via the `$:/plugins/orange/mermaid-tw5/config` shadow tiddler, with `'loose'` remaining the documented default that keeps click navigation working (CONFIG-04)
   4. A user can set `theme`, `themeVariables`, `look` (handDrawn/classic), and `fontFamily` globally and per-diagram, and see them applied (CONFIG-05)
   5. A user can supply per-diagram-type config (e.g. flowchart, sequence, gantt) via the documented JSON config-tiddler pattern and see it take effect (CONFIG-06)
-**Plans:** TBD
+**Plans:** 3 plans
+- [ ] 06-01-PLAN.md — Test mock extensions, JSON config tiddler, plugin.info, Sankey R&D fix (wave 1)
+- [ ] 06-02-PLAN.md — buildSiteConfig() + once-per-page initialize() + global config tests (wave 2)
+- [ ] 06-03-PLAN.md — Per-widget %%{init}%% prepend injection + tests + live checkpoint (wave 3)
 
 *Hard-dependency note:* This phase is the milestone foundation. Per research SUMMARY.md, advanced examples demonstrating theme/look/fontFamily/securityLevel cannot be proven until the `getOptions()` → `mermaidAPI.initialize()` merge lands here. The Sankey `R&D` parse-error fix (owned as a requirement by Phase 7's EXAMPLE-02) is also validated as a prerequisite during this phase so Phase 7 Sankey authoring is unblocked. All existing 13 tests must continue to pass.
 
@@ -130,7 +133,7 @@
 | 3. Performance Optimization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
-| 6. Config Wiring Foundation | v0.6.0 | 0/? | Not started | - |
+| 6. Config Wiring Foundation | v0.6.0 | 0/3 | Planned | - |
 | 7. Advanced Examples & Legends | v0.6.0 | 0/? | Not started | - |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
