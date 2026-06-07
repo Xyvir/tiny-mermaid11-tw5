@@ -1,6 +1,6 @@
 import { describe, it, beforeEach } from 'node:test';
 import assert from 'node:assert';
-import { loadModule, getRequireCalls, clearRequireCalls, clearModuleCache } from './helpers/tw-bootstrap.js';
+import { loadModule, getRequireCalls, clearRequireCalls, clearModuleCache, mockMermaidAPI } from './helpers/tw-bootstrap.js';
 import './helpers/dom-mock.js';
 
 function makeWidget(source) {
@@ -66,6 +66,47 @@ describe('wrapper', () => {
         assert.strictEqual(widget.domNodes.length, 1, 'should push one DOM node');
         assert.ok(widget.domNodes[0].innerHTML.indexOf('requires a browser') !== -1,
             'should show browser-required placeholder');
+    });
+
+    describe('buildSiteConfig behavior', () => {
+        beforeEach(function() {
+            clearModuleCache('$:/plugins/orange/mermaid-tw5/wrapper.js');
+            global.$tw.browser = true;
+            mockMermaidAPI.initializeCalls = [];
+            global.$tw.wiki.getTiddlerData = function() { return {}; };
+        });
+
+        it('calls initialize() on first render with startOnLoad: false', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            assert.ok(mockMermaidAPI.initializeCalls.length > 0,
+                'initialize should be called on first render');
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.startOnLoad, false,
+                'startOnLoad must always be false');
+        });
+
+        it('does not call initialize() on second render (once-per-page, D-05)', () => {
+            var widget1 = makeWidget('graph TD; A-->B');
+            widget1.render(global.document.createElement('div'), null);
+            var callCountAfterFirst = mockMermaidAPI.initializeCalls.length;
+
+            var widget2 = makeWidget('graph TD; C-->D');
+            widget2.render(global.document.createElement('div'), null);
+
+            assert.strictEqual(mockMermaidAPI.initializeCalls.length, callCountAfterFirst,
+                'initialize should not be called again on second render');
+        });
+
+        it('uses securityLevel loose as default when config tiddler absent', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.securityLevel, 'loose',
+                'default securityLevel should be loose');
+        });
     });
 
     describe('lazy loading', () => {
