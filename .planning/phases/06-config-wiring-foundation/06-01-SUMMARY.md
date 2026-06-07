@@ -104,6 +104,16 @@ None - no external service configuration required.
 - Phase 7 Sankey example authoring is unblocked (no `&` in node names)
 - Baseline test counts: 14 pass, 1 pre-existing fail (unchanged)
 
+## Self-Check: PASSED
+
+- FOUND: mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_config.tid
+- FOUND: tests/helpers/tw-bootstrap.js (modified)
+- FOUND: mermaid-tw5/tiddlers/Sankey Diagram.tid (modified)
+- FOUND: .planning/phases/06-config-wiring-foundation/06-01-SUMMARY.md
+- FOUND: commit 1a76928 (feat: test mock extension)
+- FOUND: commit e463d9a (feat: config tiddler + plugin.info)
+- FOUND: commit 2fd80e0 (fix: Sankey R&D)
+
 ---
 *Phase: 06-config-wiring-foundation*
 *Completed: 2026-06-07*
