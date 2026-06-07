@@ -4,13 +4,13 @@ milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
 current_phase: 06
 status: executing
-last_updated: "2026-06-07T23:07:56.287Z"
+last_updated: "2026-06-07T23:13:39.915Z"
 last_activity: 2026-06-07
 progress:
   total_phases: 3
   completed_phases: 0
   total_plans: 3
-  completed_plans: 1
+  completed_plans: 2
   percent: 0
 ---
 
@@ -31,11 +31,11 @@ See: `.planning/PROJECT.md` (updated 2026-06-07)
 ## Current Position
 
 Phase: 06 (config-wiring-foundation) — EXECUTING
-Plan: 2 of 3
+Plan: 3 of 3
 Status: Ready to execute
 Last activity: 2026-06-07
 
-Progress: [███░░░░░░░] 33%
+Progress: [███████░░░] 67%
 
 ## Phase Tracker
 
@@ -61,6 +61,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - [Phase ?]: Per-type blocks (flowchart/sequence/gantt) in config tiddler JSON, not dotted tiddler fields (deferred v0.7.0)
 - [Phase ?]: Config tiddler $:/plugins/orange/mermaid-tw5/config ships with securityLevel loose, startOnLoad false, flowchart defaults
 - [Phase ?]: Phase 7 Sankey authoring unblocked; ampersand invalid in Mermaid 11.12+ node names
+- [Phase ?]: O-01 adopted: CONFIG_WHITELIST gates all config tiddler keys before reaching initialize(); unknown keys dropped silently
+- [Phase ?]: mermaidAPI.initialize() moved to lazy-load block (once per page, CONFIG-03/D-05); per-render hardcoded call removed
+- [Phase ?]: buildSiteConfig() implements D-07: startOnLoad always false, cannot be overridden by config tiddler
 
 ### Pending Todos
 
@@ -87,8 +90,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-07T23:07:56.282Z
-Stopped at: Phase 6 context gathered
+Last session: 2026-06-07T23:13:39.911Z
+Stopped at: Completed 06-02-PLAN.md
 Resume file: None
 
 ## Performance Metrics
@@ -96,3 +99,4 @@ Resume file: None
 | Phase | Plan | Duration | Notes |
 |-------|------|----------|-------|
 | Phase 06 P01 | 10 | 3 tasks | 4 files |
+| Phase 06 P02 | 25 | 2 tasks | 2 files |
