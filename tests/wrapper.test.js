@@ -109,6 +109,100 @@ describe('wrapper', () => {
         });
     });
 
+    describe('config wiring', () => {
+        beforeEach(function() {
+            clearModuleCache('$:/plugins/orange/mermaid-tw5/wrapper.js');
+            global.$tw.browser = true;
+            // Reset initialize call tracking before each test
+            mockMermaidAPI.initializeCalls = [];
+            mockMermaidAPI.lastRenderSource = null;
+            // Reset getTiddlerData to default (returns empty object)
+            global.$tw.wiki.getTiddlerData = function() { return {}; };
+        });
+
+        it('calls initialize() on first render with startOnLoad: false', () => {
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            assert.ok(mockMermaidAPI.initializeCalls.length > 0,
+                'initialize should be called on first render');
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.startOnLoad, false,
+                'startOnLoad must always be false');
+        });
+
+        it('does not call initialize() on second render (once-per-page, D-05)', () => {
+            var widget1 = makeWidget('graph TD; A-->B');
+            widget1.render(global.document.createElement('div'), null);
+            var callCountAfterFirst = mockMermaidAPI.initializeCalls.length;
+
+            var widget2 = makeWidget('graph TD; C-->D');
+            widget2.render(global.document.createElement('div'), null);
+
+            assert.strictEqual(mockMermaidAPI.initializeCalls.length, callCountAfterFirst,
+                'initialize should not be called again on second render');
+        });
+
+        it('passes securityLevel from config tiddler to initialize()', () => {
+            global.$tw.wiki.getTiddlerData = function(title) {
+                if (title === '$:/plugins/orange/mermaid-tw5/config') {
+                    return { securityLevel: 'strict' };
+                }
+                return {};
+            };
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.securityLevel, 'strict',
+                'securityLevel from config tiddler should reach initialize()');
+        });
+
+        it('uses securityLevel loose as default when config tiddler absent', () => {
+            // getTiddlerData already returns {} by default from beforeEach reset
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.securityLevel, 'loose',
+                'default securityLevel should be loose');
+        });
+
+        it('merges theme/look/fontFamily from config tiddler', () => {
+            global.$tw.wiki.getTiddlerData = function(title) {
+                if (title === '$:/plugins/orange/mermaid-tw5/config') {
+                    return { theme: 'forest', look: 'handDrawn', fontFamily: 'monospace' };
+                }
+                return {};
+            };
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.theme, 'forest',
+                'theme from config tiddler should reach initialize()');
+            assert.strictEqual(config.look, 'handDrawn',
+                'look from config tiddler should reach initialize()');
+            assert.strictEqual(config.fontFamily, 'monospace',
+                'fontFamily from config tiddler should reach initialize()');
+        });
+
+        it('passes flowchart nested block from config tiddler to initialize()', () => {
+            global.$tw.wiki.getTiddlerData = function(title) {
+                if (title === '$:/plugins/orange/mermaid-tw5/config') {
+                    return { flowchart: { curve: 'linear' } };
+                }
+                return {};
+            };
+            var widget = makeWidget('graph TD; A-->B');
+            widget.render(global.document.createElement('div'), null);
+
+            var config = mockMermaidAPI.initializeCalls[0];
+            assert.strictEqual(config.flowchart.curve, 'linear',
+                'flowchart.curve from config tiddler should reach initialize() (D-04 shallow replace)');
+        });
+    });
+
     describe('lazy loading', () => {
         it('does not load mermaid or d3 during module evaluation', () => {
             clearRequireCalls();
