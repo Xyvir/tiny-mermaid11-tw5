@@ -35,7 +35,7 @@ $$$
 sankey-beta
 Revenue,Cost of Goods,4000
 Revenue,Gross Profit,6000
-Gross Profit,R&D,1500
+Gross Profit,R and D,1500
 Gross Profit,Sales,1200
 Gross Profit,Operations,1300
 Gross Profit,Net Income,2000
@@ -45,7 +45,7 @@ $$$text/vnd.tiddlywiki.mermaid
 sankey-beta
 Revenue,Cost of Goods,4000
 Revenue,Gross Profit,6000
-Gross Profit,R&D,1500
+Gross Profit,R and D,1500
 Gross Profit,Sales,1200
 Gross Profit,Operations,1300
 Gross Profit,Net Income,2000
