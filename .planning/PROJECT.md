@@ -62,7 +62,7 @@ TiddlyWiki users can create and view rich Mermaid diagrams natively within their
 - **Upstream tracking**: Previously tracked mermaid-js/mermaid#4616 for lite build; no longer blocking as full bundle was adopted
 - **Maintenance model**: Single maintainer (E Furlan), infrequent updates, automated CI/CD now in place
 - **Fragile areas**: WikiText un-parsing (`getScriptBody`) described by original author as "twitchy difficult to maintain and buggy"
-- **Current state (post-v0.5.0)**: Mermaid 11.14.0 active, 13 tests passing, lazy loading active, GitHub Actions CI/CD live, developer docs complete
+- **Current state (post-Phase 6, v0.6.0)**: Mermaid 11.14.0 active, 27 tests passing (1 documented pre-existing failure), lazy loading active, GitHub Actions CI/CD live, developer docs complete. Config wiring fixed: user-supplied config (theme/look/fontFamily/securityLevel/per-type) now actually applies via `buildSiteConfig()` (once-per-page `initialize()`) and per-widget `%%{init}%%` injection. Sankey `R&D` parse error (#7528) fixed.
 
 ## Constraints
 
@@ -100,4 +100,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-06-07 — started milestone v0.6.0 Capability Parity & Advanced Examples*
+*Last updated: 2026-06-08 — Phase 6 (Config Wiring Foundation) complete; CONFIG-02..06 validated*
