@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
 current_phase: 06
-status: verifying
-last_updated: "2026-06-08T12:59:59.854Z"
+status: ready_to_plan
+last_updated: 2026-06-08T13:08:13.531Z
 last_activity: 2026-06-08
 progress:
   total_phases: 3
@@ -12,26 +12,27 @@ progress:
   total_plans: 3
   completed_plans: 3
   percent: 33
+stopped_at: Phase 06 complete (3/3) — ready to discuss Phase 7
 ---
 
 # State: mermaid-tw5
 
 **Project:** mermaid-tw5
-**Current Phase:** 06
+**Current Phase:** 7
 **Current Milestone:** v0.6.0 — Capability Parity & Advanced Examples
-**Status:** Phase complete — ready for verification
+**Status:** Ready to plan
 
 ## Project Reference
 
 See: `.planning/PROJECT.md` (updated 2026-06-07)
 
 **Core value:** TiddlyWiki users can create and view rich Mermaid diagrams natively within their notebooks without leaving the wiki environment.
-**Current focus:** Phase 06 — config-wiring-foundation
+**Current focus:** Phase 7 — advanced examples & legends
 
 ## Current Position
 
 Phase: 06 (config-wiring-foundation) — EXECUTING
-Plan: 3 of 3
+Plan: Not started
 Status: Phase complete — ready for verification
 Last activity: 2026-06-08
 

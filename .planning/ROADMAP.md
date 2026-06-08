@@ -155,7 +155,7 @@
 | 3. Performance Optimization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
-| 6. Config Wiring Foundation | v0.6.0 | 3/3 | Complete   | 2026-06-08 |
+| 6. Config Wiring Foundation | v0.6.0 | 3/3 | Complete    | 2026-06-08 |
 | 7. Advanced Examples & Legends | v0.6.0 | 0/? | Not started | - |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
