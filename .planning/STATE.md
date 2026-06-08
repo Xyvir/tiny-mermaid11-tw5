@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
 current_phase: 06
-status: executing
-last_updated: "2026-06-07T23:30:00.000Z"
-last_activity: 2026-06-07
+status: verifying
+last_updated: "2026-06-08T12:59:59.854Z"
+last_activity: 2026-06-08
 progress:
   total_phases: 3
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 3
-  completed_plans: 2
-  percent: 0
+  completed_plans: 3
+  percent: 33
 ---
 
 # State: mermaid-tw5
@@ -19,7 +19,7 @@ progress:
 **Project:** mermaid-tw5
 **Current Phase:** 06
 **Current Milestone:** v0.6.0 — Capability Parity & Advanced Examples
-**Status:** Ready to execute
+**Status:** Phase complete — ready for verification
 
 ## Project Reference
 
@@ -32,10 +32,10 @@ See: `.planning/PROJECT.md` (updated 2026-06-07)
 
 Phase: 06 (config-wiring-foundation) — EXECUTING
 Plan: 3 of 3
-Status: Awaiting human checkpoint (Task 3 — live verification)
-Last activity: 2026-06-07
+Status: Phase complete — ready for verification
+Last activity: 2026-06-08
 
-Progress: [███████░░░] 67%
+Progress: [██████████] 100%
 
 ## Phase Tracker
 
@@ -64,6 +64,7 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - [Phase ?]: O-01 adopted: CONFIG_WHITELIST gates all config tiddler keys before reaching initialize(); unknown keys dropped silently
 - [Phase ?]: mermaidAPI.initialize() moved to lazy-load block (once per page, CONFIG-03/D-05); per-render hardcoded call removed
 - [Phase ?]: buildSiteConfig() implements D-07: startOnLoad always false, cannot be overridden by config tiddler
+- [Phase ?]: D-02 prepend confirmed live: widget-attribute theme prepended as %%{init}%%; author in-source directive wins via Mermaid last-wins merge
 
 ### Pending Todos
 
@@ -90,8 +91,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-07T23:30:00.000Z
-Stopped at: 06-03-PLAN.md Task 3 checkpoint:human-verify (Tasks 1+2 committed, awaiting live demo verification)
+Last session: 2026-06-08T12:59:59.850Z
+Stopped at: Completed 06-03-PLAN.md — Phase 06 all plans done
 Resume file: None
 
 ## Performance Metrics
@@ -101,3 +102,4 @@ Resume file: None
 | Phase 06 P01 | 10 | 3 tasks | 4 files |
 | Phase 06 P02 | 25 | 2 tasks | 2 files |
 | Phase 06 P03 | — | 2/3 tasks (checkpoint) | 1 file |
+| Phase 06 P03 | 15 | 3 tasks | 2 files |

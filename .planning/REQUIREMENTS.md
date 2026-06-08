@@ -10,7 +10,7 @@
 
 ### Configuration Parity
 
-- [ ] **CONFIG-02**: User-supplied configuration (widget attributes and `mermaid-*` tiddler fields) is actually applied to rendering — fix the `getOptions()` → `mermaidAPI.initialize()` wiring so config is no longer a silent no-op
+- [x] **CONFIG-02**: User-supplied configuration (widget attributes and `mermaid-*` tiddler fields) is actually applied to rendering — fix the `getOptions()` → `mermaidAPI.initialize()` wiring so config is no longer a silent no-op
 - [x] **CONFIG-03**: `initialize()` runs once per page (in the lazy-load block), so multi-diagram pages share consistent global config instead of the last diagram winning
 - [x] **CONFIG-04**: User can override `securityLevel` via a config shadow tiddler, with `'loose'` as the documented default (required for click navigation)
 - [x] **CONFIG-05**: User can set global appearance — `theme`, `themeVariables`, `look` (handDrawn/classic), `fontFamily` — and have it applied to diagrams
@@ -56,7 +56,7 @@
 
 | Requirement | Phase | Status | Outcome |
 |-------------|-------|--------|---------|
-| CONFIG-02 | Phase 6 | Pending | |
+| CONFIG-02 | Phase 6 | Complete | |
 | CONFIG-03 | Phase 6 | Complete | |
 | CONFIG-04 | Phase 6 | Complete | |
 | CONFIG-05 | Phase 6 | Complete | |
