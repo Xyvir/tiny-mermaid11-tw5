@@ -1,0 +1,276 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Class Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A class diagram shows the structure of a system by depicting classes, their attributes, methods, and the relationships between them. Use it for object-oriented domain modeling, API contracts, and database schema design. Uses `classDiagram`.
+
+---
+
+!! Basic example
+
+```
+classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +fetch()
+    }
+    Animal <|-- Dog
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+classDiagram
+    class Animal {
+        +String name
+        +makeSound()
+    }
+    class Dog {
+        +fetch()
+    }
+    Animal <|-- Dog
+$$$
+
+---
+
+!! Real-world example: E-commerce order domain model
+
+This example models an e-commerce domain with entities grouped by stereotype: value objects, aggregate roots, services, and repositories. Each group uses a `classDef` category so the legend maps colors to domain roles.
+
+```
+classDiagram
+    accTitle: E-commerce order domain model
+    accDescr: Domain model showing entities, stereotypes, and relationships
+
+    %% ── Value objects ───────────────────────────
+    class Money {
+        +float amount
+        +String currency
+        +add(Money) Money
+    }
+    class Address {
+        +String street
+        +String city
+        +String country
+    }
+
+    %% ── Aggregate roots ─────────────────────────
+    class Order {
+        +String id
+        +OrderStatus status
+        +List~OrderItem~ items
+        +Money total
+        +place()
+        +cancel()
+        +ship()
+    }
+    class Customer {
+        +String id
+        +String email
+        +List~Order~ orders
+        +register()
+    }
+    class Product {
+        +String id
+        +String name
+        +Money price
+        +int stock
+    }
+
+    %% ── Supporting classes ───────────────────────
+    class OrderItem {
+        +int quantity
+        +Money lineTotal
+    }
+    class OrderStatus {
+        <<enumeration>>
+        PENDING
+        CONFIRMED
+        SHIPPED
+        DELIVERED
+        CANCELLED
+    }
+
+    %% ── Services and repositories ────────────────
+    class OrderService {
+        <<service>>
+        +createOrder(Customer, List~Product~) Order
+        +processPayment(Order) bool
+    }
+    class OrderRepository {
+        <<repository>>
+        +findById(String) Order
+        +save(Order)
+        +findByCustomer(Customer) List~Order~
+    }
+
+    %% ── Relationships ────────────────────────────
+    Customer "1" --> "*" Order : places
+    Order "1" *-- "*" OrderItem : contains
+    OrderItem "*" --> "1" Product : references
+    Order --> Money : total
+    Customer --> Address : shippingAddress
+    OrderService ..> Order : creates
+    OrderService ..> OrderRepository : uses
+
+    %% ── Class definitions ───────────────────────
+    classDef valueObject fill:#6f42c1,stroke:#432874,color:#fff
+    classDef aggregate   fill:#0d6efd,stroke:#084298,color:#fff
+    classDef supporting  fill:#198754,stroke:#0f5132,color:#fff
+    classDef service     fill:#fd7e14,stroke:#984c0c,color:#fff
+
+    class Money:::valueObject
+    class Address:::valueObject
+    class Order:::aggregate
+    class Customer:::aggregate
+    class Product:::aggregate
+    class OrderItem:::supporting
+    class OrderStatus:::supporting
+    class OrderService:::service
+    class OrderRepository:::service
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+classDiagram
+    accTitle: E-commerce order domain model
+    accDescr: Domain model showing entities, stereotypes, and relationships
+
+    %% ── Value objects ───────────────────────────
+    class Money {
+        +float amount
+        +String currency
+        +add(Money) Money
+    }
+    class Address {
+        +String street
+        +String city
+        +String country
+    }
+
+    %% ── Aggregate roots ─────────────────────────
+    class Order {
+        +String id
+        +OrderStatus status
+        +List~OrderItem~ items
+        +Money total
+        +place()
+        +cancel()
+        +ship()
+    }
+    class Customer {
+        +String id
+        +String email
+        +List~Order~ orders
+        +register()
+    }
+    class Product {
+        +String id
+        +String name
+        +Money price
+        +int stock
+    }
+
+    %% ── Supporting classes ───────────────────────
+    class OrderItem {
+        +int quantity
+        +Money lineTotal
+    }
+    class OrderStatus {
+        <<enumeration>>
+        PENDING
+        CONFIRMED
+        SHIPPED
+        DELIVERED
+        CANCELLED
+    }
+
+    %% ── Services and repositories ────────────────
+    class OrderService {
+        <<service>>
+        +createOrder(Customer, List~Product~) Order
+        +processPayment(Order) bool
+    }
+    class OrderRepository {
+        <<repository>>
+        +findById(String) Order
+        +save(Order)
+        +findByCustomer(Customer) List~Order~
+    }
+
+    %% ── Relationships ────────────────────────────
+    Customer "1" --> "*" Order : places
+    Order "1" *-- "*" OrderItem : contains
+    OrderItem "*" --> "1" Product : references
+    Order --> Money : total
+    Customer --> Address : shippingAddress
+    OrderService ..> Order : creates
+    OrderService ..> OrderRepository : uses
+
+    %% ── Class definitions ───────────────────────
+    classDef valueObject fill:#6f42c1,stroke:#432874,color:#fff
+    classDef aggregate   fill:#0d6efd,stroke:#084298,color:#fff
+    classDef supporting  fill:#198754,stroke:#0f5132,color:#fff
+    classDef service     fill:#fd7e14,stroke:#984c0c,color:#fff
+
+    class Money:::valueObject
+    class Address:::valueObject
+    class Order:::aggregate
+    class Customer:::aggregate
+    class Product:::aggregate
+    class OrderItem:::supporting
+    class OrderStatus:::supporting
+    class OrderService:::service
+    class OrderRepository:::service
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#6f42c1;color:#fff;padding:2px 8px;border-radius:3px;@@ Value Object|Immutable object defined by its value, not identity|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Aggregate Root|Entity that owns a consistency boundary|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Supporting|Helper class within an aggregate|
+|@@background-color:#fd7e14;color:#fff;padding:2px 8px;border-radius:3px;@@ Service / Repository|Domain service or persistence abstraction|
+
+---
+
+!! Syntax
+
+```
+classDiagram
+    class MyClass {
+        <<stereotype>>
+        +String publicField
+        -int privateField
+        #bool protectedField
+        +publicMethod() ReturnType
+        -privateMethod()
+    }
+    ClassA <|-- ClassB : inherits
+    ClassA "1" *-- "*" ClassC : composition
+    ClassA --> ClassD : association
+    ClassA ..> ClassE : dependency
+```
+
+|!Visibility|!Meaning|
+|`+`|Public|
+|`-`|Private|
+|`#`|Protected|
+|`~`|Package / internal|
+
+|!Relationship|!Meaning|
+|`<|--`|Inheritance|
+|`*--`|Composition|
+|`o--`|Aggregation|
+|`-->`|Association|
+|`..>`|Dependency|
+
+!! Tips
+
+* Use `classDiagram` (not the legacy `classDiagram-v2`).
+* Use only simple generics like `~List~` — nested generics with commas (`~Map~` is fine, but `~Map<K,V>~` causes a parse error).
+* `<<stereotype>>` labels (e.g. `<<enumeration>>`, `<<service>>`, `<<interface>>`) appear as a small italic header inside the class box.
+* Apply `classDef` and `:::` to group classes by domain role and pair with a color legend.
+* See also: [[Entity Relationship]] for data-centric schemas, [[State Diagram]] for lifecycle modeling.
+
+[[← Mermaid Chart Catalog]]

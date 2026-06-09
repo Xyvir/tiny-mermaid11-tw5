@@ -1,0 +1,175 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Sequence Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A sequence diagram shows messages exchanged between participants over time, in left-to-right order. Use it for API interactions, authentication flows, protocol design, and actor communication. Uses `sequenceDiagram`.
+
+---
+
+!! Basic example
+
+```
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: Hello Bob
+    Bob-->>Alice: Hi Alice!
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: Hello Bob
+    Bob-->>Alice: Hi Alice!
+$$$
+
+---
+
+!! Real-world example: OAuth2 authorization code flow
+
+This example shows a browser-based OAuth2 login: the user's browser redirects to the authorization server, receives a code, and exchanges it for an access token. Activation bars show which participant is processing at each step.
+
+```
+%%{init: {"sequence": {"showSequenceNumbers": true}}}%%
+sequenceDiagram
+    accTitle: OAuth2 authorization code flow
+    accDescr: Browser login via OAuth2 with token exchange
+
+    %% ── Participants ────────────────────────────
+    participant Browser
+    participant AppServer as App Server
+    participant AuthServer as Auth Server
+    participant ResourceServer as Resource Server
+
+    %% ── Step 1: Redirect to Auth Server ─────────
+    Browser->>AppServer: GET /login
+    activate AppServer
+    AppServer-->>Browser: 302 Redirect to /authorize
+    deactivate AppServer
+
+    %% ── Step 2: User authenticates ──────────────
+    Browser->>AuthServer: GET /authorize?client_id=...
+    activate AuthServer
+    AuthServer-->>Browser: Login page
+    Browser->>AuthServer: POST credentials
+    AuthServer-->>Browser: 302 Redirect with ?code=xyz
+    deactivate AuthServer
+
+    %% ── Step 3: Code exchange ────────────────────
+    Browser->>AppServer: GET /callback?code=xyz
+    activate AppServer
+    AppServer->>AuthServer: POST /token (code + secret)
+    activate AuthServer
+    AuthServer-->>AppServer: access_token + refresh_token
+    deactivate AuthServer
+
+    %% ── Step 4: Access protected resource ────────
+    AppServer->>ResourceServer: GET /api/user (Bearer token)
+    activate ResourceServer
+    ResourceServer-->>AppServer: 200 User profile JSON
+    deactivate ResourceServer
+    AppServer-->>Browser: 200 User dashboard
+    deactivate AppServer
+
+    %% ── Error path ───────────────────────────────
+    alt Token expired
+        Browser->>AppServer: GET /refresh
+        AppServer->>AuthServer: POST /token (refresh_token)
+        AuthServer-->>AppServer: new access_token
+    end
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"sequence": {"showSequenceNumbers": true}}}%%
+sequenceDiagram
+    accTitle: OAuth2 authorization code flow
+    accDescr: Browser login via OAuth2 with token exchange
+
+    %% ── Participants ────────────────────────────
+    participant Browser
+    participant AppServer as App Server
+    participant AuthServer as Auth Server
+    participant ResourceServer as Resource Server
+
+    %% ── Step 1: Redirect to Auth Server ─────────
+    Browser->>AppServer: GET /login
+    activate AppServer
+    AppServer-->>Browser: 302 Redirect to /authorize
+    deactivate AppServer
+
+    %% ── Step 2: User authenticates ──────────────
+    Browser->>AuthServer: GET /authorize?client_id=...
+    activate AuthServer
+    AuthServer-->>Browser: Login page
+    Browser->>AuthServer: POST credentials
+    AuthServer-->>Browser: 302 Redirect with ?code=xyz
+    deactivate AuthServer
+
+    %% ── Step 3: Code exchange ────────────────────
+    Browser->>AppServer: GET /callback?code=xyz
+    activate AppServer
+    AppServer->>AuthServer: POST /token (code + secret)
+    activate AuthServer
+    AuthServer-->>AppServer: access_token + refresh_token
+    deactivate AuthServer
+
+    %% ── Step 4: Access protected resource ────────
+    AppServer->>ResourceServer: GET /api/user (Bearer token)
+    activate ResourceServer
+    ResourceServer-->>AppServer: 200 User profile JSON
+    deactivate ResourceServer
+    AppServer-->>Browser: 200 User dashboard
+    deactivate AppServer
+
+    %% ── Error path ───────────────────────────────
+    alt Token expired
+        Browser->>AppServer: GET /refresh
+        AppServer->>AuthServer: POST /token (refresh_token)
+        AuthServer-->>AppServer: new access_token
+    end
+$$$
+
+---
+
+!! Syntax
+
+```
+sequenceDiagram
+    participant A as Display Name
+    A->>B: Synchronous message
+    A-->>B: Response (dashed)
+    activate B
+    B-->>A: reply
+    deactivate B
+
+    loop Retry
+        A->>B: try again
+    end
+
+    alt Success
+        B-->>A: 200 OK
+    else Error
+        B-->>A: 500 Error
+    end
+```
+
+|!Arrow|!Meaning|
+|`->>`|Synchronous (solid, filled arrowhead)|
+|`-->>`|Response (dashed, filled arrowhead)|
+|`->>`|Open arrowhead variant|
+|`-x`|Cross/terminate|
+|`-)`|Async (open arrowhead)|
+
+!! Tips
+
+* `participant A as Display Name` shows a shorter ID in the source but a human-readable label in the diagram.
+* `activate`/`deactivate` draw activation bars on a participant's lifeline.
+* Use `alt`/`else`/`end` for conditional branches; `loop`/`end` for repetition; `opt`/`end` for optional steps.
+* `%%{init: {"sequence": {"showSequenceNumbers": true}}}%%` numbers each message automatically.
+* Sequence diagrams do not use `classDef` — there is no color-category legend for this type.
+* See also: [[Flowchart]] for process flows, [[State Diagram]] for state machines.
+
+[[← Mermaid Chart Catalog]]

@@ -1,0 +1,130 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Flowchart
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A flowchart diagrams processes, decisions, and workflows using directional nodes and edges. Use it for algorithms, business processes, decision trees, and system state flows. Uses `flowchart`.
+
+---
+
+!! Basic example
+
+```
+flowchart TD
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Fix it]
+    D --> B
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+flowchart TD
+    A[Start] --> B{Is it working?}
+    B -->|Yes| C[Great!]
+    B -->|No| D[Fix it]
+    D --> B
+$$$
+
+---
+
+!! Real-world example: Software deployment pipeline
+
+This example shows a CI/CD workflow from a developer commit through build, test, staging review, and production deployment. Node categories are color-coded: actors, trigger events, pipeline stages, gates, and warning paths.
+
+```
+%%{init: {"flowchart": {"curve": "monotoneX"}}}%%
+flowchart TD
+    accTitle: Software deployment pipeline
+    accDescr: CI/CD workflow from commit to production
+
+    %% ── Trigger ────────────────────────────────
+    DEV([Developer]):::actor --> COMMIT[Git Commit]:::trigger
+
+    %% ── Build stage ─────────────────────────────
+    COMMIT --> BUILD[Build and Test]:::stage
+    BUILD -->|pass| STAGE[Staging Deploy]:::stage
+    BUILD -->|fail| NOTIFY[Notify Dev]:::warning
+
+    %% ── Production gate ─────────────────────────
+    STAGE --> REVIEW{Manual Review}:::gate
+    REVIEW -->|approve| PROD[Production Deploy]:::stage
+    REVIEW -->|reject| NOTIFY
+    PROD --> DONE(["End State"]):::actor
+
+    %% ── Class definitions ───────────────────────
+    classDef actor   fill:#6c757d,stroke:#495057,color:#fff
+    classDef trigger fill:#0d6efd,stroke:#084298,color:#fff
+    classDef stage   fill:#198754,stroke:#0f5132,color:#fff
+    classDef warning fill:#dc3545,stroke:#842029,color:#fff
+    classDef gate    fill:#fd7e14,stroke:#984c0c,color:#fff
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"flowchart": {"curve": "monotoneX"}}}%%
+flowchart TD
+    accTitle: Software deployment pipeline
+    accDescr: CI/CD workflow from commit to production
+
+    %% ── Trigger ────────────────────────────────
+    DEV([Developer]):::actor --> COMMIT[Git Commit]:::trigger
+
+    %% ── Build stage ─────────────────────────────
+    COMMIT --> BUILD[Build and Test]:::stage
+    BUILD -->|pass| STAGE[Staging Deploy]:::stage
+    BUILD -->|fail| NOTIFY[Notify Dev]:::warning
+
+    %% ── Production gate ─────────────────────────
+    STAGE --> REVIEW{Manual Review}:::gate
+    REVIEW -->|approve| PROD[Production Deploy]:::stage
+    REVIEW -->|reject| NOTIFY
+    PROD --> DONE(["End State"]):::actor
+
+    %% ── Class definitions ───────────────────────
+    classDef actor   fill:#6c757d,stroke:#495057,color:#fff
+    classDef trigger fill:#0d6efd,stroke:#084298,color:#fff
+    classDef stage   fill:#198754,stroke:#0f5132,color:#fff
+    classDef warning fill:#dc3545,stroke:#842029,color:#fff
+    classDef gate    fill:#fd7e14,stroke:#984c0c,color:#fff
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#6c757d;color:#fff;padding:2px 8px;border-radius:3px;@@ Actor|Person or system triggering/receiving the flow|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Trigger|Event that initiates a pipeline stage|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Stage|Automated pipeline step|
+|@@background-color:#fd7e14;color:#fff;padding:2px 8px;border-radius:3px;@@ Gate|Manual approval or decision required|
+|@@background-color:#dc3545;color:#fff;padding:2px 8px;border-radius:3px;@@ Warning|Failure or notification path|
+
+---
+
+!! Syntax
+
+```
+flowchart TD
+    nodeId[Rectangle] --> nodeId2{Diamond}
+    nodeId2 -->|label| nodeId3([Stadium])
+    nodeId3 --> nodeId4[(Cylinder)]
+
+    classDef myClass fill:#color,stroke:#color,color:#fff
+    nodeId:::myClass
+```
+
+''Direction:'' `TD` (top-down), `LR` (left-right), `BT` (bottom-top), `RL` (right-left)
+
+|!Shape syntax|!Shape|
+|`[Text]`|Rectangle|
+|`{Text}`|Diamond (decision)|
+|`(Text)`|Rounded rectangle|
+|`([Text])`|Stadium|
+|`[(Text)]`|Cylinder (database)|
+|`((Text))`|Circle|
+
+!! Tips
+
+* Use `flowchart` (not the legacy `graph`) — the modern keyword supports all node shapes and subgraphs.
+* Quote any node with the label `end` as `["End State"]` to avoid a parser conflict.
+* Apply `classDef` categories to group nodes by meaning and pair with a legend table.
+* `%%{init: {"flowchart": {"curve": "monotoneX"}}}%%` on the first line inside the `$$$` block selects a smoother edge curve.
+* See also: [[State Diagram]] for state machines, [[Sequence Diagram]] for actor interactions.
+
+[[← Mermaid Chart Catalog]]
