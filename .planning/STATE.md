@@ -4,13 +4,13 @@ milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
 current_phase: 07
 status: executing
-last_updated: "2026-06-09T18:57:20.806Z"
+last_updated: "2026-06-09T19:04:47.939Z"
 last_activity: 2026-06-09
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 9
-  completed_plans: 6
+  completed_plans: 7
   percent: 33
 ---
 
@@ -31,11 +31,11 @@ See: `.planning/PROJECT.md` (updated 2026-06-07)
 ## Current Position
 
 Phase: 07 (advanced-examples-legends) — EXECUTING
-Plan: 4 of 6
+Plan: 5 of 6
 Status: Ready to execute
 Last activity: 2026-06-09
 
-Progress: [███████░░░] 67%
+Progress: [████████░░] 78%
 
 ## Phase Tracker
 
@@ -68,6 +68,8 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - [Phase ?]: Entity Relationship.tid carries no legend (D-05 — erDiagram has no classDef)
 - [Phase ?]: Requirement Diagram.tid uses functionalRequirement/performanceRequirement keywords plus WikiText legend (LEGEND-02)
 - [Phase ?]: Same-title bare Format B files (Requirement Diagram, C4 Diagram) deleted without collision with .tid files
+- [Phase ?]: Timeline legend uses simpler section-color text-label variant (D-05)
+- [Phase ?]: Block Diagram legend uses full-swatch variant with style fill values matching color categories
 
 ### Pending Todos
 
@@ -94,8 +96,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-09T18:57:20.801Z
-Stopped at: Completed 07-03-PLAN.md
+Last session: 2026-06-09T19:04:47.934Z
+Stopped at: Completed 07-04-PLAN.md
 Resume file: None
 
 ## Performance Metrics
@@ -109,3 +111,4 @@ Resume file: None
 | Phase 07 P01 | 2 minutes | 2 tasks | 2 files |
 | Phase 07 P02 | 12 minutes | - tasks | - files |
 | Phase 07 P03 | 15 minutes | 2 tasks | 15 files |
+| Phase 07 P04 | 5 minutes | 3 tasks | 9 files |
