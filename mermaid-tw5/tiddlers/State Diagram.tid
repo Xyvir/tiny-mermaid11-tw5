@@ -1,0 +1,186 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: State Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A state diagram models the lifecycle of an entity by showing states and the transitions between them. Use it for order workflows, document approval pipelines, connection protocols, and UI screen flows. Uses `stateDiagram-v2`.
+
+---
+
+!! Basic example
+
+```
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Done : complete
+    Processing --> Error : fail
+    Done --> [*]
+    Error --> Idle : retry
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+stateDiagram-v2
+    [*] --> Idle
+    Idle --> Processing : start
+    Processing --> Done : complete
+    Processing --> Error : fail
+    Done --> [*]
+    Error --> Idle : retry
+$$$
+
+---
+
+!! Real-world example: Order fulfilment lifecycle
+
+This example tracks an order through the fulfilment pipeline from placement to delivery or cancellation. State types are color-coded: initial/terminal states, active processing states, review gates, and failure states.
+
+```
+stateDiagram-v2
+    accTitle: Order fulfilment lifecycle
+    accDescr: States and transitions from order placed to delivered or cancelled
+
+    %% ── Entry ───────────────────────────────────
+    [*] --> Placed:::initial
+
+    %% ── Processing pipeline ──────────────────────
+    Placed --> PaymentPending : confirm order
+    PaymentPending --> PaidConfirmed : payment succeeds
+    PaymentPending --> PaymentFailed : payment declined
+    PaymentFailed --> PaymentPending : retry payment
+    PaymentFailed --> Cancelled:::terminal : abandon
+
+    %% ── Fulfilment stages ────────────────────────
+    PaidConfirmed --> Picking : send to warehouse
+    Picking --> Packing : items picked
+    Packing --> ReadyToShip : packed
+
+    %% ── Shipping review ──────────────────────────
+    ReadyToShip --> AwaitingCarrier : carrier notified
+    AwaitingCarrier --> InTransit : carrier collected
+
+    %% ── Delivery and returns ─────────────────────
+    InTransit --> Delivered : delivered successfully
+    InTransit --> DeliveryFailed : delivery attempt failed
+    DeliveryFailed --> InTransit : re-attempt delivery
+    DeliveryFailed --> ReturnedToSender : max attempts exceeded
+    Delivered --> [*]
+    Cancelled --> [*]
+    ReturnedToSender --> Cancelled:::terminal
+
+    %% ── Class definitions ───────────────────────
+    classDef initial    fill:#6c757d,stroke:#495057,color:#fff
+    classDef active     fill:#0d6efd,stroke:#084298,color:#fff
+    classDef gate       fill:#fd7e14,stroke:#984c0c,color:#fff
+    classDef failure    fill:#dc3545,stroke:#842029,color:#fff
+    classDef terminal   fill:#198754,stroke:#0f5132,color:#fff
+
+    class Placed initial
+    class PaymentPending active
+    class PaidConfirmed active
+    class Picking active
+    class Packing active
+    class ReadyToShip active
+    class AwaitingCarrier gate
+    class InTransit gate
+    class DeliveryFailed failure
+    class PaymentFailed failure
+    class ReturnedToSender failure
+    class Delivered terminal
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+stateDiagram-v2
+    accTitle: Order fulfilment lifecycle
+    accDescr: States and transitions from order placed to delivered or cancelled
+
+    %% ── Entry ───────────────────────────────────
+    [*] --> Placed:::initial
+
+    %% ── Processing pipeline ──────────────────────
+    Placed --> PaymentPending : confirm order
+    PaymentPending --> PaidConfirmed : payment succeeds
+    PaymentPending --> PaymentFailed : payment declined
+    PaymentFailed --> PaymentPending : retry payment
+    PaymentFailed --> Cancelled:::terminal : abandon
+
+    %% ── Fulfilment stages ────────────────────────
+    PaidConfirmed --> Picking : send to warehouse
+    Picking --> Packing : items picked
+    Packing --> ReadyToShip : packed
+
+    %% ── Shipping review ──────────────────────────
+    ReadyToShip --> AwaitingCarrier : carrier notified
+    AwaitingCarrier --> InTransit : carrier collected
+
+    %% ── Delivery and returns ─────────────────────
+    InTransit --> Delivered : delivered successfully
+    InTransit --> DeliveryFailed : delivery attempt failed
+    DeliveryFailed --> InTransit : re-attempt delivery
+    DeliveryFailed --> ReturnedToSender : max attempts exceeded
+    Delivered --> [*]
+    Cancelled --> [*]
+    ReturnedToSender --> Cancelled:::terminal
+
+    %% ── Class definitions ───────────────────────
+    classDef initial    fill:#6c757d,stroke:#495057,color:#fff
+    classDef active     fill:#0d6efd,stroke:#084298,color:#fff
+    classDef gate       fill:#fd7e14,stroke:#984c0c,color:#fff
+    classDef failure    fill:#dc3545,stroke:#842029,color:#fff
+    classDef terminal   fill:#198754,stroke:#0f5132,color:#fff
+
+    class Placed initial
+    class PaymentPending active
+    class PaidConfirmed active
+    class Picking active
+    class Packing active
+    class ReadyToShip active
+    class AwaitingCarrier gate
+    class InTransit gate
+    class DeliveryFailed failure
+    class PaymentFailed failure
+    class ReturnedToSender failure
+    class Delivered terminal
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#6c757d;color:#fff;padding:2px 8px;border-radius:3px;@@ Initial|Entry state at the start of the lifecycle|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Active|Normal processing states in the pipeline|
+|@@background-color:#fd7e14;color:#fff;padding:2px 8px;border-radius:3px;@@ Gate|Waiting or hand-off states requiring external action|
+|@@background-color:#dc3545;color:#fff;padding:2px 8px;border-radius:3px;@@ Failure|Error or failed-delivery states|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Terminal|Final states that end the lifecycle|
+
+---
+
+!! Syntax
+
+```
+stateDiagram-v2
+    [*] --> StateA
+    StateA --> StateB : event label
+    StateB --> [*]
+
+    state "Display Label" as StateA
+
+    state CompoundState {
+        [*] --> SubA
+        SubA --> SubB
+    }
+
+    classDef myStyle fill:#color,stroke:#color,color:#fff
+    class StateA myStyle
+```
+
+'' `[*]` '' is the implicit start and end pseudo-state. Use it on both ends of terminal states.
+
+!! Tips
+
+* Use `stateDiagram-v2` (not the legacy `stateDiagram`).
+* Avoid `:` inside state identifiers or labels — colons are the transition-label delimiter and will break the parser.
+* Use `state "Long Label" as ShortId` when labels contain spaces or special characters.
+* `classDef` applies to states the same way it does for flowchart nodes; pair with a legend for clarity.
+* Compound states (nested `state { ... }`) model concurrent or hierarchical state machines.
+* See also: [[Flowchart]] for process flows, [[Sequence Diagram]] for actor interactions.
+
+[[← Mermaid Chart Catalog]]

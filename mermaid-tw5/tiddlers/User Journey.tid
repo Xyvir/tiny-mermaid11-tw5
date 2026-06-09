@@ -1,0 +1,154 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: User Journey
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A user journey diagram maps the steps a person takes to accomplish a goal, rated by satisfaction score and associated actor. Use it for UX research, customer experience mapping, and service design. Uses `journey`.
+
+---
+
+!! Basic example
+
+```
+journey
+    title Morning routine
+    section Wake up
+        Make coffee: 5: Me
+        Have breakfast: 3: Me
+    section Commute
+        Drive to work: 2: Me
+        Park the car: 4: Me
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+journey
+    title Morning routine
+    section Wake up
+        Make coffee: 5: Me
+        Have breakfast: 3: Me
+    section Commute
+        Drive to work: 2: Me
+        Park the car: 4: Me
+$$$
+
+---
+
+!! Real-world example: SaaS product onboarding journey
+
+This example maps a new user's journey from first discovery through active product usage. Sections represent phases of the onboarding funnel; the score (1–5) represents the user's satisfaction at each touchpoint. Multiple actors show which role performs each step.
+
+```
+journey
+    accTitle: SaaS product onboarding journey
+    accDescr: New user journey from discovery to active usage
+
+    %% ── Discovery phase ─────────────────────────
+    section Discovery
+        Find product via search: 4: Prospect
+        Read landing page: 3: Prospect
+        Watch demo video: 5: Prospect
+        Compare with competitors: 3: Prospect
+
+    %% ── Sign-up phase ────────────────────────────
+    section Sign-up
+        Click "Start free trial": 5: Prospect
+        Complete registration form: 3: Prospect
+        Verify email address: 2: Prospect
+        Set up profile: 4: New User
+
+    %% ── First login experience ───────────────────
+    section First Login
+        Follow welcome wizard: 4: New User
+        Connect data source: 2: New User, Support
+        Create first project: 5: New User
+        Invite team member: 4: New User
+
+    %% ── Active usage ─────────────────────────────
+    section Active Use
+        Run first report: 5: User
+        Share results with team: 4: User, Team
+        Schedule recurring report: 3: User
+        Contact support with question: 2: User, Support
+
+    %% ── Retention ────────────────────────────────
+    section Retention
+        Receive weekly digest email: 3: User
+        Upgrade to paid plan: 5: User
+        Recommend to colleague: 5: User
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+journey
+    accTitle: SaaS product onboarding journey
+    accDescr: New user journey from discovery to active usage
+
+    %% ── Discovery phase ─────────────────────────
+    section Discovery
+        Find product via search: 4: Prospect
+        Read landing page: 3: Prospect
+        Watch demo video: 5: Prospect
+        Compare with competitors: 3: Prospect
+
+    %% ── Sign-up phase ────────────────────────────
+    section Sign-up
+        Click "Start free trial": 5: Prospect
+        Complete registration form: 3: Prospect
+        Verify email address: 2: Prospect
+        Set up profile: 4: New User
+
+    %% ── First login experience ───────────────────
+    section First Login
+        Follow welcome wizard: 4: New User
+        Connect data source: 2: New User, Support
+        Create first project: 5: New User
+        Invite team member: 4: New User
+
+    %% ── Active usage ─────────────────────────────
+    section Active Use
+        Run first report: 5: User
+        Share results with team: 4: User, Team
+        Schedule recurring report: 3: User
+        Contact support with question: 2: User, Support
+
+    %% ── Retention ────────────────────────────────
+    section Retention
+        Receive weekly digest email: 3: User
+        Upgrade to paid plan: 5: User
+        Recommend to colleague: 5: User
+$$$
+
+|!Section|!Color|!Meaning|
+|Discovery|Blue (1st cycle)|Initial awareness and evaluation phase|
+|Sign-up|Green (2nd cycle)|Account creation and verification|
+|First Login|Orange (3rd cycle)|Initial product experience and setup|
+|Active Use|Pink (4th cycle)|Regular feature engagement|
+|Retention|Teal (5th cycle)|Long-term loyalty and advocacy|
+
+---
+
+!! Syntax
+
+```
+journey
+    title Journey Title
+    section Phase One
+        Step description: score: Actor1
+        Another step: score: Actor1, Actor2
+    section Phase Two
+        Step: score: Actor2
+```
+
+''Score'' is an integer from 1 (very dissatisfied) to 5 (very satisfied). It controls the bar height in the rendered chart.
+
+''Multiple actors'' per step are comma-separated. Each actor gets a distinct color in the actor row.
+
+!! Tips
+
+* Section colors cycle automatically through Mermaid's theme palette — you cannot assign specific hex colors per section (use the legend to map section order to meaning).
+* Scores 1–5 map directly to bar height. A score of 3 is neutral; below 3 is a pain point worth improving.
+* Multiple actors on a step (e.g. `2: User, Support`) shows a collaborative or hand-off touchpoint.
+* Journey diagrams have no `classDef` support — the legend uses text labels and color names rather than hex swatches.
+* See also: [[Flowchart]] for process flows, [[Sequence Diagram]] for actor message exchanges.
+
+[[← Mermaid Chart Catalog]]

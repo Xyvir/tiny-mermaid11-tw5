@@ -1,0 +1,189 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Git Graph
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A git graph visualizes a repository's branch and commit history, showing branch creations, commits, merges, and tags. Use it for documenting release workflows, explaining branching strategies, and illustrating code review processes. Uses `gitGraph`.
+
+---
+
+!! Basic example
+
+```
+gitGraph
+    commit id: "Initial commit"
+    branch feature
+    checkout feature
+    commit id: "Add feature"
+    checkout main
+    merge feature
+    commit id: "Release v1.0"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+gitGraph
+    commit id: "Initial commit"
+    branch feature
+    checkout feature
+    commit id: "Add feature"
+    checkout main
+    merge feature
+    commit id: "Release v1.0"
+$$$
+
+---
+
+!! Real-world example: GitFlow release workflow
+
+This example shows a GitFlow-style release cycle with main, develop, feature branches, a release branch, and a hotfix. Branch colors follow the Mermaid default `git0`–`git7` palette order.
+
+```
+gitGraph
+    accTitle: GitFlow release workflow
+    accDescr: Feature development, release preparation, and hotfix cycle
+
+    %% ── Initial setup ───────────────────────────
+    commit id: "Project init" tag: "v0.0.1"
+
+    %% ── Feature development ─────────────────────
+    branch develop
+    checkout develop
+    commit id: "Setup CI"
+
+    branch feature/user-auth
+    checkout feature/user-auth
+    commit id: "Add login form"
+    commit id: "Add JWT handler"
+    commit id: "Add refresh token"
+
+    %% ── Merge feature back ───────────────────────
+    checkout develop
+    merge feature/user-auth id: "Merge user-auth"
+    commit id: "Integration tests"
+
+    branch feature/dashboard
+    checkout feature/dashboard
+    commit id: "Dashboard skeleton"
+    commit id: "Add charts"
+
+    checkout develop
+    merge feature/dashboard id: "Merge dashboard"
+
+    %% ── Release preparation ──────────────────────
+    branch release/1.0
+    checkout release/1.0
+    commit id: "Bump version to 1.0"
+    commit id: "Update changelog"
+
+    checkout main
+    merge release/1.0 id: "Release 1.0" tag: "v1.0.0"
+    checkout develop
+    merge release/1.0 id: "Back-merge 1.0"
+
+    %% ── Hotfix ───────────────────────────────────
+    checkout main
+    branch hotfix/auth-crash
+    checkout hotfix/auth-crash
+    commit id: "Fix null pointer in JWT"
+    commit id: "Add regression test"
+
+    checkout main
+    merge hotfix/auth-crash id: "Hotfix 1.0.1" tag: "v1.0.1"
+    checkout develop
+    merge hotfix/auth-crash id: "Back-merge hotfix"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+gitGraph
+    accTitle: GitFlow release workflow
+    accDescr: Feature development, release preparation, and hotfix cycle
+
+    %% ── Initial setup ───────────────────────────
+    commit id: "Project init" tag: "v0.0.1"
+
+    %% ── Feature development ─────────────────────
+    branch develop
+    checkout develop
+    commit id: "Setup CI"
+
+    branch feature/user-auth
+    checkout feature/user-auth
+    commit id: "Add login form"
+    commit id: "Add JWT handler"
+    commit id: "Add refresh token"
+
+    %% ── Merge feature back ───────────────────────
+    checkout develop
+    merge feature/user-auth id: "Merge user-auth"
+    commit id: "Integration tests"
+
+    branch feature/dashboard
+    checkout feature/dashboard
+    commit id: "Dashboard skeleton"
+    commit id: "Add charts"
+
+    checkout develop
+    merge feature/dashboard id: "Merge dashboard"
+
+    %% ── Release preparation ──────────────────────
+    branch release/1.0
+    checkout release/1.0
+    commit id: "Bump version to 1.0"
+    commit id: "Update changelog"
+
+    checkout main
+    merge release/1.0 id: "Release 1.0" tag: "v1.0.0"
+    checkout develop
+    merge release/1.0 id: "Back-merge 1.0"
+
+    %% ── Hotfix ───────────────────────────────────
+    checkout main
+    branch hotfix/auth-crash
+    checkout hotfix/auth-crash
+    commit id: "Fix null pointer in JWT"
+    commit id: "Add regression test"
+
+    checkout main
+    merge hotfix/auth-crash id: "Hotfix 1.0.1" tag: "v1.0.1"
+    checkout develop
+    merge hotfix/auth-crash id: "Back-merge hotfix"
+$$$
+
+|!Branch|!Color (palette order)|!Role|
+|main|git0 — default primary|Production-ready code; tagged releases live here|
+|develop|git1 — default secondary|Integration branch for completed features|
+|feature/user-auth|git2 — 3rd in cycle|Feature work branched from develop|
+|feature/dashboard|git3 — 4th in cycle|Second feature branch|
+|release/1.0|git4 — 5th in cycle|Release-prep branch branched from develop|
+|hotfix/auth-crash|git5 — 6th in cycle|Emergency fix branched from main|
+
+---
+
+!! Syntax
+
+```
+gitGraph
+    commit id: "Label" tag: "v1.0" type: HIGHLIGHT
+    branch branchName
+    checkout branchName
+    commit
+    checkout main
+    merge branchName id: "Merge label"
+    cherry-pick id: "commit-id"
+```
+
+|!Commit type|!Meaning|
+|`NORMAL`|Default commit dot|
+|`REVERSE`|Shows a cross (reverted)|
+|`HIGHLIGHT`|Filled circle (release or milestone)|
+
+!! Tips
+
+* Branch colors are assigned automatically in order (`git0` through `git7`) as each new branch is created — you cannot set hex colors per branch in the diagram source without `themeVariables` in the global config.
+* Use `id: "..."` on commits to give meaningful labels; without it commits show a short hash.
+* `tag: "v1.0"` adds a version badge above the commit.
+* `cherry-pick id: "commit-id"` replicates a specific commit to the current branch.
+* See also: [[Flowchart]] for deployment pipelines, [[State Diagram]] for release state machines.
+
+[[← Mermaid Chart Catalog]]
