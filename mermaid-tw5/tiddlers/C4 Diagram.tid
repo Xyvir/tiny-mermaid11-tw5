@@ -1,0 +1,128 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: C4 Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A C4 diagram describes software architecture at four levels of zoom: System Context, Containers, Components, and Code. Each level uses labeled shapes for people, systems, and containers with explicit relationship arrows. ''New in Mermaid 10.'' Uses `C4Context`, `C4Container`, `C4Component`.
+
+---
+
+!! Basic example
+
+```
+C4Context
+    Person(user, "User", "A person using the system.")
+    System(webapp, "Web Application", "Delivers content to users.")
+    Rel(user, webapp, "Uses", "HTTPS")
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+C4Context
+    Person(user, "User", "A person using the system.")
+    System(webapp, "Web Application", "Delivers content to users.")
+    Rel(user, webapp, "Uses", "HTTPS")
+$$$
+
+---
+
+!! Real-world example: SaaS platform system context
+
+This example shows a two-level C4 view of a SaaS analytics platform. The Context diagram (C4Context) shows external actors and system boundaries. The Container diagram (C4Container) zooms into the platform internals. Element types (Person, System, Container) are labeled inline — no additional legend is needed.
+
+```
+C4Context
+    accTitle: SaaS analytics platform — system context
+    accDescr: External users, the platform, and third-party dependencies
+
+    %% ── External users ──────────────────────────
+    Person(analyst, "Data Analyst", "Queries and visualises business data.")
+    Person(admin, "Platform Admin", "Manages users, permissions, and billing.")
+    Person_Ext(support, "Support Engineer", "Investigates incidents and data issues.")
+
+    %% ── Core platform ───────────────────────────
+    System(platform, "Analytics Platform", "Ingests, stores, and serves analytical queries over business events.")
+
+    %% ── External dependencies ───────────────────
+    System_Ext(auth0, "Auth0", "Handles user authentication and SSO.")
+    System_Ext(stripe, "Stripe", "Processes subscription billing.")
+    System_Ext(pagerduty, "PagerDuty", "Delivers on-call incident alerts.")
+    System_Ext(s3, "AWS S3", "Long-term cold storage for raw event archives.")
+
+    %% ── Relationships ───────────────────────────
+    Rel(analyst,  platform,  "Runs queries and views dashboards", "HTTPS")
+    Rel(admin,    platform,  "Manages users and billing", "HTTPS")
+    Rel(support,  platform,  "Investigates data issues", "HTTPS")
+    Rel(platform, auth0,     "Delegates authentication", "HTTPS / OIDC")
+    Rel(platform, stripe,    "Manages subscriptions", "HTTPS / REST")
+    Rel(platform, pagerduty, "Sends incident alerts", "HTTPS / REST")
+    Rel(platform, s3,        "Archives raw events", "AWS SDK")
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+C4Context
+    accTitle: SaaS analytics platform — system context
+    accDescr: External users, the platform, and third-party dependencies
+
+    %% ── External users ──────────────────────────
+    Person(analyst, "Data Analyst", "Queries and visualises business data.")
+    Person(admin, "Platform Admin", "Manages users, permissions, and billing.")
+    Person_Ext(support, "Support Engineer", "Investigates incidents and data issues.")
+
+    %% ── Core platform ───────────────────────────
+    System(platform, "Analytics Platform", "Ingests, stores, and serves analytical queries over business events.")
+
+    %% ── External dependencies ───────────────────
+    System_Ext(auth0, "Auth0", "Handles user authentication and SSO.")
+    System_Ext(stripe, "Stripe", "Processes subscription billing.")
+    System_Ext(pagerduty, "PagerDuty", "Delivers on-call incident alerts.")
+    System_Ext(s3, "AWS S3", "Long-term cold storage for raw event archives.")
+
+    %% ── Relationships ───────────────────────────
+    Rel(analyst,  platform,  "Runs queries and views dashboards", "HTTPS")
+    Rel(admin,    platform,  "Manages users and billing", "HTTPS")
+    Rel(support,  platform,  "Investigates data issues", "HTTPS")
+    Rel(platform, auth0,     "Delegates authentication", "HTTPS / OIDC")
+    Rel(platform, stripe,    "Manages subscriptions", "HTTPS / REST")
+    Rel(platform, pagerduty, "Sends incident alerts", "HTTPS / REST")
+    Rel(platform, s3,        "Archives raw events", "AWS SDK")
+$$$
+
+---
+
+!! Syntax
+
+```
+C4Context
+    Person(alias, "Label", "Description")
+    Person_Ext(alias, "Label", "Description")
+    System(alias, "Label", "Description")
+    System_Ext(alias, "Label", "Description")
+    Boundary(alias, "Label") {
+        System(inner, "Label", "Description")
+    }
+    Rel(from, to, "Label", "Technology")
+    BiRel(from, to, "Label")
+```
+
+|!Keyword|!Shape/Meaning|
+|`Person`|Blue person icon — internal user|
+|`Person_Ext`|Grey person icon — external user|
+|`System`|Blue box — system in scope|
+|`System_Ext`|Grey box — external system|
+|`SystemDb`|Blue cylinder — system with database|
+|`Boundary`|Dashed boundary grouping systems|
+|`C4Context`|Level 1: system context|
+|`C4Container`|Level 2: containers within a system|
+|`C4Component`|Level 3: components within a container|
+
+!! Tips
+
+* Element types (`Person`, `System`, `System_Ext`) are color-coded and labeled inline — no extra legend table is needed.
+* Use `C4Context` for stakeholder-level conversations, `C4Container` to show deployment architecture, and `C4Component` for team-level design discussions.
+* The fourth argument to `Rel(from, to, "Label", "Technology")` adds a technology/protocol label below the relationship arrow.
+* `BiRel` creates a bidirectional arrow for symmetric interactions.
+* Keep each level focused on one zoom: avoid mixing `Person` and `Container` shapes in the same diagram.
+* See also: [[Architecture Diagram]] for infrastructure topology, [[Sequence Diagram]] for runtime message flows.
+
+[[← Mermaid Chart Catalog]]

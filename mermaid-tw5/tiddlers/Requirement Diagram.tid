@@ -1,0 +1,228 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Requirement Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A requirement diagram documents system requirements, the elements that implement or are tested by them, and the traceability relationships between them. Use it for systems engineering, safety-critical specifications, and V-model traceability. Uses `requirementDiagram`.
+
+---
+
+!! Basic example
+
+```
+requirementDiagram
+    requirement sys_req {
+        id: 1
+        text: The system shall authenticate users.
+        risk: high
+        verifymethod: test
+    }
+    element login_module {
+        type: component
+    }
+    login_module - satisfies -> sys_req
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+requirementDiagram
+    requirement sys_req {
+        id: 1
+        text: The system shall authenticate users.
+        risk: high
+        verifymethod: test
+    }
+    element login_module {
+        type: component
+    }
+    login_module - satisfies -> sys_req
+$$$
+
+---
+
+!! Real-world example: Automotive safety system requirements
+
+This example models a subset of ISO 26262-style requirements for an autonomous emergency braking (AEB) system. Requirements are categorized by type using `classDef`: functional requirements, performance requirements, and interface requirements. Each requirement element is traced to the software component that satisfies or verifies it.
+
+```
+requirementDiagram
+    accTitle: AEB system requirements traceability
+    accDescr: Requirement types and satisfies/verifies/traces relationships
+
+    %% ── Functional requirements ─────────────────
+    functionalRequirement aeb_activate {
+        id: AEB-001
+        text: The AEB system shall activate braking when TTC < 1.5 s.
+        risk: high
+        verifymethod: test
+    }
+    functionalRequirement aeb_override {
+        id: AEB-002
+        text: The AEB system shall allow driver override at any time.
+        risk: high
+        verifymethod: inspection
+    }
+
+    %% ── Performance requirements ────────────────
+    performanceRequirement aeb_latency {
+        id: AEB-010
+        text: Braking response latency shall not exceed 150 ms from activation.
+        risk: medium
+        verifymethod: test
+    }
+    performanceRequirement aeb_sensor_range {
+        id: AEB-011
+        text: The radar sensor shall detect objects up to 200 m ahead.
+        risk: medium
+        verifymethod: analysis
+    }
+
+    %% ── Interface requirements ──────────────────
+    requirement aeb_can_bus {
+        id: AEB-020
+        text: AEB ECU shall communicate via CAN FD at 5 Mbit/s.
+        risk: low
+        verifymethod: inspection
+    }
+
+    %% ── System elements ─────────────────────────
+    element radar_sensor {
+        type: hardware
+        docRef: HW-SPEC-001
+    }
+    element aeb_controller {
+        type: software
+        docRef: SW-SPEC-003
+    }
+    element brake_actuator {
+        type: hardware
+        docRef: HW-SPEC-004
+    }
+    element can_interface {
+        type: software
+        docRef: SW-SPEC-007
+    }
+
+    %% ── Traceability links ───────────────────────
+    aeb_controller - satisfies -> aeb_activate
+    aeb_controller - satisfies -> aeb_override
+    aeb_controller - satisfies -> aeb_latency
+    radar_sensor   - satisfies -> aeb_sensor_range
+    can_interface  - satisfies -> aeb_can_bus
+    aeb_controller - traces   -> aeb_latency
+    brake_actuator - refines  -> aeb_activate
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+requirementDiagram
+    accTitle: AEB system requirements traceability
+    accDescr: Requirement types and satisfies/verifies/traces relationships
+
+    %% ── Functional requirements ─────────────────
+    functionalRequirement aeb_activate {
+        id: AEB-001
+        text: The AEB system shall activate braking when TTC < 1.5 s.
+        risk: high
+        verifymethod: test
+    }
+    functionalRequirement aeb_override {
+        id: AEB-002
+        text: The AEB system shall allow driver override at any time.
+        risk: high
+        verifymethod: inspection
+    }
+
+    %% ── Performance requirements ────────────────
+    performanceRequirement aeb_latency {
+        id: AEB-010
+        text: Braking response latency shall not exceed 150 ms from activation.
+        risk: medium
+        verifymethod: test
+    }
+    performanceRequirement aeb_sensor_range {
+        id: AEB-011
+        text: The radar sensor shall detect objects up to 200 m ahead.
+        risk: medium
+        verifymethod: analysis
+    }
+
+    %% ── Interface requirements ──────────────────
+    requirement aeb_can_bus {
+        id: AEB-020
+        text: AEB ECU shall communicate via CAN FD at 5 Mbit/s.
+        risk: low
+        verifymethod: inspection
+    }
+
+    %% ── System elements ─────────────────────────
+    element radar_sensor {
+        type: hardware
+        docRef: HW-SPEC-001
+    }
+    element aeb_controller {
+        type: software
+        docRef: SW-SPEC-003
+    }
+    element brake_actuator {
+        type: hardware
+        docRef: HW-SPEC-004
+    }
+    element can_interface {
+        type: software
+        docRef: SW-SPEC-007
+    }
+
+    %% ── Traceability links ───────────────────────
+    aeb_controller - satisfies -> aeb_activate
+    aeb_controller - satisfies -> aeb_override
+    aeb_controller - satisfies -> aeb_latency
+    radar_sensor   - satisfies -> aeb_sensor_range
+    can_interface  - satisfies -> aeb_can_bus
+    aeb_controller - traces   -> aeb_latency
+    brake_actuator - refines  -> aeb_activate
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Functional|Behavioural requirement (what the system shall do)|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Performance|Quantitative quality attribute (timing, throughput, range)|
+|@@background-color:#6c757d;color:#fff;padding:2px 8px;border-radius:3px;@@ Interface|Communication, protocol, or integration constraint|
+
+---
+
+!! Syntax
+
+```
+requirementDiagram
+    requirement | functionalRequirement | performanceRequirement
+    | interfaceRequirement | designConstraint | physicalRequirement reqId {
+        id: REQ-001
+        text: Requirement text.
+        risk: low | medium | high
+        verifymethod: analysis | inspection | test | demonstration
+    }
+    element elementId {
+        type: label
+        docRef: optional-reference
+    }
+    elementId - satisfies | traces | contains | copies
+              | refines | verifies | derives -> reqId
+```
+
+|!Relationship|!Meaning|
+|`satisfies`|Element implements the requirement|
+|`traces`|Element is related to the requirement (analysis link)|
+|`verifies`|Element is used to verify the requirement|
+|`refines`|Element elaborates or details the requirement|
+|`derives`|Requirement is derived from another requirement|
+|`contains`|Requirement contains a sub-requirement|
+|`copies`|Requirement is copied from another source|
+
+!! Tips
+
+* Use `functionalRequirement` and `performanceRequirement` type keywords (not generic `requirement`) to visually distinguish requirement categories in the rendered boxes.
+* Keep `text:` values concise — long sentences overflow the requirement box in most themes.
+* `verifymethod` accepts `analysis`, `inspection`, `test`, and `demonstration` (ISO 15288 verification methods).
+* Requirement IDs (`id:`) are displayed in the box header; use a consistent scheme like `SYS-001`.
+* See also: [[Entity Relationship]] for data-centric traceability, [[C4 Diagram]] for system context at a higher level.
+
+[[← Mermaid Chart Catalog]]
