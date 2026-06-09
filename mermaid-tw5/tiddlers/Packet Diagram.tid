@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Packet Diagram
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A packet diagram renders binary frame layouts at the bit level — the kind of diagram you see in RFC documents for TCP, UDP, IP, and other protocol specifications. Use it when documenting network protocols, hardware registers, or any fixed-width binary format. ''New in Mermaid 11.'' Uses `packet-beta`.
 
@@ -33,13 +34,20 @@ $$$
 
 !! Real-world example: TCP segment
 
+This diagram maps every field of a TCP segment header, including the 6-bit control flags, across the standard 32-bit row layout used in RFC 793.
+
 ```
 packet-beta
+    %% ── Title ──────────────────────────────────
     title TCP Segment
+
+    %% ── Port and sequence fields (rows 1–2) ────
     0-15: "Source Port"
     16-31: "Destination Port"
     32-63: "Sequence Number"
     64-95: "Acknowledgment Number"
+
+    %% ── Control fields and flags (row 3) ───────
     96-99: "Data Offset"
     100-105: "Reserved"
     106: "URG"
@@ -49,6 +57,8 @@ packet-beta
     110: "SYN"
     111: "FIN"
     112-127: "Window Size"
+
+    %% ── Checksum and options (rows 4–5) ────────
     128-143: "Checksum"
     144-159: "Urgent Pointer"
     160-191: "Options"
@@ -57,11 +67,16 @@ packet-beta
 
 $$$text/vnd.tiddlywiki.mermaid
 packet-beta
+    %% ── Title ──────────────────────────────────
     title TCP Segment
+
+    %% ── Port and sequence fields (rows 1–2) ────
     0-15: "Source Port"
     16-31: "Destination Port"
     32-63: "Sequence Number"
     64-95: "Acknowledgment Number"
+
+    %% ── Control fields and flags (row 3) ───────
     96-99: "Data Offset"
     100-105: "Reserved"
     106: "URG"
@@ -71,6 +86,8 @@ packet-beta
     110: "SYN"
     111: "FIN"
     112-127: "Window Size"
+
+    %% ── Checksum and options (rows 4–5) ────────
     128-143: "Checksum"
     144-159: "Urgent Pointer"
     160-191: "Options"

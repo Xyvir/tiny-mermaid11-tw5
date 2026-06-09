@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Kanban Board
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A kanban board represents work items flowing through status columns. Use it to document sprint state, visualize a workflow, or show task assignments. ''New in Mermaid 11.'' Uses the `kanban` keyword.
 
@@ -41,18 +42,25 @@ $$$
 
 !! Real-world example: Sprint board with metadata
 
+This board captures a five-column sprint workflow with task assignments, issue tracker references, and priority annotations using the `@{}` metadata syntax.
+
 ```
 kanban
+  %% ── Backlog column ─────────────────────────
   backlog[Backlog]
     b1[Dark mode support]
     b2[CSV export]
     b3[API rate limiting]
+
+  %% ── Current sprint: ready and in-progress ──
   todo[Sprint — To Do]
     t1[OAuth2 integration]@{ assigned: 'alice' }
     t2[Password reset flow]@{ assigned: 'bob' }
   doing[In Progress]
     t3[Refactor auth middleware]@{ assigned: 'alice', ticket: GH-112 }
     t4[Write API docs]@{ assigned: 'carol' }
+
+  %% ── Review and done ─────────────────────────
   review[Review]
     t5[Add dark mode toggle]@{ assigned: 'bob', ticket: GH-98 }
   done[Done]
@@ -62,16 +70,21 @@ kanban
 
 $$$text/vnd.tiddlywiki.mermaid
 kanban
+  %% ── Backlog column ─────────────────────────
   backlog[Backlog]
     b1[Dark mode support]
     b2[CSV export]
     b3[API rate limiting]
+
+  %% ── Current sprint: ready and in-progress ──
   todo[Sprint — To Do]
     t1[OAuth2 integration]@{ assigned: 'alice' }
     t2[Password reset flow]@{ assigned: 'bob' }
   doing[In Progress]
     t3[Refactor auth middleware]@{ assigned: 'alice', ticket: GH-112 }
     t4[Write API docs]@{ assigned: 'carol' }
+
+  %% ── Review and done ─────────────────────────
   review[Review]
     t5[Add dark mode toggle]@{ assigned: 'bob', ticket: GH-98 }
   done[Done]
