@@ -1,9 +1,9 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Mermaid Chart Catalog
 type: text/vnd.tiddlywiki
 
-Mermaid renders plain text into diagrams. This wiki uses [[mermaid-tw5|$:/plugins/orange/mermaid-tw5]], a plugin built on [[Mermaid 11.14.0|https://mermaid.js.org]]. Twenty diagram types are available — nine of them (marked ''New'') require Mermaid 10+ and were not in the original plugin.
+Mermaid renders plain text into diagrams. This wiki uses [[mermaid-tw5|$:/plugins/orange/mermaid-tw5]], a plugin built on [[Mermaid 11.14.0|https://mermaid.js.org]]. Twenty-six diagram types are available.
 
 ---
 
@@ -11,45 +11,51 @@ Mermaid renders plain text into diagrams. This wiki uses [[mermaid-tw5|$:/plugin
 
 |!Diagram|!Best for|
 |[[Flowchart]]|Algorithms, workflows, decision trees|
-|[[sequenceDiagram 1\|sequenceDiagram 1]]|API interactions, protocol flows, actor communication|
-|[[User Journey Diagram]]|UX flows, customer experience mapping|
+|[[Sequence Diagram]]|API interactions, protocol flows, actor communication|
+|[[User Journey]]|UX flows, customer experience mapping|
 
 !! Data and Metrics
 
 |!Diagram|!Best for|
-|[[Pie chart diagrams]]|Proportional data at a glance|
-|[[XY Chart]] ''New''|Bar and line charts with numeric axes|
-|[[Quadrant Chart]] ''New''|2×2 prioritization and positioning matrices|
-|[[Sankey Diagram]] ''New''|Flow and allocation — where things come from and go|
+|[[Pie Chart]]|Proportional data at a glance|
+|[[XY Chart]]|Bar and line charts with numeric axes|
+|[[Quadrant Chart]]|2×2 prioritization and positioning matrices|
+|[[Sankey Diagram]]|Flow and allocation — where things come from and go|
+|[[Radar Chart]]|Multi-axis skill or attribute comparison|
+|[[Treemap]]|Hierarchical part-to-whole proportions|
 
 !! Architecture and Systems
 
 |!Diagram|!Best for|
 |[[C4 Diagram]]|System context, containers, components (C4 model)|
-|[[Architecture Diagram]] ''New''|Cloud / service topology and infrastructure|
-|[[Block Diagram]] ''New''|Component-level architecture with explicit layout|
-|[[Packet Diagram]] ''New''|Network protocols, binary frame formats|
+|[[Architecture Diagram]]|Cloud / service topology and infrastructure|
+|[[Block Diagram]]|Component-level architecture with explicit layout|
+|[[Packet Diagram]]|Network protocols, binary frame formats|
+|[[Wardley Map]]|Strategic positioning of components along an evolution axis|
 
 !! Software and Data Modeling
 
 |!Diagram|!Best for|
-|[[Class diagrams]]|OOP class relationships and data models|
-|[[Defining Relationship]]|Database schema, entity relationships|
-|[[stateDiagram 1]]|State machines, lifecycle flows|
-|[[Gitgraph Diagram 1]]|Git branching and merge history|
+|[[Class Diagram]]|OOP class relationships and data models|
+|[[Entity Relationship]]|Database schema, entity relationships|
+|[[State Diagram]]|State machines, lifecycle flows|
+|[[Git Graph]]|Git branching and merge history|
 
 !! Planning and Management
 
 |!Diagram|!Best for|
-|[[Gantt 1]]|Project scheduling, task dependencies|
-|[[Kanban Board]] ''New''|Task workflow, sprint boards|
-|[[Timeline]] ''New''|Historical events, milestones, version history|
+|[[Gantt]]|Project scheduling, task dependencies|
+|[[Kanban Board]]|Task workflow, sprint boards|
+|[[Timeline]]|Historical events, milestones, version history|
 |[[Requirement Diagram]]|Systems engineering requirements traceability|
 
 !! Exploration and Thinking
 
 |!Diagram|!Best for|
-|[[Mindmap]] ''New''|Brainstorming, topic maps, hierarchical thinking|
+|[[Mindmap]]|Brainstorming, topic maps, hierarchical thinking|
+|[[Venn Diagram]]|Set relationships and overlapping categories|
+|[[Ishikawa Diagram]]|Root-cause analysis (fishbone diagrams)|
+|[[Tree View]]|File trees, org charts, nested hierarchies|
 
 ---
 
@@ -83,4 +89,10 @@ $$$
 
 ---
 
-See also: [[Theme Showcase]] · [[TW5 Integration]] · [[Choosing the Right Diagram]] · [[Mermaid Test All Diagrams]]
+!! All examples
+
+<<list-links filter:"[tag[MermaidExample]]">>
+
+---
+
+See also: [[Theme Showcase]] · [[TW5 Integration]] · [[Choosing the Right Diagram]] · [[Mermaid Test All Diagrams]] · [[Mermaid Legend Recipe]]
