@@ -98,11 +98,13 @@ treemap-beta
         "Tooling": 15000
 $$$
 
-|!Section|!Color|!Meaning|
-|Engineering|Blue|Software development teams|
-|Infrastructure|Orange|Cloud, security and monitoring|
-|Marketing|Green|Campaigns, design and analytics|
-|Operations|Purple|Support, training and tooling|
+|!Section|!Meaning|
+|Engineering|Software development teams|
+|Infrastructure|Cloud, security and monitoring|
+|Marketing|Campaigns, design and analytics|
+|Operations|Support, training and tooling|
+
+''Note:'' section colors are auto-assigned from the active theme palette in declaration order — they are not set in the source and cannot be relied on to be specific colors.
 
 ---
 
@@ -134,4 +136,4 @@ treemap-beta
 * Use `"R and D"` instead of `"R&D"` to avoid parse ambiguity (convention from Sankey fix #7528).
 * `treemap-beta` is still beta — the `showValues` config key controls label display.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

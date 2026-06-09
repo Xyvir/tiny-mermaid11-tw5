@@ -139,4 +139,4 @@ block-beta
 * For auto-layout without grid control, prefer [[Flowchart]].
 * Close every `block` group with `end` — a missing `end` drops all nodes that follow it.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

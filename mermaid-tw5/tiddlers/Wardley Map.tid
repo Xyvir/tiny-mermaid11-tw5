@@ -146,4 +146,4 @@ wardley-beta
 * Wardley Maps do not use color-by-category; components are distinguished by their position and strategy decorator.
 * `wardley-beta` is still beta — complex layouts may not render exactly as expected.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

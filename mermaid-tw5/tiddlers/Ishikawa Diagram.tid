@@ -155,4 +155,4 @@ The first non-keyword line is the ''effect'' (the problem statement), drawn as t
 * The "6M" categories (Machine, Method, Material, Measurement, Man/People, Mother Nature/Environment) are a common starting point for manufacturing and software root-cause analysis.
 * `ishikawa-beta` also accepts `ishikawa` without the beta suffix, but using `ishikawa-beta` makes the beta status explicit.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

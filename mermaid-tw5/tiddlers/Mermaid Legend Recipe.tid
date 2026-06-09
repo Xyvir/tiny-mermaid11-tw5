@@ -43,4 +43,4 @@ Add a legend when your diagram uses color to distinguish categories that a reade
 
 For flowcharts only, a disconnected subgraph can serve as an in-SVG legend. The WikiText table above is preferred because it works for all diagram types and never distorts the Dagre layout.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

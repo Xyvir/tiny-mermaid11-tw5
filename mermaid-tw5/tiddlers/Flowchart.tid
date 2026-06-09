@@ -127,4 +127,4 @@ flowchart TD
 * `%%{init: {"flowchart": {"curve": "monotoneX"}}}%%` on the first line inside the `$$$` block selects a smoother edge curve.
 * See also: [[State Diagram]] for state machines, [[Sequence Diagram]] for actor interactions.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

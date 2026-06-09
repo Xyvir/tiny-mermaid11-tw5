@@ -81,4 +81,4 @@ Values are relative proportions — they do not need to sum to 100. Mermaid norm
 * `pie showData` displays the raw values inside or near each slice (optional keyword).
 * See also: [[XY Chart]] for bar/line data, [[Quadrant Chart]] for positioning by two axes.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

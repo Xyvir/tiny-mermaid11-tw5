@@ -125,4 +125,4 @@ C4Context
 * Keep each level focused on one zoom: avoid mixing `Person` and `Container` shapes in the same diagram.
 * See also: [[Architecture Diagram]] for infrastructure topology, [[Sequence Diagram]] for runtime message flows.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

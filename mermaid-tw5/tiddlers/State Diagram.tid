@@ -183,4 +183,4 @@ stateDiagram-v2
 * Compound states (nested `state { ... }`) model concurrent or hierarchical state machines.
 * See also: [[Flowchart]] for process flows, [[Sequence Diagram]] for actor interactions.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

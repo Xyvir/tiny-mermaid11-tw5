@@ -115,4 +115,4 @@ architecture-beta
 * Groups can be nested: `group inner(server)[Inner] in outer`.
 * `architecture-beta` is still beta — complex layouts may shift unexpectedly.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

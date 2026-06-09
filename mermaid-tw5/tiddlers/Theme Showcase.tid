@@ -70,4 +70,4 @@ flowchart LR
 
 Git graphs have their own per-diagram theme support and additional theme customization. See [[Gitgraph Base Theme]], [[Gitgraph Dark Theme]], [[Gitgraph Forest Theme]], [[Gitgraph Neutral Theme]], and [[Gitgraph Default Theme]] for examples.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

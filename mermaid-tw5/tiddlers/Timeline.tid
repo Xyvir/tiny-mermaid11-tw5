@@ -96,10 +96,12 @@ timeline
              : Packet
 $$$
 
-|!Section|!Color|!Meaning|
-|2014 to 2020|Blue|Founding era — core diagram types|
-|2021 to 2022|Green|Growth era — new visual formats|
-|2023 to 2024|Orange|Modern era — advanced and beta types|
+|!Section|!Meaning|
+|2014 to 2020|Founding era — core diagram types|
+|2021 to 2022|Growth era — new visual formats|
+|2023 to 2024|Modern era — advanced and beta types|
+
+''Note:'' each section's background color cycles automatically through the active theme palette — colors are not set in the source and change with the selected theme.
 
 ---
 
@@ -125,4 +127,4 @@ timeline
 * Sections help readability for timelines spanning many years.
 * Avoid colons inside event labels — they are structural delimiters and will break parsing.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

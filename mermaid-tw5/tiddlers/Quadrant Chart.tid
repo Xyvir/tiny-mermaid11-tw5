@@ -116,4 +116,4 @@ quadrantChart
 * Avoid clustering too many points — label overlap reduces readability.
 * Use this for decisions, not for precise data — coordinates are approximate placements.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

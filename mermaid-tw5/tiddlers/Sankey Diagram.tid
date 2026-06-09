@@ -84,4 +84,4 @@ source,target,value
 * Flows do not need to balance — source totals and target totals can differ.
 * Node names must not contain special characters (ampersand, apostrophe, forward slash, hyphen) — these cause a parse error in Mermaid 11.12+ (issue #7528). Write "R and D" rather than the ampersand form.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

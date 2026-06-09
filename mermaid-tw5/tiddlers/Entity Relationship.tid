@@ -188,4 +188,4 @@ erDiagram
 * `erDiagram` does not support `classDef` coloring; use the attribute annotations (`PK`/`FK`/`UK`) and descriptive relationship labels to convey meaning.
 * See also: [[Class Diagram]] for object-oriented modeling, [[Requirement Diagram]] for systems engineering constraints.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

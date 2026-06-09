@@ -150,4 +150,4 @@ venn-beta
 * `text` blocks label items in a set's exclusive (non-overlapping) area only; placing text inside an intersection region is not supported in `venn-beta`.
 * `venn-beta` is still beta — syntax may evolve in future Mermaid versions.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

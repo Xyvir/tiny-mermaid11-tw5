@@ -86,4 +86,4 @@ xychart-beta
 * X-axis labels are treated as categories, not numbers.
 * Use `%%{init: {"xyChart": {"width": 800, "height": 400}}}%%` before the `xychart-beta` keyword to control canvas size.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

@@ -151,4 +151,4 @@ journey
 * Journey diagrams have no `classDef` support — the legend uses text labels and color names rather than hex swatches.
 * See also: [[Flowchart]] for process flows, [[Sequence Diagram]] for actor message exchanges.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

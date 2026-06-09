@@ -172,4 +172,4 @@ sequenceDiagram
 * Sequence diagrams do not use `classDef` — there is no color-category legend for this type.
 * See also: [[Flowchart]] for process flows, [[State Diagram]] for state machines.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

@@ -225,4 +225,4 @@ requirementDiagram
 * Requirement IDs (`id:`) are displayed in the box header; use a consistent scheme like `SYS-001`.
 * See also: [[Entity Relationship]] for data-centric traceability, [[C4 Diagram]] for system context at a higher level.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

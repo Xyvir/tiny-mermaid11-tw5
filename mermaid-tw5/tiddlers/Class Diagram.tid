@@ -259,7 +259,7 @@ classDiagram
 |`~`|Package / internal|
 
 |!Relationship|!Meaning|
-|`<|--`|Inheritance|
+|`<\|--`|Inheritance|
 |`*--`|Composition|
 |`o--`|Aggregation|
 |`-->`|Association|
@@ -273,4 +273,4 @@ classDiagram
 * Apply `classDef` and `:::` to group classes by domain role and pair with a color legend.
 * See also: [[Entity Relationship]] for data-centric schemas, [[State Diagram]] for lifecycle modeling.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]

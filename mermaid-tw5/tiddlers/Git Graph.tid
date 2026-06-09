@@ -186,4 +186,4 @@ gitGraph
 * `cherry-pick id: "commit-id"` replicates a specific commit to the current branch.
 * See also: [[Flowchart]] for deployment pipelines, [[State Diagram]] for release state machines.
 
-[[← Mermaid Chart Catalog]]
+[[← Mermaid Chart Catalog|Mermaid Chart Catalog]]
