@@ -17,7 +17,9 @@ wardley-beta
     component WebApp [0.8, 0.6] (buy)
     component API [0.6, 0.5] (build)
     component Database [0.3, 0.7] (outsource)
-    Customer -> WebApp -> API -> Database
+    Customer -> WebApp
+    WebApp -> API
+    API -> Database
 ```
 
 $$$text/vnd.tiddlywiki.mermaid
@@ -27,7 +29,9 @@ wardley-beta
     component WebApp [0.8, 0.6] (buy)
     component API [0.6, 0.5] (build)
     component Database [0.3, 0.7] (outsource)
-    Customer -> WebApp -> API -> Database
+    Customer -> WebApp
+    WebApp -> API
+    API -> Database
 $$$
 
 ---
@@ -62,10 +66,13 @@ wardley-beta
     component Compute [0.20, 0.85] (outsource)
 
     %% ── Dependency links ─────────────────────────
-    Customer -> Dashboard -> Business Logic
+    Customer -> Dashboard
+    Dashboard -> Business Logic
     Customer -> Authentication
-    Customer -> Notifications -> Business Logic
-    Business Logic -> API Gateway -> Data Pipeline
+    Customer -> Notifications
+    Notifications -> Business Logic
+    Business Logic -> API Gateway
+    API Gateway -> Data Pipeline
     Data Pipeline -> PostgreSQL
     Data Pipeline -> Object Storage
     Business Logic -> Compute
@@ -100,10 +107,13 @@ wardley-beta
     component Compute [0.20, 0.85] (outsource)
 
     %% ── Dependency links ─────────────────────────
-    Customer -> Dashboard -> Business Logic
+    Customer -> Dashboard
+    Dashboard -> Business Logic
     Customer -> Authentication
-    Customer -> Notifications -> Business Logic
-    Business Logic -> API Gateway -> Data Pipeline
+    Customer -> Notifications
+    Notifications -> Business Logic
+    Business Logic -> API Gateway
+    API Gateway -> Data Pipeline
     Data Pipeline -> PostgreSQL
     Data Pipeline -> Object Storage
     Business Logic -> Compute
@@ -121,7 +131,8 @@ wardley-beta
     title [Map title]
     anchor CustomerName [visibility, evolution]
     component ComponentName [visibility, evolution] (build|buy|outsource)
-    ComponentA -> ComponentB -> ComponentC
+    ComponentA -> ComponentB
+    ComponentB -> ComponentC
     evolve ComponentName target_evolution
 ```
 
@@ -144,6 +155,7 @@ wardley-beta
 * `anchor` nodes represent customers or users; `component` nodes represent capabilities and technology.
 * `evolve ComponentName 0.8` adds an arrow showing planned movement along the evolution axis.
 * Wardley Maps do not use color-by-category; components are distinguished by their position and strategy decorator.
+* Links must be written pairwise — one `A -> B` per line. Chained links (`A -> B -> C`) are ''not'' supported by the `wardley-beta` parser and cause a syntax error; split each hop onto its own line.
 * `wardley-beta` is still beta — complex layouts may not render exactly as expected.
 
 [[← Mermaid Chart Catalog|Mermaid Chart Catalog]]
