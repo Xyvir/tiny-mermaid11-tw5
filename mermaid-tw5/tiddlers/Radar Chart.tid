@@ -1,0 +1,93 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Radar Chart
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A radar chart (spider chart) plots multiple quantitative variables on axes radiating from the same center, making it easy to compare multi-dimensional profiles. Use it for skill assessments, product comparisons, and performance reviews. ''New in Mermaid 11.'' Uses `radar-beta`.
+
+---
+
+!! Basic example
+
+```
+radar-beta
+    axis Speed, Cost, Quality, Support, Features
+    Product A: 4, 3, 5, 4, 3
+    Product B: 3, 5, 3, 3, 5
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+radar-beta
+    axis Speed, Cost, Quality, Support, Features
+    Product A: 4, 3, 5, 4, 3
+    Product B: 3, 5, 3, 3, 5
+$$$
+
+---
+
+!! Real-world example: Engineering team skills assessment
+
+This example compares the competency profiles of three engineers across six skill axes. Each series value count must exactly match the number of axes (6 each).
+
+```
+%%{init: {"radar": {"width": 500, "height": 500}}}%%
+radar-beta
+    title Engineering Team Skills
+    accTitle: Team competency radar chart
+    accDescr: Radar chart comparing skills of Alice, Bob and Carol across six axes
+
+    %% ── Skill axes ──────────────────────────────────
+    axis Backend, Frontend, DevOps, Testing, Architecture, Communication
+
+    %% ── Team member profiles ─────────────────────────
+    Alice: 5, 3, 4, 4, 3, 5
+    Bob: 3, 5, 3, 5, 2, 4
+    Carol: 4, 4, 5, 3, 5, 3
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"radar": {"width": 500, "height": 500}}}%%
+radar-beta
+    title Engineering Team Skills
+    accTitle: Team competency radar chart
+    accDescr: Radar chart comparing skills of Alice, Bob and Carol across six axes
+
+    %% ── Skill axes ──────────────────────────────────
+    axis Backend, Frontend, DevOps, Testing, Architecture, Communication
+
+    %% ── Team member profiles ─────────────────────────
+    Alice: 5, 3, 4, 4, 3, 5
+    Bob: 3, 5, 3, 5, 2, 4
+    Carol: 4, 4, 5, 3, 5, 3
+$$$
+
+---
+
+!! Syntax
+
+```
+%%{init: {"radar": {"width": 500, "height": 500}}}%%
+radar-beta
+    title [Chart title]
+    axis Label1, Label2, Label3, Label4, Label5
+    Series Name: value1, value2, value3, value4, value5
+```
+
+''axis'' defines the spoke labels — every data series must have exactly the same number of values as there are axes.
+
+|!Key|!Description|
+|`title`|Chart heading displayed above the diagram|
+|`axis`|Comma-separated list of axis labels|
+|`curve N`|Override a series to use a curved line (N = series index, 0-based)|
+
+''Config keys:'' `width` and `height` control canvas size via `%%{init: {"radar": {...}}}%%`.
+
+!! Tips
+
+* The number of values in each series must exactly match the axis count — mismatches cause a parse error.
+* `radar-beta` has a native built-in legend (enabled by default via `showLegend`); no WikiText legend table is needed.
+* Scale values are typically 1–5 or 0–10 for readability.
+* `radar-beta` is still beta — syntax may evolve in future Mermaid versions.
+
+[[← Mermaid Chart Catalog]]

@@ -1,0 +1,146 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Tree View
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A tree view diagram renders a file and folder hierarchy with automatic icon detection based on file extensions. Use it for project structure documentation, repository layouts, and directory tree references. ''New in Mermaid 11.'' Uses `treeView-beta`.
+
+---
+
+!! Basic example
+
+```
+treeView-beta
+    "project"/
+        "src"/
+            "app.ts"
+            "utils.ts"
+        "package.json"
+        "README.md"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+treeView-beta
+    "project"/
+        "src"/
+            "app.ts"
+            "utils.ts"
+        "package.json"
+        "README.md"
+$$$
+
+---
+
+!! Real-world example: TypeScript web application repository layout
+
+This example shows a typical full-stack TypeScript project structure with source, tests, configuration, and documentation files. Known extensions auto-map to icons; trailing `/` marks directories.
+
+```
+%%{init: {"treeView": {"rowIndent": 20}}}%%
+treeView-beta
+    accTitle: TypeScript web app project structure
+    accDescr: File and folder hierarchy for a full-stack TypeScript web application
+
+    %% ── Root ────────────────────────────────────────
+    "webapp"/
+        %% ── Application source ──────────────────────
+        "src"/
+            "server"/
+                "app.ts"
+                "router.ts"
+                "middleware.ts"
+            "client"/
+                "index.html"
+                "main.ts"
+                "styles.css"
+            "shared"/
+                "types.ts"
+                "utils.ts"
+
+        %% ── Tests ───────────────────────────────────
+        "tests"/
+            "server.test.ts"
+            "client.test.ts"
+            "utils.test.ts"
+
+        %% ── Configuration and docs ──────────────────
+        "package.json"
+        "tsconfig.json"
+        ".gitignore"
+        "README.md"
+        "Dockerfile"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"treeView": {"rowIndent": 20}}}%%
+treeView-beta
+    accTitle: TypeScript web app project structure
+    accDescr: File and folder hierarchy for a full-stack TypeScript web application
+
+    %% ── Root ────────────────────────────────────────
+    "webapp"/
+        %% ── Application source ──────────────────────
+        "src"/
+            "server"/
+                "app.ts"
+                "router.ts"
+                "middleware.ts"
+            "client"/
+                "index.html"
+                "main.ts"
+                "styles.css"
+            "shared"/
+                "types.ts"
+                "utils.ts"
+
+        %% ── Tests ───────────────────────────────────
+        "tests"/
+            "server.test.ts"
+            "client.test.ts"
+            "utils.test.ts"
+
+        %% ── Configuration and docs ──────────────────
+        "package.json"
+        "tsconfig.json"
+        ".gitignore"
+        "README.md"
+        "Dockerfile"
+$$$
+
+---
+
+!! Syntax
+
+```
+treeView-beta
+    "Root Folder"/
+        "Subfolder"/
+            "file.ts"
+            "file.json"
+        "root-file.md"
+```
+
+''Trailing `/`'' marks a directory node (displayed with a folder icon and bold label). Files without `/` use icons determined by their extension.
+
+|!Pattern|!Result|
+|`"name"/`|Directory node|
+|`"name.ts"`|TypeScript file icon|
+|`"name.json"`|JSON file icon|
+|`"name.md"`|Markdown file icon|
+|`"name.html"`|HTML file icon|
+|`"name.css"`|CSS file icon|
+|`"name.py"`|Python file icon|
+|`"Dockerfile"`|Docker icon|
+|`".gitignore"`|Git ignore icon|
+
+''Config:'' `%%{init: {"treeView": {"rowIndent": 20}}}%%` widens the indentation between levels.
+
+!! Tips
+
+* Use `treeView-beta` with exact camelCase — `treeview-beta` (lowercase v) will not parse.
+* Indentation defines hierarchy — use spaces, not tabs, to avoid silent hierarchy collapse.
+* No edges or connections; `treeView-beta` is a purely hierarchical display.
+* `treeView-beta` is still beta — syntax may evolve in future Mermaid versions.
+
+[[← Mermaid Chart Catalog]]

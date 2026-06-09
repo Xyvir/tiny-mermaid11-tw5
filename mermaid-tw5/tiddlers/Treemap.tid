@@ -1,0 +1,137 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Treemap
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A treemap displays hierarchical data as nested rectangles where each leaf's area is proportional to its value. Use it for budget breakdowns, disk usage analysis, and organizational resource allocation. ''New in Mermaid 11.'' Uses `treemap-beta`.
+
+---
+
+!! Basic example
+
+```
+treemap-beta
+    "Budget"
+        "Engineering": 120000
+        "Marketing": 45000
+        "Operations": 35000
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+treemap-beta
+    "Budget"
+        "Engineering": 120000
+        "Marketing": 45000
+        "Operations": 35000
+$$$
+
+---
+
+!! Real-world example: Annual technology budget allocation
+
+This example breaks down a technology department's annual budget across four sections. Leaf nodes carry the numeric values; section parents derive their area from their children's sum.
+
+```
+%%{init: {"treemap": {"showValues": false}}}%%
+treemap-beta
+    title Annual Technology Budget
+    accTitle: Technology budget treemap
+    accDescr: Treemap showing budget allocation across Engineering, Infrastructure, Marketing and Operations
+
+    %% ── Engineering section ─────────────────────────
+    "Engineering"
+        "Backend": 180000
+        "Frontend": 120000
+        "Mobile": 90000
+        "Quality Assurance": 60000
+
+    %% ── Infrastructure section ──────────────────────
+    "Infrastructure"
+        "Cloud Hosting": 95000
+        "Security Tools": 40000
+        "Monitoring": 25000
+
+    %% ── Marketing section ───────────────────────────
+    "Marketing"
+        "Campaigns": 75000
+        "Design": 35000
+        "Analytics": 20000
+
+    %% ── Operations section ──────────────────────────
+    "Operations"
+        "Support Staff": 50000
+        "Training": 20000
+        "Tooling": 15000
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"treemap": {"showValues": false}}}%%
+treemap-beta
+    title Annual Technology Budget
+    accTitle: Technology budget treemap
+    accDescr: Treemap showing budget allocation across Engineering, Infrastructure, Marketing and Operations
+
+    %% ── Engineering section ─────────────────────────
+    "Engineering"
+        "Backend": 180000
+        "Frontend": 120000
+        "Mobile": 90000
+        "Quality Assurance": 60000
+
+    %% ── Infrastructure section ──────────────────────
+    "Infrastructure"
+        "Cloud Hosting": 95000
+        "Security Tools": 40000
+        "Monitoring": 25000
+
+    %% ── Marketing section ───────────────────────────
+    "Marketing"
+        "Campaigns": 75000
+        "Design": 35000
+        "Analytics": 20000
+
+    %% ── Operations section ──────────────────────────
+    "Operations"
+        "Support Staff": 50000
+        "Training": 20000
+        "Tooling": 15000
+$$$
+
+|!Section|!Color|!Meaning|
+|Engineering|Blue|Software development teams|
+|Infrastructure|Orange|Cloud, security and monitoring|
+|Marketing|Green|Campaigns, design and analytics|
+|Operations|Purple|Support, training and tooling|
+
+---
+
+!! Syntax
+
+```
+treemap-beta
+    title [Chart title]
+    "Section Parent"
+        "Leaf Node": value
+        "Another Leaf": value
+    "Another Section"
+        "Leaf": value
+```
+
+''Section nodes'' (parents) group related leaves — their rectangle area equals the sum of their children. ''Leaf nodes'' carry a `: value` suffix with a positive number.
+
+|!Key|!Description|
+|`title`|Chart heading displayed above the diagram|
+|`"Label": N`|Leaf node with numeric value N (must be positive)|
+|`"Label"`|Section parent node (no value — area derived from children)|
+
+''Config keys:'' `showValues: false` hides the numeric labels for a cleaner proportional view.
+
+!! Tips
+
+* Only leaf (terminal) nodes carry `: value` — parent nodes must not have a value.
+* Values must be positive non-zero numbers; very small values relative to the total may produce unreadably small tiles.
+* Use `"R and D"` instead of `"R&D"` to avoid parse ambiguity (convention from Sankey fix #7528).
+* `treemap-beta` is still beta — the `showValues` config key controls label display.
+
+[[← Mermaid Chart Catalog]]
