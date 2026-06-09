@@ -4,13 +4,13 @@ milestone: v0.6.0
 milestone_name: Capability Parity & Advanced Examples
 current_phase: 07
 status: executing
-last_updated: "2026-06-09T18:51:37.481Z"
+last_updated: "2026-06-09T18:57:20.806Z"
 last_activity: 2026-06-09
 progress:
   total_phases: 3
   completed_phases: 1
   total_plans: 9
-  completed_plans: 5
+  completed_plans: 6
   percent: 33
 ---
 
@@ -31,11 +31,11 @@ See: `.planning/PROJECT.md` (updated 2026-06-07)
 ## Current Position
 
 Phase: 07 (advanced-examples-legends) — EXECUTING
-Plan: 3 of 6
+Plan: 4 of 6
 Status: Ready to execute
 Last activity: 2026-06-09
 
-Progress: [██████░░░░] 56%
+Progress: [███████░░░] 67%
 
 ## Phase Tracker
 
@@ -65,6 +65,9 @@ Decisions are logged in PROJECT.md Key Decisions table. Recent decisions affecti
 - [Phase ?]: mermaidAPI.initialize() moved to lazy-load block (once per page, CONFIG-03/D-05); per-render hardcoded call removed
 - [Phase ?]: buildSiteConfig() implements D-07: startOnLoad always false, cannot be overridden by config tiddler
 - [Phase ?]: D-02 prepend confirmed live: widget-attribute theme prepended as %%{init}%%; author in-source directive wins via Mermaid last-wins merge
+- [Phase ?]: Entity Relationship.tid carries no legend (D-05 — erDiagram has no classDef)
+- [Phase ?]: Requirement Diagram.tid uses functionalRequirement/performanceRequirement keywords plus WikiText legend (LEGEND-02)
+- [Phase ?]: Same-title bare Format B files (Requirement Diagram, C4 Diagram) deleted without collision with .tid files
 
 ### Pending Todos
 
@@ -91,8 +94,8 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-06-09T18:51:37.476Z
-Stopped at: Phase 7 context gathered
+Last session: 2026-06-09T18:57:20.801Z
+Stopped at: Completed 07-03-PLAN.md
 Resume file: None
 
 ## Performance Metrics
@@ -105,3 +108,4 @@ Resume file: None
 | Phase 06 P03 | 15 | 3 tasks | 2 files |
 | Phase 07 P01 | 2 minutes | 2 tasks | 2 files |
 | Phase 07 P02 | 12 minutes | - tasks | - files |
+| Phase 07 P03 | 15 minutes | 2 tasks | 15 files |
