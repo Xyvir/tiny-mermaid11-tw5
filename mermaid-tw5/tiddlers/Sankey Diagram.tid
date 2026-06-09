@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Sankey Diagram
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A Sankey diagram shows flows between nodes, where the width of each band is proportional to the quantity it represents. Use it for budget allocation, energy flow, traffic routing, or any "how is X distributed?" question. ''New in Mermaid 10.3.''
 
@@ -29,24 +30,32 @@ $$$
 
 ---
 
-!! Real-world example: Budget allocation
+!! Real-world example: Company revenue flow
+
+This diagram traces revenue from top-line income through gross profit down to its final allocation — cost of goods, operating expenses, and net income.
 
 ```
 sankey-beta
+%% ── Revenue split ──────────────────────────
 Revenue,Cost of Goods,4000
 Revenue,Gross Profit,6000
+
+%% ── Gross profit allocation ────────────────
 Gross Profit,R and D,1500
-Gross Profit,Sales,1200
+Gross Profit,Sales and Marketing,1200
 Gross Profit,Operations,1300
 Gross Profit,Net Income,2000
 ```
 
 $$$text/vnd.tiddlywiki.mermaid
 sankey-beta
+%% ── Revenue split ──────────────────────────
 Revenue,Cost of Goods,4000
 Revenue,Gross Profit,6000
+
+%% ── Gross profit allocation ────────────────
 Gross Profit,R and D,1500
-Gross Profit,Sales,1200
+Gross Profit,Sales and Marketing,1200
 Gross Profit,Operations,1300
 Gross Profit,Net Income,2000
 $$$
@@ -73,5 +82,6 @@ source,target,value
 * Node labels with commas must be quoted: `"Node, A",Target,100`
 * Cycles are not supported (a node cannot flow back to one of its ancestors).
 * Flows do not need to balance — source totals and target totals can differ.
+* Node names must not contain special characters (ampersand, apostrophe, forward slash, hyphen) — these cause a parse error in Mermaid 11.12+ (issue #7528). Write "R and D" rather than the ampersand form.
 
 [[← Mermaid Chart Catalog]]

@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: XY Chart
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 An XY chart plots data on two numeric axes and supports both bar and line series on the same chart. Use it for trends over time, comparisons across categories, or any dataset with a numeric X and Y axis. ''New in Mermaid 10.6.''
 
@@ -29,21 +30,35 @@ $$$
 
 !! Real-world example: Revenue vs. target (bar + line)
 
+This chart overlays actual monthly revenue (bar series) with a stepped quarterly target (line series), making it easy to spot which months fell short of the plan.
+
 ```
+%%{init: {"xyChart": {"width": 800, "height": 400}}}%%
 xychart-beta
+    %% ── Chart metadata ─────────────────────────
     title "Monthly Revenue vs Target (USD K)"
     x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
     y-axis "USD (K)" 0 --> 120
+
+    %% ── Actual revenue (bars) ───────────────────
     bar [45, 52, 61, 48, 75, 83, 91, 88, 95, 102, 98, 110]
+
+    %% ── Quarterly target (line) ─────────────────
     line [70, 70, 70, 80, 80, 80, 90, 90, 90, 100, 100, 100]
 ```
 
 $$$text/vnd.tiddlywiki.mermaid
+%%{init: {"xyChart": {"width": 800, "height": 400}}}%%
 xychart-beta
+    %% ── Chart metadata ─────────────────────────
     title "Monthly Revenue vs Target (USD K)"
     x-axis [Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
     y-axis "USD (K)" 0 --> 120
+
+    %% ── Actual revenue (bars) ───────────────────
     bar [45, 52, 61, 48, 75, 83, 91, 88, 95, 102, 98, 110]
+
+    %% ── Quarterly target (line) ─────────────────
     line [70, 70, 70, 80, 80, 80, 90, 90, 90, 100, 100, 100]
 $$$
 
@@ -69,5 +84,6 @@ xychart-beta
 * The `"title"` and `"Axis label"` strings must be quoted when they contain spaces.
 * You can have multiple `bar` or `line` series.
 * X-axis labels are treated as categories, not numbers.
+* Use `%%{init: {"xyChart": {"width": 800, "height": 400}}}%%` before the `xychart-beta` keyword to control canvas size.
 
 [[← Mermaid Chart Catalog]]

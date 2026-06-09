@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Block Diagram
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A block diagram arranges nodes on an explicit grid with arrows between them. Unlike flowcharts (which auto-layout), block diagrams give you direct control over column placement. Use it for component architecture, data pipelines, and structured system overviews. ''New in Mermaid 11.''
 
@@ -27,41 +28,83 @@ $$$
 
 !! Real-world example: Web application stack
 
+This diagram maps a web application into four horizontal layers — client, gateway, services, and data — with color coding to distinguish each layer's role.
+
 ```
 block-beta
+    %% ── Client layer ───────────────────────────
     columns 3
-    Client["Web Client\nReact"] space LB["Load Balancer\nnginx"]
-    space space space
-    API1["API Server 1"] API2["API Server 2"] Cache[("Redis\nCache")]
-    space space space
-    space DB[("PostgreSQL")] space
+    Browser["Browser\nReact SPA"] space CDN["CDN\nCloudFront"]
 
-    Client --> LB
+    %% ── Gateway layer ──────────────────────────
+    space LB["Load Balancer\nnginx"] space
+
+    %% ── Service layer ───────────────────────────
+    API1["API Server 1\nNode.js"] API2["API Server 2\nNode.js"] Cache[("Redis\nCache")]
+
+    %% ── Data layer ──────────────────────────────
+    space DB[("PostgreSQL\nRDS")] space
+
+    %% ── Connections ─────────────────────────────
+    Browser --> LB
+    CDN --> LB
     LB --> API1
     LB --> API2
     API1 --> Cache
     API2 --> Cache
     API1 --> DB
     API2 --> DB
+
+    %% ── Layer color coding ──────────────────────
+    style Browser fill:#6c757d,stroke:#495057,color:#fff
+    style CDN fill:#6c757d,stroke:#495057,color:#fff
+    style LB fill:#0d6efd,stroke:#084298,color:#fff
+    style API1 fill:#198754,stroke:#0f5132,color:#fff
+    style API2 fill:#198754,stroke:#0f5132,color:#fff
+    style Cache fill:#fd7e14,stroke:#984c0c,color:#fff
+    style DB fill:#fd7e14,stroke:#984c0c,color:#fff
 ```
 
 $$$text/vnd.tiddlywiki.mermaid
 block-beta
+    %% ── Client layer ───────────────────────────
     columns 3
-    Client["Web Client\nReact"] space LB["Load Balancer\nnginx"]
-    space space space
-    API1["API Server 1"] API2["API Server 2"] Cache[("Redis\nCache")]
-    space space space
-    space DB[("PostgreSQL")] space
+    Browser["Browser\nReact SPA"] space CDN["CDN\nCloudFront"]
 
-    Client --> LB
+    %% ── Gateway layer ──────────────────────────
+    space LB["Load Balancer\nnginx"] space
+
+    %% ── Service layer ───────────────────────────
+    API1["API Server 1\nNode.js"] API2["API Server 2\nNode.js"] Cache[("Redis\nCache")]
+
+    %% ── Data layer ──────────────────────────────
+    space DB[("PostgreSQL\nRDS")] space
+
+    %% ── Connections ─────────────────────────────
+    Browser --> LB
+    CDN --> LB
     LB --> API1
     LB --> API2
     API1 --> Cache
     API2 --> Cache
     API1 --> DB
     API2 --> DB
+
+    %% ── Layer color coding ──────────────────────
+    style Browser fill:#6c757d,stroke:#495057,color:#fff
+    style CDN fill:#6c757d,stroke:#495057,color:#fff
+    style LB fill:#0d6efd,stroke:#084298,color:#fff
+    style API1 fill:#198754,stroke:#0f5132,color:#fff
+    style API2 fill:#198754,stroke:#0f5132,color:#fff
+    style Cache fill:#fd7e14,stroke:#984c0c,color:#fff
+    style DB fill:#fd7e14,stroke:#984c0c,color:#fff
 $$$
+
+|!Color|!Meaning|
+|@@background-color:#6c757d;color:#fff;padding:2px 8px;border-radius:3px;@@ Client|User-facing browser and CDN layer|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Gateway|Load balancer / entry point|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Service|Application servers (compute)|
+|@@background-color:#fd7e14;color:#fff;padding:2px 8px;border-radius:3px;@@ Data|Cache and persistent storage|
 
 ---
 
@@ -94,5 +137,6 @@ block-beta
 * Use `\n` inside labels to force line breaks.
 * `block-beta` is still beta — complex layouts may require trial and error.
 * For auto-layout without grid control, prefer [[Flowchart]].
+* Close every `block` group with `end` — a missing `end` drops all nodes that follow it.
 
 [[← Mermaid Chart Catalog]]
