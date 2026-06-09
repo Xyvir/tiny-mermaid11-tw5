@@ -125,13 +125,20 @@
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
 
 **Plans:** 6 plans
-
 Plans:
+**Wave 1**
+
 - [ ] 07-01-PLAN.md — Legend Recipe tiddler (LEGEND-01) + Phase 7 structural test scaffold (wave 1)
+
+**Wave 2** *(blocked on Wave 1 completion)*
+
 - [ ] 07-02-PLAN.md — Format B→A migration batch 1: Flowchart, Sequence, Class, State, User Journey, Git Graph (wave 2)
 - [ ] 07-03-PLAN.md — Format B→A migration batch 2: Entity Relationship, Gantt, Pie, Requirement, C4 (wave 2)
 - [ ] 07-04-PLAN.md — Expand 9 existing Format A tiddlers + Block/Timeline legends (wave 2)
 - [ ] 07-05-PLAN.md — 6 net-new beta-type tiddlers: Radar, Venn, Ishikawa, Treemap, Tree View, Wardley (wave 2)
+
+**Wave 3** *(blocked on Wave 2 completion)*
+
 - [ ] 07-06-PLAN.md — Catalog update (EXAMPLE-03 / D-10) + phase-completion gate (wave 3)
 
 **UI hint:** yes
