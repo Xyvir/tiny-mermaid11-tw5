@@ -124,11 +124,11 @@
   4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
 
-**Plans:** 6 plans
+**Plans:** 1/6 plans executed
 Plans:
 **Wave 1**
 
-- [ ] 07-01-PLAN.md — Legend Recipe tiddler (LEGEND-01) + Phase 7 structural test scaffold (wave 1)
+- [x] 07-01-PLAN.md — Legend Recipe tiddler (LEGEND-01) + Phase 7 structural test scaffold (wave 1)
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
@@ -172,7 +172,7 @@ Plans:
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 6. Config Wiring Foundation | v0.6.0 | 3/3 | Complete    | 2026-06-08 |
-| 7. Advanced Examples & Legends | v0.6.0 | 0/? | Not started | - |
+| 7. Advanced Examples & Legends | v0.6.0 | 1/6 | In Progress|  |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
 ---

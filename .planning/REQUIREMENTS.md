@@ -25,7 +25,7 @@
 
 ### Legends
 
-- [ ] **LEGEND-01**: A documented legend / "key box" pattern (WikiText table or styled subgraph) shows which color maps to each category, provided as a reusable recipe tiddler
+- [x] **LEGEND-01**: A documented legend / "key box" pattern (WikiText table or styled subgraph) shows which color maps to each category, provided as a reusable recipe tiddler
 - [ ] **LEGEND-02**: Advanced examples that use color-by-category include a legend so they remain readable
 
 ### Capability Documentation
@@ -65,7 +65,7 @@
 | EXAMPLE-01 | Phase 7 | Pending | |
 | EXAMPLE-02 | Phase 7 | Pending | |
 | EXAMPLE-03 | Phase 7 | Pending | |
-| LEGEND-01 | Phase 7 | Pending | |
+| LEGEND-01 | Phase 7 | Complete | |
 | LEGEND-02 | Phase 7 | Pending | |
 | DOCS-03 | Phase 8 | Pending | |
 
