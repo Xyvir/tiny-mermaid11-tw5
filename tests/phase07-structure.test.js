@@ -53,16 +53,20 @@ function existing() {
 }
 
 describe('Phase 7 structural assertions', () => {
-    it('every existing Phase 7 example tiddler is tagged MermaidExample', () => {
-        // This assertion uses the same existing() filter — it is a tautology for
-        // files already tagged, but serves as documentation and will catch files
-        // that somehow lose their tag after being added to the Phase 7 set.
-        for (const name of existing()) {
+    it('every present Phase 7 example tiddler is tagged MermaidExample', () => {
+        // Real guard: iterate the expected set filtered ONLY by on-disk presence
+        // (NOT by the tag), so a tiddler that exists but lost its MermaidExample
+        // tag fails loudly instead of silently dropping out of existing(). The
+        // PHASE07_COMPLETE gate below separately ensures all expected files exist.
+        const present = EXPECTED_TIDDLERS.filter(name =>
+            fs.existsSync(path.join(TIDDLERS_DIR, name))
+        );
+        for (const name of present) {
             const content = fs.readFileSync(path.join(TIDDLERS_DIR, name), 'utf8');
             assert.match(
                 content,
                 /^tags:.*MermaidExample/m,
-                `${name} must have "tags: MermaidExample" in front-matter`
+                `${name} exists but is missing "tags: MermaidExample" in front-matter`
             );
         }
     });
@@ -81,7 +85,7 @@ describe('Phase 7 structural assertions', () => {
         for (const name of existing()) {
             const content = fs.readFileSync(path.join(TIDDLERS_DIR, name), 'utf8');
             assert.ok(
-                !(/%%\{init[^}]*"(theme|look|fontFamily|themeVariables)"/.test(content)),
+                !(/%%\{init[\s\S]*?["'](theme|look|fontFamily|themeVariables)["']/.test(content)),
                 `${name} must not set theme/look/fontFamily/themeVariables in %%{init}%%`
             );
         }
