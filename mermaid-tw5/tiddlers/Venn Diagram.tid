@@ -1,0 +1,153 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Venn Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A Venn diagram shows logical relationships and overlaps between sets of items using overlapping circles. Use it for skill mapping, responsibility overlap analysis, and set membership visualization. ''New in Mermaid 11.'' Uses `venn-beta`.
+
+---
+
+!! Basic example
+
+```
+venn-beta
+    set A ["Backend"]
+    set B ["Frontend"]
+    union A,B ["Full-Stack"]
+    text A
+        "Python"
+        "PostgreSQL"
+    text B
+        "React"
+        "CSS"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+venn-beta
+    set A ["Backend"]
+    set B ["Frontend"]
+    union A,B ["Full-Stack"]
+    text A
+        "Python"
+        "PostgreSQL"
+    text B
+        "React"
+        "CSS"
+$$$
+
+---
+
+!! Real-world example: Engineering team role responsibilities
+
+This example maps three engineering roles by their exclusive responsibilities. All `set` declarations come before any `union` (forward references cause a parse error). Text blocks are placed in exclusive set regions only.
+
+```
+%%{init: {"venn": {"width": 600, "height": 400}}}%%
+venn-beta
+    accTitle: Engineering team role responsibilities
+    accDescr: Venn diagram showing skill overlap between Backend, Frontend and DevOps roles
+
+    %% ── Set declarations (must come before any union) ──
+    set BE ["Backend"] :3
+    set FE ["Frontend"] :3
+    set DO ["DevOps"] :2
+
+    %% ── Overlap regions ─────────────────────────────
+    union BE,FE ["Full-Stack"] :2
+    union BE,DO ["Platform Eng"] :1
+    union FE,DO ["Site Reliability"] :1
+    union BE,FE,DO ["Tech Lead"] :1
+
+    %% ── Text in exclusive set regions only ──────────
+    text BE
+        "Python"
+        "PostgreSQL"
+        "REST APIs"
+    text FE
+        "React"
+        "TypeScript"
+        "CSS"
+    text DO
+        "Kubernetes"
+        "Terraform"
+        "CI/CD"
+
+    %% ── Set colors ──────────────────────────────────
+    style BE fill:#0d6efd, color:#ffffff
+    style FE fill:#198754, color:#ffffff
+    style DO fill:#fd7e14, color:#ffffff
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"venn": {"width": 600, "height": 400}}}%%
+venn-beta
+    accTitle: Engineering team role responsibilities
+    accDescr: Venn diagram showing skill overlap between Backend, Frontend and DevOps roles
+
+    %% ── Set declarations (must come before any union) ──
+    set BE ["Backend"] :3
+    set FE ["Frontend"] :3
+    set DO ["DevOps"] :2
+
+    %% ── Overlap regions ─────────────────────────────
+    union BE,FE ["Full-Stack"] :2
+    union BE,DO ["Platform Eng"] :1
+    union FE,DO ["Site Reliability"] :1
+    union BE,FE,DO ["Tech Lead"] :1
+
+    %% ── Text in exclusive set regions only ──────────
+    text BE
+        "Python"
+        "PostgreSQL"
+        "REST APIs"
+    text FE
+        "React"
+        "TypeScript"
+        "CSS"
+    text DO
+        "Kubernetes"
+        "Terraform"
+        "CI/CD"
+
+    %% ── Set colors ──────────────────────────────────
+    style BE fill:#0d6efd, color:#ffffff
+    style FE fill:#198754, color:#ffffff
+    style DO fill:#fd7e14, color:#ffffff
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Backend|Server-side and data layer expertise|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Frontend|UI and client-side expertise|
+|@@background-color:#fd7e14;color:#fff;padding:2px 8px;border-radius:3px;@@ DevOps|Infrastructure and deployment expertise|
+
+---
+
+!! Syntax
+
+```
+venn-beta
+    set ID ["Label"] :N
+    set ID2 ["Label"] :N
+    union ID,ID2 ["Overlap Label"] :N
+    text ID
+        "item in exclusive region"
+    style ID fill:#hexcolor, color:#textcolor
+```
+
+''set'' declares a circle with a display label and optional relative size `:N`. ''union'' defines an overlap region — referenced set IDs must already be declared above (no forward references). ''text'' places labels inside a set's exclusive (non-overlapping) region only. ''style'' applies a fill color to a set or union.
+
+|!Keyword|!Description|
+|`set ID ["Label"] :N`|Declare a named set (circle); `:N` controls relative size|
+|`union ID1,ID2 ["Label"] :N`|Declare an overlap of two or more previously declared sets|
+|`text ID`|Add label items inside a set's exclusive region|
+|`style ID fill:#hex`|Apply a background fill color to a set|
+
+!! Tips
+
+* Always declare every `set` before any `union` that references it — forward references cause a parse error.
+* The `:N` size values are relative: `:3` makes a set visually larger than `:1`.
+* `text` blocks label items in a set's exclusive (non-overlapping) area only; placing text inside an intersection region is not supported in `venn-beta`.
+* `venn-beta` is still beta — syntax may evolve in future Mermaid versions.
+
+[[← Mermaid Chart Catalog]]

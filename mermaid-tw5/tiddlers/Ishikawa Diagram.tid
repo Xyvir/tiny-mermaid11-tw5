@@ -1,0 +1,158 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Ishikawa Diagram
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+An Ishikawa diagram (fishbone or cause-and-effect diagram) maps the root causes of a problem across major categories, each shown as a branch off a central spine. Use it for root-cause analysis, quality improvement, and retrospective planning. ''New in Mermaid 11.'' Uses `ishikawa-beta`.
+
+---
+
+!! Basic example
+
+```
+ishikawa-beta
+    Service Outage
+    Infrastructure
+        Database overload
+        Network failure
+    Code
+        Memory leak
+        Unhandled exception
+    Process
+        No monitoring
+        Missing runbook
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+ishikawa-beta
+    Service Outage
+    Infrastructure
+        Database overload
+        Network failure
+    Code
+        Memory leak
+        Unhandled exception
+    Process
+        No monitoring
+        Missing runbook
+$$$
+
+---
+
+!! Real-world example: Production deployment failure root-cause analysis
+
+This example maps the causes of a failed production deployment across six standard quality categories (the "6M" framework: Machine, Method, Material, Measurement, Man, Mother Nature). The effect appears at the arrowhead; each category becomes a branch; subcauses nest under their category.
+
+```
+ishikawa-beta
+    accTitle: Production deployment failure
+    accDescr: Ishikawa fishbone diagram analysing root causes of a production deployment failure
+
+    %% ── Effect (problem) ───────────────────────────
+    Production Deployment Failed
+
+    %% ── Cause categories ───────────────────────────
+    Machine
+        Build server out of disk
+        CI pipeline timeout
+        Container image corrupt
+
+    Method
+        No rollback procedure
+        Missing deployment checklist
+        Insufficient change approval
+
+    Material
+        Incompatible dependency version
+        Config file missing from artifact
+        Database migration not tested
+
+    Measurement
+        No smoke tests after deploy
+        Alerting threshold too high
+        Log level set to error only
+
+    People
+        On-call engineer unavailable
+        Unclear ownership of service
+        Insufficient deployment training
+
+    Environment
+        Network partition during deploy
+        Load balancer misconfigured
+        Staging environment diverged from prod
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+ishikawa-beta
+    accTitle: Production deployment failure
+    accDescr: Ishikawa fishbone diagram analysing root causes of a production deployment failure
+
+    %% ── Effect (problem) ───────────────────────────
+    Production Deployment Failed
+
+    %% ── Cause categories ───────────────────────────
+    Machine
+        Build server out of disk
+        CI pipeline timeout
+        Container image corrupt
+
+    Method
+        No rollback procedure
+        Missing deployment checklist
+        Insufficient change approval
+
+    Material
+        Incompatible dependency version
+        Config file missing from artifact
+        Database migration not tested
+
+    Measurement
+        No smoke tests after deploy
+        Alerting threshold too high
+        Log level set to error only
+
+    People
+        On-call engineer unavailable
+        Unclear ownership of service
+        Insufficient deployment training
+
+    Environment
+        Network partition during deploy
+        Load balancer misconfigured
+        Staging environment diverged from prod
+$$$
+
+---
+
+!! Syntax
+
+```
+ishikawa-beta
+    Effect Name
+    Category One
+        Cause
+        Another cause
+    Category Two
+        Cause
+            Sub-cause
+        Cause
+```
+
+The first non-keyword line is the ''effect'' (the problem statement), drawn as the arrowhead at the right. Top-level indented lines are ''cause categories'' (the main bones). Further indented lines are ''causes'' and ''sub-causes''.
+
+|!Element|!Role in diagram|
+|First line after keyword|Effect / problem (arrowhead, rightmost)|
+|Top-level indented lines|Cause categories (diagonal branches off spine)|
+|Second-level indented lines|Individual causes under each category|
+|Third-level indented lines|Sub-causes nested under a cause|
+
+!! Tips
+
+* Cause categories are paired above and below the spine — an even number produces the most balanced layout.
+* There is no `classDef` support in `ishikawa-beta`; the diagram is purely structural (no color legend needed).
+* The "6M" categories (Machine, Method, Material, Measurement, Man/People, Mother Nature/Environment) are a common starting point for manufacturing and software root-cause analysis.
+* `ishikawa-beta` also accepts `ishikawa` without the beta suffix, but using `ishikawa-beta` makes the beta status explicit.
+
+[[← Mermaid Chart Catalog]]

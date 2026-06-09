@@ -1,0 +1,149 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Wardley Map
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A Wardley Map positions business or technology components on a two-axis canvas: visibility (how visible to the customer, Y-axis) vs. evolution (how commoditised, X-axis). Use it for strategic technology planning, make-vs-buy decisions, and platform architecture. ''New in Mermaid 11.'' Uses `wardley-beta`.
+
+---
+
+!! Basic example
+
+```
+wardley-beta
+    title Platform Strategy
+    anchor Customer [0.9, 0.95]
+    component WebApp [0.8, 0.6] (buy)
+    component API [0.6, 0.5] (build)
+    component Database [0.3, 0.7] (outsource)
+    Customer -> WebApp -> API -> Database
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+wardley-beta
+    title Platform Strategy
+    anchor Customer [0.9, 0.95]
+    component WebApp [0.8, 0.6] (buy)
+    component API [0.6, 0.5] (build)
+    component Database [0.3, 0.7] (outsource)
+    Customer -> WebApp -> API -> Database
+$$$
+
+---
+
+!! Real-world example: SaaS product technology strategy
+
+This example maps the key components of a SaaS product, showing which to build, buy, or outsource based on their position on the evolution axis. Components close to `Genesis` (left) are novel and warrant investment; components near `Commodity` (right) are best purchased or outsourced.
+
+```
+wardley-beta
+    %% ── Canvas and accessibility ─────────────────
+    title SaaS Product Technology Strategy
+    accTitle: SaaS product Wardley Map
+    accDescr: Wardley Map showing technology strategy for a SaaS product
+
+    %% ── Customer anchor ──────────────────────────
+    anchor Customer [0.95, 0.95]
+
+    %% ── User-visible components ──────────────────
+    component Dashboard [0.85, 0.55] (buy)
+    component Authentication [0.75, 0.85] (outsource)
+    component Notifications [0.65, 0.70] (buy)
+
+    %% ── Core platform components ─────────────────
+    component Business Logic [0.55, 0.30] (build)
+    component Data Pipeline [0.40, 0.35] (build)
+    component API Gateway [0.50, 0.60] (buy)
+
+    %% ── Infrastructure components ────────────────
+    component PostgreSQL [0.30, 0.80] (outsource)
+    component Object Storage [0.25, 0.90] (outsource)
+    component Compute [0.20, 0.85] (outsource)
+
+    %% ── Dependency links ─────────────────────────
+    Customer -> Dashboard -> Business Logic
+    Customer -> Authentication
+    Customer -> Notifications -> Business Logic
+    Business Logic -> API Gateway -> Data Pipeline
+    Data Pipeline -> PostgreSQL
+    Data Pipeline -> Object Storage
+    Business Logic -> Compute
+
+    %% ── Planned evolution ────────────────────────
+    evolve Business Logic 0.55
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+wardley-beta
+    %% ── Canvas and accessibility ─────────────────
+    title SaaS Product Technology Strategy
+    accTitle: SaaS product Wardley Map
+    accDescr: Wardley Map showing technology strategy for a SaaS product
+
+    %% ── Customer anchor ──────────────────────────
+    anchor Customer [0.95, 0.95]
+
+    %% ── User-visible components ──────────────────
+    component Dashboard [0.85, 0.55] (buy)
+    component Authentication [0.75, 0.85] (outsource)
+    component Notifications [0.65, 0.70] (buy)
+
+    %% ── Core platform components ─────────────────
+    component Business Logic [0.55, 0.30] (build)
+    component Data Pipeline [0.40, 0.35] (build)
+    component API Gateway [0.50, 0.60] (buy)
+
+    %% ── Infrastructure components ────────────────
+    component PostgreSQL [0.30, 0.80] (outsource)
+    component Object Storage [0.25, 0.90] (outsource)
+    component Compute [0.20, 0.85] (outsource)
+
+    %% ── Dependency links ─────────────────────────
+    Customer -> Dashboard -> Business Logic
+    Customer -> Authentication
+    Customer -> Notifications -> Business Logic
+    Business Logic -> API Gateway -> Data Pipeline
+    Data Pipeline -> PostgreSQL
+    Data Pipeline -> Object Storage
+    Business Logic -> Compute
+
+    %% ── Planned evolution ────────────────────────
+    evolve Business Logic 0.55
+$$$
+
+---
+
+!! Syntax
+
+```
+wardley-beta
+    title [Map title]
+    anchor CustomerName [visibility, evolution]
+    component ComponentName [visibility, evolution] (build|buy|outsource)
+    ComponentA -> ComponentB -> ComponentC
+    evolve ComponentName target_evolution
+```
+
+''Axes:'' Y-axis is visibility (0 = invisible to customer, 1 = highly visible); X-axis is evolution (0 = Genesis/novel, 1 = Commodity/utility). Positions are written `[visibility, evolution]` — Y first, X second (counter-intuitive).
+
+|!Keyword|!Description|
+|`anchor`|Customer or user node (shown as diamond)|
+|`component`|Technology or service component with position and optional decorator|
+|`(build)`|Build-vs-buy strategy decorator|
+|`(buy)`|Purchase/license strategy decorator|
+|`(outsource)`|Outsource strategy decorator|
+|`->`|Dependency link (value flows from left component to right)|
+|`+>`|Flow/value link (alternative arrow style)|
+|`evolve`|Planned evolution arrow to target evolution position|
+|`note "Text" [y, x]`|Floating annotation on the canvas|
+
+!! Tips
+
+* Position coordinates are `[visibility, evolution]` — Y-axis first. This is counter-intuitive: `[0.9, 0.1]` means highly visible (top) but still in genesis (left).
+* `anchor` nodes represent customers or users; `component` nodes represent capabilities and technology.
+* `evolve ComponentName 0.8` adds an arrow showing planned movement along the evolution axis.
+* Wardley Maps do not use color-by-category; components are distinguished by their position and strategy decorator.
+* `wardley-beta` is still beta — complex layouts may not render exactly as expected.
+
+[[← Mermaid Chart Catalog]]
