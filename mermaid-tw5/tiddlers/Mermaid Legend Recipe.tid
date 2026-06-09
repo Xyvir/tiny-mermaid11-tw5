@@ -1,0 +1,46 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Mermaid Legend Recipe
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A ''legend'' (or "key box") explains what each color means in a diagram. Mermaid has no built-in generic legend, so this recipe uses a WikiText table below the diagram.
+
+---
+
+!! The recipe
+
+Place this table immediately after the closing `$$$` block of your diagram:
+
+```
+|!Color|!Meaning|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Label A|Description of category A|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Label B|Description of category B|
+```
+
+Match the `background-color` to the `fill` value in your diagram's `classDef`:
+
+$$$text/vnd.tiddlywiki.mermaid
+flowchart LR
+    A[Category A]:::catA --> B[Category B]:::catB
+    classDef catA fill:#0d6efd,stroke:#084298,color:#fff
+    classDef catB fill:#198754,stroke:#0f5132,color:#fff
+$$$
+
+|!Color|!Meaning|
+|@@background-color:#0d6efd;color:#fff;padding:2px 8px;border-radius:3px;@@ Category A|Primary workflow step|
+|@@background-color:#198754;color:#fff;padding:2px 8px;border-radius:3px;@@ Category B|Success / completion state|
+
+---
+
+!! When to add a legend
+
+Add a legend when your diagram uses color to distinguish categories that a reader needs to decode. See [[Flowchart]], [[Class Diagram]], and [[State Diagram]] for examples. [[Pie Chart]] and [[Radar Chart]] have built-in legends and do not need this recipe.
+
+---
+
+!! Alternative: in-diagram subgraph
+
+For flowcharts only, a disconnected subgraph can serve as an in-SVG legend. The WikiText table above is preferred because it works for all diagram types and never distorts the Dagre layout.
+
+[[← Mermaid Chart Catalog]]
