@@ -847,22 +847,24 @@ The following table documents which types legitimately benefit from structural `
 
 ---
 
-## Open Questions
+## Open Questions (RESOLVED)
+
+All three open questions are MEDIUM/LOW-confidence beta-syntax edge cases. None block planning: each has a conservative fallback, and Plan 07-05 Task 2 encodes a verify-in-demo-wiki-or-omit strategy that closes them at execution time without risking a non-rendering construct.
 
 1. **treeView file icon mapping completeness**
    - What we know: 14+ extensions auto-map to icons (`.ts`, `.js`, `.tsx`, `.jsx`, `.py`, `.json`, `.md`, `.html`, `.css`, `.yaml`, `.sh`, `.sql`, `.lock`, `.gitignore`, `Dockerfile`).
    - What's unclear: Whether the icon names are the same as those used by the Architecture diagram (`server`, `database`, etc.) or a separate icon set.
-   - Recommendation: Use only auto-detected extension-based icons in the example. Do not attempt `icon(name)` overrides until verified in demo wiki.
+   - **RESOLVED:** Use only auto-detected extension-based icons in the example. Do not use `icon(name)` overrides. (Handled in Plan 07-05.)
 
 2. **wardley `pipeline` syntax edge cases**
    - What we know: `pipeline ParentName { component Child1, component Child2 }` is the documented syntax.
    - What's unclear: Whether `component` declarations inside `pipeline {}` are separate from the top-level `component` declarations, or aliases.
-   - Recommendation: Keep the advanced Wardley example simple — omit `pipeline` if it cannot be verified in demo wiki before commit.
+   - **RESOLVED:** Omit `pipeline` (and the `annotation` decorator) from the example unless it renders cleanly in the demo wiki before commit; fall back to the simple `component` + arrow form. (Verify-or-omit in Plan 07-05 Task 2.)
 
 3. **venn intersection label positioning**
    - What we know: `text` blocks attach labels inside a set's exclusive region.
    - What's unclear: Whether text can be placed inside an intersection region (the overlap area of a `union`).
-   - Recommendation: Place text only in exclusive set regions for the example; note the limitation in Tips.
+   - **RESOLVED:** Place `text` only in exclusive set regions for the example; note the intersection-text limitation in the Tips section. (Handled in Plan 07-05 Task 2.)
 
 ---
 
