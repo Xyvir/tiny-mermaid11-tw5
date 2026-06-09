@@ -124,7 +124,16 @@
   4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
 
-**Plans:** TBD
+**Plans:** 6 plans
+
+Plans:
+- [ ] 07-01-PLAN.md — Legend Recipe tiddler (LEGEND-01) + Phase 7 structural test scaffold (wave 1)
+- [ ] 07-02-PLAN.md — Format B→A migration batch 1: Flowchart, Sequence, Class, State, User Journey, Git Graph (wave 2)
+- [ ] 07-03-PLAN.md — Format B→A migration batch 2: Entity Relationship, Gantt, Pie, Requirement, C4 (wave 2)
+- [ ] 07-04-PLAN.md — Expand 9 existing Format A tiddlers + Block/Timeline legends (wave 2)
+- [ ] 07-05-PLAN.md — 6 net-new beta-type tiddlers: Radar, Venn, Ishikawa, Treemap, Tree View, Wardley (wave 2)
+- [ ] 07-06-PLAN.md — Catalog update (EXAMPLE-03 / D-10) + phase-completion gate (wave 3)
+
 **UI hint:** yes
 
 *Authoring constraints:* All advanced examples use `$$$text/vnd.tiddlywiki.mermaid` block syntax only — the `getScriptBody()` WikiText un-parser is fragile and the block path is the safe route. No new bundled assets (ELK, ZenUML, icon packs, KaTeX-as-feature all deferred). No `%%{init}%%` theme directives in examples — reserve `%%{init}%%` for structural per-type config so it does not override the user's global theme. The 5 newer beta types (treeView-beta, wardley-beta, ishikawa-beta, treemap-beta, venn-beta) have sparse docs — consider `--research-phase` during planning.
