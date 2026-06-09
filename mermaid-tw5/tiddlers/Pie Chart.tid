@@ -1,0 +1,84 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Pie Chart
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A pie chart shows part-to-whole proportions as colored wedges in a circle. Use it for budget breakdowns, survey results, resource allocation, and any dataset with a small number of named categories. Uses `pie`.
+
+---
+
+!! Basic example
+
+```
+pie title Favourite pets
+    "Dogs"  : 45
+    "Cats"  : 30
+    "Birds" : 15
+    "Fish"  : 10
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+pie title Favourite pets
+    "Dogs"  : 45
+    "Cats"  : 30
+    "Birds" : 15
+    "Fish"  : 10
+$$$
+
+---
+
+!! Real-world example: Engineering team time allocation
+
+This example breaks down how an engineering team allocates time across work categories over a quarter: feature development, bug fixes, technical debt, code review, and meetings. The native Mermaid legend maps each color to its label automatically.
+
+```
+pie
+    accTitle: Engineering team time allocation Q1
+    accDescr: Breakdown of engineering effort by work category
+
+    %% ── Work categories ────────────────────────
+    title Engineering Time Allocation — Q1 2024
+    "Feature Development"  : 42
+    "Bug Fixes"            : 18
+    "Technical Debt"       : 15
+    "Code Review"          : 14
+    "Meetings and Admin"   : 11
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+pie
+    accTitle: Engineering team time allocation Q1
+    accDescr: Breakdown of engineering effort by work category
+
+    %% ── Work categories ────────────────────────
+    title Engineering Time Allocation — Q1 2024
+    "Feature Development"  : 42
+    "Bug Fixes"            : 18
+    "Technical Debt"       : 15
+    "Code Review"          : 14
+    "Meetings and Admin"   : 11
+$$$
+
+---
+
+!! Syntax
+
+```
+pie title Optional chart title
+    "Label A" : value
+    "Label B" : value
+    "Label C" : value
+```
+
+Values are relative proportions — they do not need to sum to 100. Mermaid normalises them automatically.
+
+!! Tips
+
+* The `pie` keyword renders a built-in color legend automatically — no WikiText legend table is needed.
+* Limit to 5–7 slices; too many small slices become hard to read. Combine minor items into an "Other" category.
+* Values can be integers or decimals (`42`, `18.5`).
+* `pie showData` displays the raw values inside or near each slice (optional keyword).
+* See also: [[XY Chart]] for bar/line data, [[Quadrant Chart]] for positioning by two axes.
+
+[[← Mermaid Chart Catalog]]

@@ -1,0 +1,191 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Entity Relationship
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+An entity relationship diagram models the data structure of a system by showing entities, their attributes, and the relationships between them with cardinality notation. Use it for database schema design, data modeling, and domain entity mapping. Uses `erDiagram`.
+
+---
+
+!! Basic example
+
+```
+erDiagram
+    CUSTOMER ||--o{ ORDER : "places"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    PRODUCT }|--|{ ORDER_ITEM : "included in"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+erDiagram
+    CUSTOMER ||--o{ ORDER : "places"
+    ORDER ||--|{ ORDER_ITEM : "contains"
+    PRODUCT }|--|{ ORDER_ITEM : "included in"
+$$$
+
+---
+
+!! Real-world example: E-commerce data schema
+
+This example models a full e-commerce platform schema: customers, addresses, products, categories, orders, and order items. Every relationship carries a descriptive label and uses crow's-foot cardinality notation throughout.
+
+```
+erDiagram
+    accTitle: E-commerce data schema
+    accDescr: Entity relationship diagram for an e-commerce platform
+
+    %% ── Customer domain ────────────────────────
+    CUSTOMER {
+        int     id           PK
+        string  email        UK
+        string  name
+        date    created_at
+    }
+    ADDRESS {
+        int     id           PK
+        int     customer_id  FK
+        string  street
+        string  city
+        string  country
+        bool    is_default
+    }
+
+    %% ── Product domain ──────────────────────────
+    CATEGORY {
+        int     id    PK
+        string  name  UK
+        int     parent_id FK
+    }
+    PRODUCT {
+        int     id           PK
+        int     category_id  FK
+        string  name
+        float   price
+        int     stock
+        bool    active
+    }
+
+    %% ── Order domain ────────────────────────────
+    ORDER {
+        int     id          PK
+        int     customer_id FK
+        int     address_id  FK
+        string  status
+        float   total
+        date    placed_at
+    }
+    ORDER_ITEM {
+        int     id         PK
+        int     order_id   FK
+        int     product_id FK
+        int     quantity
+        float   unit_price
+    }
+
+    %% ── Relationships ───────────────────────────
+    CUSTOMER ||--o{ ADDRESS   : "has"
+    CUSTOMER ||--o{ ORDER     : "places"
+    ORDER    ||--o{ ORDER_ITEM : "contains"
+    PRODUCT  ||--o{ ORDER_ITEM : "included in"
+    CATEGORY ||--o{ PRODUCT   : "groups"
+    CATEGORY o|--o{ CATEGORY  : "parent of"
+    ORDER    }o--|| ADDRESS   : "ships to"
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+erDiagram
+    accTitle: E-commerce data schema
+    accDescr: Entity relationship diagram for an e-commerce platform
+
+    %% ── Customer domain ────────────────────────
+    CUSTOMER {
+        int     id           PK
+        string  email        UK
+        string  name
+        date    created_at
+    }
+    ADDRESS {
+        int     id           PK
+        int     customer_id  FK
+        string  street
+        string  city
+        string  country
+        bool    is_default
+    }
+
+    %% ── Product domain ──────────────────────────
+    CATEGORY {
+        int     id    PK
+        string  name  UK
+        int     parent_id FK
+    }
+    PRODUCT {
+        int     id           PK
+        int     category_id  FK
+        string  name
+        float   price
+        int     stock
+        bool    active
+    }
+
+    %% ── Order domain ────────────────────────────
+    ORDER {
+        int     id          PK
+        int     customer_id FK
+        int     address_id  FK
+        string  status
+        float   total
+        date    placed_at
+    }
+    ORDER_ITEM {
+        int     id         PK
+        int     order_id   FK
+        int     product_id FK
+        int     quantity
+        float   unit_price
+    }
+
+    %% ── Relationships ───────────────────────────
+    CUSTOMER ||--o{ ADDRESS   : "has"
+    CUSTOMER ||--o{ ORDER     : "places"
+    ORDER    ||--o{ ORDER_ITEM : "contains"
+    PRODUCT  ||--o{ ORDER_ITEM : "included in"
+    CATEGORY ||--o{ PRODUCT   : "groups"
+    CATEGORY o|--o{ CATEGORY  : "parent of"
+    ORDER    }o--|| ADDRESS   : "ships to"
+$$$
+
+---
+
+!! Syntax
+
+```
+erDiagram
+    ENTITY_A {
+        type  fieldName  PK
+        type  fieldName  FK
+        type  fieldName  UK
+    }
+    ENTITY_A ||--o{ ENTITY_B : "relationship label"
+```
+
+''Cardinality notation:''
+
+|!Symbol|!Meaning|
+|`\|\|`|Exactly one|
+|`o\|`|Zero or one|
+|`}\|`|One or more|
+|`o{`|Zero or more|
+
+''Relationship line:'' `--` (solid) or `..` (dashed/identifying)
+
+!! Tips
+
+* Every relationship line must include a `": "label"` — a quoted string is required by the parser or the diagram will not render.
+* Mark primary keys `PK`, foreign keys `FK`, and unique keys `UK` in the attribute list for auto-annotation.
+* Entity names must start with a letter and contain only alphanumerics and underscores — no spaces.
+* `erDiagram` does not support `classDef` coloring; use the attribute annotations (`PK`/`FK`/`UK`) and descriptive relationship labels to convey meaning.
+* See also: [[Class Diagram]] for object-oriented modeling, [[Requirement Diagram]] for systems engineering constraints.
+
+[[← Mermaid Chart Catalog]]

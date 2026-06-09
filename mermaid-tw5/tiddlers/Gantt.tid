@@ -1,0 +1,156 @@
+created: 20260609000000000
+modified: 20260609000000000
+title: Gantt
+type: text/vnd.tiddlywiki
+tags: MermaidExample
+
+A Gantt chart displays a project schedule as horizontal bars on a timeline, grouping tasks into sections and showing durations, dependencies, and progress status. Use it for project planning, sprint schedules, and release timelines. Uses `gantt`.
+
+---
+
+!! Basic example
+
+```
+gantt
+    dateFormat  YYYY-MM-DD
+    title Project schedule
+    section Planning
+    Define scope     :done, a1, 2024-01-08, 5d
+    Research         :active, a2, after a1, 7d
+    section Execution
+    Implementation   :b1, after a2, 14d
+    Testing          :b2, after b1, 5d
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+gantt
+    dateFormat  YYYY-MM-DD
+    title Project schedule
+    section Planning
+    Define scope     :done, a1, 2024-01-08, 5d
+    Research         :active, a2, after a1, 7d
+    section Execution
+    Implementation   :b1, after a2, 14d
+    Testing          :b2, after b1, 5d
+$$$
+
+---
+
+!! Real-world example: Software release cycle
+
+This example shows a full software release cycle across five phases: discovery, design, development, QA, and release. Tasks declare dependencies with `after`, show status (`done`, `active`, `crit`), and the `compact` display mode reduces row height for dense schedules.
+
+```
+%%{init: {"gantt": {"barHeight": 30, "displayMode": "compact"}}}%%
+gantt
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %d
+    title       v2.0 Release Cycle
+    accTitle:   Software release cycle Gantt chart
+    accDescr:   Full release schedule from discovery to launch
+
+    %% ── Discovery ───────────────────────────────
+    section Discovery
+    Stakeholder interviews   :done,  d1, 2024-02-01, 5d
+    Requirements workshop    :done,  d2, after d1, 3d
+    Scope sign-off           :done,  d3, after d2, 2d
+
+    %% ── Design ──────────────────────────────────
+    section Design
+    UX wireframes            :done,  ds1, after d3, 8d
+    Design review            :done,  ds2, after ds1, 3d
+    Design handoff           :done,  ds3, after ds2, 1d
+
+    %% ── Development ─────────────────────────────
+    section Development
+    Backend API              :active, dev1, after ds3, 14d
+    Frontend integration     :        dev2, after dev1, 10d
+    Performance optimisation :        dev3, after dev2, 5d
+
+    %% ── QA ──────────────────────────────────────
+    section QA
+    Regression suite         :crit,   qa1, after dev1, 7d
+    UAT with stakeholders    :crit,   qa2, after dev2, 5d
+    Bug-fix sprint           :        qa3, after qa1, 4d
+
+    %% ── Release ─────────────────────────────────
+    section Release
+    Staging deployment       :        r1, after dev3, 2d
+    Production deployment    :crit,   r2, after qa2, 1d
+    Post-launch monitoring   :        r3, after r2, 5d
+```
+
+$$$text/vnd.tiddlywiki.mermaid
+%%{init: {"gantt": {"barHeight": 30, "displayMode": "compact"}}}%%
+gantt
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %d
+    title       v2.0 Release Cycle
+    accTitle:   Software release cycle Gantt chart
+    accDescr:   Full release schedule from discovery to launch
+
+    %% ── Discovery ───────────────────────────────
+    section Discovery
+    Stakeholder interviews   :done,  d1, 2024-02-01, 5d
+    Requirements workshop    :done,  d2, after d1, 3d
+    Scope sign-off           :done,  d3, after d2, 2d
+
+    %% ── Design ──────────────────────────────────
+    section Design
+    UX wireframes            :done,  ds1, after d3, 8d
+    Design review            :done,  ds2, after ds1, 3d
+    Design handoff           :done,  ds3, after ds2, 1d
+
+    %% ── Development ─────────────────────────────
+    section Development
+    Backend API              :active, dev1, after ds3, 14d
+    Frontend integration     :        dev2, after dev1, 10d
+    Performance optimisation :        dev3, after dev2, 5d
+
+    %% ── QA ──────────────────────────────────────
+    section QA
+    Regression suite         :crit,   qa1, after dev1, 7d
+    UAT with stakeholders    :crit,   qa2, after dev2, 5d
+    Bug-fix sprint           :        qa3, after qa1, 4d
+
+    %% ── Release ─────────────────────────────────
+    section Release
+    Staging deployment       :        r1, after dev3, 2d
+    Production deployment    :crit,   r2, after qa2, 1d
+    Post-launch monitoring   :        r3, after r2, 5d
+$$$
+
+---
+
+!! Syntax
+
+```
+gantt
+    dateFormat  YYYY-MM-DD
+    axisFormat  %b %d
+    title       My Project
+
+    section Phase Name
+    Task label   :status, id, startDate, duration
+    Dependent    :status, id2, after id, duration
+```
+
+''Date formats:'' `YYYY-MM-DD`, `DD/MM/YYYY`, `MM-DD-YYYY`
+
+''Axis formats:'' `%Y-%m-%d`, `%b %d`, `%d %b %Y` (strftime syntax)
+
+|!Status keyword|!Meaning|
+|`done`|Completed task (grey bar)|
+|`active`|In-progress task (blue bar)|
+|`crit`|Critical-path task (red bar)|
+|`milestone`|Zero-duration milestone marker|
+
+!! Tips
+
+* Both `dateFormat` (input format) AND `axisFormat` (display format) are required for the x-axis labels to render correctly.
+* Use `after taskId` for dependencies instead of hard-coding start dates — the chart stays consistent when durations change.
+* `%%{init: {"gantt": {"displayMode": "compact"}}}%%` stacks multiple tasks in the same section row to reduce chart height.
+* Section names label the rows inline — no additional legend is needed.
+* See also: [[Timeline]] for a simpler chronological view, [[Kanban Board]] for in-flight task tracking.
+
+[[← Mermaid Chart Catalog]]
