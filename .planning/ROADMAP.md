@@ -75,7 +75,7 @@
 ### v0.6.0 — Capability Parity & Advanced Examples (Phases 6-8)
 
 - [x] **Phase 6: Config Wiring Foundation** - Make user-supplied config (theme, look, fontFamily, securityLevel, per-type) actually apply to rendering (completed 2026-06-08)
-- [ ] **Phase 7: Advanced Examples & Legends** - Author an advanced, well-commented example for all 26 in-scope diagram types with legends and a catalog
+- [x] **Phase 7: Advanced Examples & Legends** - Author an advanced, well-commented example for all 26 in-scope diagram types with legends and a catalog (completed 2026-06-09)
 - [ ] **Phase 8: Capability Matrix & Config Reference** - Document supported vs deferred features and all config keys, with catalog navigation
 
 ## Phase Details
@@ -124,7 +124,7 @@
   4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
 
-**Plans:** 5/6 plans executed
+**Plans:** 6/6 plans complete
 Plans:
 **Wave 1**
 
@@ -139,7 +139,7 @@ Plans:
 
 **Wave 3** *(blocked on Wave 2 completion)*
 
-- [ ] 07-06-PLAN.md — Catalog update (EXAMPLE-03 / D-10) + phase-completion gate (wave 3)
+- [x] 07-06-PLAN.md — Catalog update (EXAMPLE-03 / D-10) + phase-completion gate (wave 3)
 
 **UI hint:** yes
 
@@ -172,7 +172,7 @@ Plans:
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 6. Config Wiring Foundation | v0.6.0 | 3/3 | Complete    | 2026-06-08 |
-| 7. Advanced Examples & Legends | v0.6.0 | 5/6 | In Progress|  |
+| 7. Advanced Examples & Legends | v0.6.0 | 6/6 | Complete   | 2026-06-09 |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
 ---

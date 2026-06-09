@@ -21,7 +21,7 @@
 
 - [x] **EXAMPLE-01**: An advanced, well-commented example exists for every in-scope diagram type (26 types renderable with the vendored Mermaid 11.14.0 bundle), authored exclusively with `$$$text/vnd.tiddlywiki.mermaid` blocks
 - [x] **EXAMPLE-02**: Existing broken or trivial examples are upgraded — fix the Sankey `R&D` parse error and migrate older bare-content tiddlers to consistent `.tid` format
-- [ ] **EXAMPLE-03**: Advanced examples are discoverable via a shared tag and a catalog/index tiddler
+- [x] **EXAMPLE-03**: Advanced examples are discoverable via a shared tag and a catalog/index tiddler
 
 ### Legends
 
@@ -64,7 +64,7 @@
 | CONFIG-07 | Phase 8 | Pending | |
 | EXAMPLE-01 | Phase 7 | Complete | |
 | EXAMPLE-02 | Phase 7 | Complete | |
-| EXAMPLE-03 | Phase 7 | Pending | |
+| EXAMPLE-03 | Phase 7 | Complete | |
 | LEGEND-01 | Phase 7 | Complete | |
 | LEGEND-02 | Phase 7 | Complete | |
 | DOCS-03 | Phase 8 | Pending | |
