@@ -124,7 +124,7 @@
   4. A reusable legend / "key box" recipe tiddler documents how to show which color maps to each category (LEGEND-01)
   5. Every advanced example that colors by category includes a legend so it stays readable (LEGEND-02)
 
-**Plans:** 1/6 plans executed
+**Plans:** 2/6 plans executed
 Plans:
 **Wave 1**
 
@@ -132,7 +132,7 @@ Plans:
 
 **Wave 2** *(blocked on Wave 1 completion)*
 
-- [ ] 07-02-PLAN.md — Format B→A migration batch 1: Flowchart, Sequence, Class, State, User Journey, Git Graph (wave 2)
+- [x] 07-02-PLAN.md — Format B→A migration batch 1: Flowchart, Sequence, Class, State, User Journey, Git Graph (wave 2)
 - [ ] 07-03-PLAN.md — Format B→A migration batch 2: Entity Relationship, Gantt, Pie, Requirement, C4 (wave 2)
 - [ ] 07-04-PLAN.md — Expand 9 existing Format A tiddlers + Block/Timeline legends (wave 2)
 - [ ] 07-05-PLAN.md — 6 net-new beta-type tiddlers: Radar, Venn, Ishikawa, Treemap, Tree View, Wardley (wave 2)
@@ -172,7 +172,7 @@ Plans:
 | 4. Dependency Modernization | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 5. Developer Experience | v0.5.0 | 2/2 | Complete | 2026-04-27 |
 | 6. Config Wiring Foundation | v0.6.0 | 3/3 | Complete    | 2026-06-08 |
-| 7. Advanced Examples & Legends | v0.6.0 | 1/6 | In Progress|  |
+| 7. Advanced Examples & Legends | v0.6.0 | 2/6 | In Progress|  |
 | 8. Capability Matrix & Config Reference | v0.6.0 | 0/? | Not started | - |
 
 ---

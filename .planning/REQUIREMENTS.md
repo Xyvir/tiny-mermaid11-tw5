@@ -19,14 +19,14 @@
 
 ### Advanced Examples
 
-- [ ] **EXAMPLE-01**: An advanced, well-commented example exists for every in-scope diagram type (26 types renderable with the vendored Mermaid 11.14.0 bundle), authored exclusively with `$$$text/vnd.tiddlywiki.mermaid` blocks
-- [ ] **EXAMPLE-02**: Existing broken or trivial examples are upgraded — fix the Sankey `R&D` parse error and migrate older bare-content tiddlers to consistent `.tid` format
+- [x] **EXAMPLE-01**: An advanced, well-commented example exists for every in-scope diagram type (26 types renderable with the vendored Mermaid 11.14.0 bundle), authored exclusively with `$$$text/vnd.tiddlywiki.mermaid` blocks
+- [x] **EXAMPLE-02**: Existing broken or trivial examples are upgraded — fix the Sankey `R&D` parse error and migrate older bare-content tiddlers to consistent `.tid` format
 - [ ] **EXAMPLE-03**: Advanced examples are discoverable via a shared tag and a catalog/index tiddler
 
 ### Legends
 
 - [x] **LEGEND-01**: A documented legend / "key box" pattern (WikiText table or styled subgraph) shows which color maps to each category, provided as a reusable recipe tiddler
-- [ ] **LEGEND-02**: Advanced examples that use color-by-category include a legend so they remain readable
+- [x] **LEGEND-02**: Advanced examples that use color-by-category include a legend so they remain readable
 
 ### Capability Documentation
 
@@ -62,11 +62,11 @@
 | CONFIG-05 | Phase 6 | Complete | |
 | CONFIG-06 | Phase 6 | Complete | |
 | CONFIG-07 | Phase 8 | Pending | |
-| EXAMPLE-01 | Phase 7 | Pending | |
-| EXAMPLE-02 | Phase 7 | Pending | |
+| EXAMPLE-01 | Phase 7 | Complete | |
+| EXAMPLE-02 | Phase 7 | Complete | |
 | EXAMPLE-03 | Phase 7 | Pending | |
 | LEGEND-01 | Phase 7 | Complete | |
-| LEGEND-02 | Phase 7 | Pending | |
+| LEGEND-02 | Phase 7 | Complete | |
 | DOCS-03 | Phase 8 | Pending | |
 
 *(Phase column filled by roadmap creation.)*
