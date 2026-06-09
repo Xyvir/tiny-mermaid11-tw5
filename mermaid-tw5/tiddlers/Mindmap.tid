@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Mindmap
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A mindmap radiates outward from a single root. Use it for brainstorming, topic decomposition, and hierarchical thinking. ''New in Mermaid 9.4.''
 
@@ -43,23 +44,30 @@ $$$
 
 !! Real-world example: Software project map
 
+This map shows the major concerns of a full-stack software project radiating from the project root, with technology choices as leaf nodes.
+
 ```
 mindmap
+  %% ── Root ───────────────────────────────────
   root((Project))
+    %% ── Frontend branch ────────────────────
     Frontend
       React
       CSS
       Accessibility
+    %% ── Backend branch ─────────────────────
     Backend
       REST API
       Auth
       Database
         PostgreSQL
         Redis
+    %% ── DevOps branch ──────────────────────
     DevOps
       CI/CD
       Docker
       Monitoring
+    %% ── Docs branch ────────────────────────
     Docs
       README
       API Reference
@@ -68,21 +76,26 @@ mindmap
 
 $$$text/vnd.tiddlywiki.mermaid
 mindmap
+  %% ── Root ───────────────────────────────────
   root((Project))
+    %% ── Frontend branch ────────────────────
     Frontend
       React
       CSS
       Accessibility
+    %% ── Backend branch ─────────────────────
     Backend
       REST API
       Auth
       Database
         PostgreSQL
         Redis
+    %% ── DevOps branch ──────────────────────
     DevOps
       CI/CD
       Docker
       Monitoring
+    %% ── Docs branch ────────────────────────
     Docs
       README
       API Reference
@@ -105,5 +118,6 @@ $$$
 * There is exactly one root node per diagram.
 * Mindmaps do not support clickable links or events.
 * Keep labels short — overlapping text is a known layout limitation.
+* Use spaces for indentation — tab characters cause silent hierarchy collapse.
 
 [[← Mermaid Chart Catalog]]

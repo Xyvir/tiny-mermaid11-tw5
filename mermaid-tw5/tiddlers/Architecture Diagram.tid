@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Architecture Diagram
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 An architecture diagram shows services, groups (like cloud providers or networks), and directional connections between them using icons. Use it for cloud infrastructure, microservices topology, and deployment architecture. ''New in Mermaid 11.'' Uses `architecture-beta`.
 
@@ -35,6 +36,7 @@ $$$
 
 ```
 architecture-beta
+    %% ── AWS group ───────────────────────────────
     group aws(cloud)[AWS]
         service alb(server)[Load Balancer] in aws
         service app1(server)[App Server 1] in aws
@@ -42,9 +44,11 @@ architecture-beta
         service rds(database)[RDS PostgreSQL] in aws
         service redis(disk)[ElastiCache] in aws
 
+    %% ── External services ───────────────────────
     service cdn(internet)[CloudFront]
     service browser(internet)[Browser]
 
+    %% ── Connections ─────────────────────────────
     browser:R --> L:cdn
     cdn:R --> L:alb
     alb:R --> L:app1
@@ -57,6 +61,7 @@ architecture-beta
 
 $$$text/vnd.tiddlywiki.mermaid
 architecture-beta
+    %% ── AWS group ───────────────────────────────
     group aws(cloud)[AWS]
         service alb(server)[Load Balancer] in aws
         service app1(server)[App Server 1] in aws
@@ -64,9 +69,11 @@ architecture-beta
         service rds(database)[RDS PostgreSQL] in aws
         service redis(disk)[ElastiCache] in aws
 
+    %% ── External services ───────────────────────
     service cdn(internet)[CloudFront]
     service browser(internet)[Browser]
 
+    %% ── Connections ─────────────────────────────
     browser:R --> L:cdn
     cdn:R --> L:alb
     alb:R --> L:app1

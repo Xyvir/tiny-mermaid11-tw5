@@ -1,7 +1,8 @@
 created: 20260430000000000
-modified: 20260430000000000
+modified: 20260609000000000
 title: Timeline
 type: text/vnd.tiddlywiki
+tags: MermaidExample
 
 A timeline places events on a chronological axis. Use it for version history, project milestones, and historical context. ''New in Mermaid 9.4.''
 
@@ -31,59 +32,74 @@ $$$
 
 !! Real-world example: Mermaid diagram types over time
 
+This timeline groups Mermaid diagram types by the era in which they were introduced, using sections to assign a distinct background color to each period.
+
 ```
 timeline
-    title Mermaid Diagram Types
-    section 2014 – 2020
-        Flowchart : 2014
-        Sequence Diagram : 2014
-        Class Diagram : 2018
-        State Diagram : 2018
-        ER Diagram : 2019
-        Gantt : 2019
-        Git Graph : 2020
-    section 2021 – 2022
-        Pie Chart : 2021
-        User Journey : 2021
-        C4 Diagram : 2021
-        Mindmap : 2022
-        Timeline : 2022
-    section 2023 – 2024
-        Sankey : 2023
-        Quadrant : 2023
-        XY Chart : 2023
-        Architecture : 2024
-        Kanban : 2024
-        Block Diagram : 2024
-        Packet : 2024
+    %% ── Founding era ───────────────────────────
+    section 2014 to 2020
+        2014 : Flowchart
+             : Sequence Diagram
+        2018 : Class Diagram
+             : State Diagram
+        2019 : ER Diagram
+             : Gantt
+        2020 : Git Graph
+
+    %% ── Growth era ─────────────────────────────
+    section 2021 to 2022
+        2021 : Pie Chart
+             : User Journey
+             : C4 Diagram
+        2022 : Mindmap
+             : Timeline
+
+    %% ── Modern era ─────────────────────────────
+    section 2023 to 2024
+        2023 : Sankey
+             : Quadrant
+             : XY Chart
+        2024 : Architecture
+             : Kanban
+             : Block Diagram
+             : Packet
 ```
 
 $$$text/vnd.tiddlywiki.mermaid
 timeline
-    title Mermaid Diagram Types
-    section 2014 – 2020
-        Flowchart : 2014
-        Sequence Diagram : 2014
-        Class Diagram : 2018
-        State Diagram : 2018
-        ER Diagram : 2019
-        Gantt : 2019
-        Git Graph : 2020
-    section 2021 – 2022
-        Pie Chart : 2021
-        User Journey : 2021
-        C4 Diagram : 2021
-        Mindmap : 2022
-        Timeline : 2022
-    section 2023 – 2024
-        Sankey : 2023
-        Quadrant : 2023
-        XY Chart : 2023
-        Architecture : 2024
-        Kanban : 2024
-        Block Diagram : 2024
-        Packet : 2024
+    %% ── Founding era ───────────────────────────
+    section 2014 to 2020
+        2014 : Flowchart
+             : Sequence Diagram
+        2018 : Class Diagram
+             : State Diagram
+        2019 : ER Diagram
+             : Gantt
+        2020 : Git Graph
+
+    %% ── Growth era ─────────────────────────────
+    section 2021 to 2022
+        2021 : Pie Chart
+             : User Journey
+             : C4 Diagram
+        2022 : Mindmap
+             : Timeline
+
+    %% ── Modern era ─────────────────────────────
+    section 2023 to 2024
+        2023 : Sankey
+             : Quadrant
+             : XY Chart
+        2024 : Architecture
+             : Kanban
+             : Block Diagram
+             : Packet
 $$$
+
+|!Section|!Color|!Meaning|
+|2014 to 2020|Blue|Founding era — core diagram types|
+|2021 to 2022|Green|Growth era — new visual formats|
+|2023 to 2024|Orange|Modern era — advanced and beta types|
 
 ---
 
@@ -107,5 +123,6 @@ timeline
 * Long event text wraps automatically.
 * The `–` dash in period ranges is a display choice — the label is just text, not parsed.
 * Sections help readability for timelines spanning many years.
+* Avoid colons inside event labels — they are structural delimiters and will break parsing.
 
 [[← Mermaid Chart Catalog]]
