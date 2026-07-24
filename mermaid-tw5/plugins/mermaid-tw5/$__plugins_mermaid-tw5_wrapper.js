@@ -142,7 +142,17 @@ modified: E Furlan 2022-05-08
             if (!mermaidAPI) {
                 divNode.innerHTML = '<div style="border-left:3px solid #999;background:#f5f5f5;padding:8px 12px;">Loading diagram…</div>';
                 mermaidModule = require('$:/plugins/orange/mermaid-tw5/mermaid.min.js');
-                mermaidAPI = mermaidModule.mermaidAPI || mermaidModule;
+                mermaidAPI = mermaidModule.mermaidAPI || (typeof mermaidModule.render === 'function' ? mermaidModule : null);
+                if (!mermaidAPI && typeof window !== 'undefined') {
+                    var globalM = window.mermaid || (window.__esbuild_esm_mermaid_nm && window.__esbuild_esm_mermaid_nm.mermaid);
+                    if (globalM) {
+                        mermaidModule = globalM;
+                        mermaidAPI = globalM.mermaidAPI || globalM;
+                    }
+                }
+                if (!mermaidAPI) {
+                    mermaidAPI = mermaidModule;
+                }
                 d3 = require('$:/plugins/orange/mermaid-tw5/d3.v6.min.js');
                 mermaidAPI.initialize(buildSiteConfig());  // D-05: once per page load
             }
