@@ -8,14 +8,6 @@ tags: $:/tags/ControlPanel/Settings
     "theme": "default",
     "look": "classic",
     "fontFamily": "sans-serif",
-    "themeVariables": {
-        "lineColor": "#d3d3d3",
-        "textColor": "#ffffff",
-        "mainBkg": "#666666",
-        "nodeBorder": "#cccccc",
-        "nodeTextColor": "#ffffff"
-    },
-    "themeCSS": ".node rect, .node polygon, .node circle, .node path { fill: #666; stroke: #ccc; stroke-width: 1.5px; color: #fff; } .node text, .node tspan, text, tspan { fill: #fff !important; color: #fff !important; } .edgePath .path, .edge-path path, .flowchart-link, path.path, .link, g.edgePaths path { stroke: #d3d3d3 !important; stroke-width: 1.5px !important; } .marker, marker, marker path { fill: #d3d3d3 !important; stroke: #d3d3d3 !important; } .parentStyle rect, .parentStyle polygon, .parentStyle circle { fill: #444; stroke: #fff; stroke-width: 2px; } .childStyle rect, .childStyle polygon, .childStyle circle { fill: #666; stroke: #ccc; stroke-width: 1px; } .activeStyle rect, .activeStyle polygon, .activeStyle circle { fill: #aaa; stroke: #fff; stroke-width: 2px; } .activeStyle text { fill: #111; font-weight: bold; }",
     "flowchart": {
         "useMaxWidth": true,
         "htmlLabels": true
