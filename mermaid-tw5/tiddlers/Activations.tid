@@ -1,0 +1,11 @@
+created: 20211011024755456
+modified: 20211011024808318
+tags: Examples
+title: Activations
+type: text/vnd.tiddlywiki.mermaid
+
+sequenceDiagram
+    Alice->>+John: Hello John, how are you?
+    Alice->>+John: John, can you hear me?
+    John-->>-Alice: Hi Alice, I can hear you!
+    John-->>-Alice: I feel great!

@@ -1,0 +1,19 @@
+created: 20211011030738518
+modified: 20211011030753362
+tags: Examples
+title: Relationships
+type: text/vnd.tiddlywiki.mermaid
+
+erDiagram
+    CAR ||--o{ NAMED-DRIVER : allows
+    CAR {
+        string registrationNumber
+        string make
+        string model
+    }
+    PERSON ||--o{ NAMED-DRIVER : is
+    PERSON {
+        string firstName
+        string lastName
+        int age
+    }

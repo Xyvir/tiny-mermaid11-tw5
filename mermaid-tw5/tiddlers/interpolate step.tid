@@ -1,0 +1,13 @@
+created: 20211014231831700
+modified: 20211015013711122
+tags: Examples
+title: interpolate step
+type: text/vnd.tiddlywiki.mermaid
+
+%%{init: {"theme": "neutral"}}%%
+graph
+  linkStyle default interpolate step
+  A --> B
+  B --> C
+  C --> A
+  D --> C

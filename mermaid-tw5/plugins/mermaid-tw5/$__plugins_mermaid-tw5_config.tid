@@ -8,6 +8,7 @@ tags: $:/tags/ControlPanel/Settings
     "theme": "default",
     "look": "classic",
     "fontFamily": "sans-serif",
+    "themeCSS": ".node rect, .node polygon, .node circle { fill: #666; stroke: #ccc; stroke-width: 1px; color: #fff; } .node text { fill: #fff; } .parentStyle rect, .parentStyle polygon, .parentStyle circle { fill: #444; stroke: #fff; stroke-width: 2px; } .childStyle rect, .childStyle polygon, .childStyle circle { fill: #666; stroke: #ccc; stroke-width: 1px; } .activeStyle rect, .activeStyle polygon, .activeStyle circle { fill: #aaa; stroke: #fff; stroke-width: 2px; } .activeStyle text { fill: #111; font-weight: bold; } .edgePath .path { stroke: #d3d3d3; stroke-width: 2px; }",
     "flowchart": {
         "useMaxWidth": true,
         "htmlLabels": true

@@ -1,0 +1,10 @@
+created: 20211012185917373
+modified: 20211012194912542
+tags: Examples
+title: Fixfont
+type: text/vnd.tiddlywiki.mermaid
+
+graph LR;
+  AAA[Sample<br>text]:::FixFont
+
+  classDef FixFont font-size:16px

@@ -1,0 +1,17 @@
+created: 20211011021249511
+modified: 20211011021302548
+tags: Examples
+title: Subgraph 1
+type: text/vnd.tiddlywiki.mermaid
+
+flowchart TB
+    c1-->a2
+    subgraph one
+    a1-->a2
+    end
+    subgraph two
+    b1-->b2
+    end
+    subgraph three
+    c1-->c2
+    end

@@ -1,0 +1,20 @@
+created: 20211011021410297
+modified: 20211011021423533
+tags: Examples
+title: Direction in subgraphs
+type: text/vnd.tiddlywiki.mermaid
+
+flowchart LR
+  subgraph TOP
+    direction TB
+    subgraph B1
+        direction RL
+        i1 -->f1
+    end
+    subgraph B2
+        direction BT
+        i2 -->f2
+    end
+  end
+  A --> TOP --> B
+  B1 --> B2

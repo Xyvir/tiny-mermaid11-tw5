@@ -1,0 +1,13 @@
+created: 20211014232009115
+modified: 20211015013652762
+tags: Examples
+title: interpolate linear
+type: text/vnd.tiddlywiki.mermaid
+
+%%{init: {"theme": "neutral"}}%%
+graph
+  linkStyle default interpolate linear
+  A --> B
+  B --> C
+  C --> A
+  D --> C

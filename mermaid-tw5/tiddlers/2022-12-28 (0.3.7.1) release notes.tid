@@ -60,5 +60,3 @@ To run mermaid-tw5 on "TiddlyWiki on Node.js":
 * Start the server: `TIDDLYWIKI_PLUGIN_PATH=./plugins tiddlywiki --listen`
 
 * Open the web browser at the address that appears in the above command output.
-
-

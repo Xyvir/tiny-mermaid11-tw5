@@ -1,0 +1,20 @@
+created: 20221221221106229
+modified: 20221221221443327
+tags: Examples
+title: Gitgraph Cherry Pick
+type: text/vnd.tiddlywiki.mermaid
+
+gitGraph
+       commit id: "ZERO"
+       branch develop
+       commit id:"A"
+       checkout main
+       commit id:"ONE"
+       checkout develop
+       commit id:"B"
+       checkout main
+       commit id:"TWO"
+       cherry-pick id:"A"
+       commit id:"THREE"
+       checkout develop
+       commit id:"C"

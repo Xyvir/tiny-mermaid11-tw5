@@ -1,0 +1,14 @@
+created: 20211011030140288
+modified: 20211011030155116
+tags: Examples
+title: Notes 2
+type: text/vnd.tiddlywiki.mermaid
+
+    stateDiagram-v2
+        State1: The state with a note
+        note right of State1
+            Important information! You can write
+            notes.
+        end note
+        State1 --> State2
+        note left of State2 : This is the note to the left.

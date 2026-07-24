@@ -126,9 +126,9 @@ var moduleCache = {};
 var requireCalls = [];
 
 var pathMap = {
-    '$:/plugins/orange/mermaid-tw5/widget-tools.js': 'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_widget-tools.js',
-    '$:/plugins/orange/mermaid-tw5/typed-parser.js':  'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_typed-parser.js',
-    '$:/plugins/orange/mermaid-tw5/wrapper.js':        'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_wrapper.js'
+    '$:/plugins/orange/mermaid-tw5/widget-tools.js': 'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_widget-tools.js.tid',
+    '$:/plugins/orange/mermaid-tw5/typed-parser.js':  'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_typed-parser.js.tid',
+    '$:/plugins/orange/mermaid-tw5/wrapper.js':        'mermaid-tw5/plugins/mermaid-tw5/$__plugins_mermaid-tw5_wrapper.js.tid'
 };
 
 function twRequire(moduleName) {
@@ -153,7 +153,17 @@ function twRequire(moduleName) {
     }
 
     var exports = {};
-    var code = fs.readFileSync(localPath, 'utf8');
+    var fileContent = fs.readFileSync(localPath, 'utf8');
+    var code = fileContent;
+    if (localPath.endsWith('.tid')) {
+        var doubleLf = fileContent.indexOf('\n\n');
+        var doubleCrlf = fileContent.indexOf('\r\n\r\n');
+        if (doubleCrlf !== -1 && (doubleLf === -1 || doubleCrlf < doubleLf)) {
+            code = fileContent.substring(doubleCrlf + 4);
+        } else if (doubleLf !== -1) {
+            code = fileContent.substring(doubleLf + 2);
+        }
+    }
     var context = vm.createContext({
         exports: exports,
         require: twRequire,

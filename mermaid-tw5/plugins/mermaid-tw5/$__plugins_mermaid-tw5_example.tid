@@ -53,4 +53,3 @@ Results
 "></$mermaid>
 
 More advanced usage is possible if you use the mermaid parser rather than the ``<$mermaid>``.
-

@@ -1,0 +1,18 @@
+created: 20211014225342055
+modified: 20211015013750134
+tags: Examples
+title: Subgraph 4
+type: text/vnd.tiddlywiki.mermaid
+
+%%{init: {"theme": "neutral"}}%%
+graph
+  A[Christmas] -->|Get money| B(Go shopping)
+  subgraph T ["Test"]
+    A
+    B
+  end
+  classDef Test fill:#F84E68,stroke:#333,color:white
+  class A,T Test
+  classDef TestSub fill:green
+  class T TestSub
+  linkStyle 0 color:orange,stroke:orange %%color doesn't work

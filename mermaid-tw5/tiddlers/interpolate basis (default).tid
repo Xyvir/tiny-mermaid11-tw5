@@ -1,0 +1,13 @@
+created: 20211014232101042
+modified: 20211015013647148
+tags: Examples
+title: interpolate basis (default)
+type: text/vnd.tiddlywiki.mermaid
+
+%%{init: {"theme": "neutral"}}%%
+graph
+  linkStyle default interpolate basis
+  A --> B
+  B --> C
+  C --> A
+  D --> C

@@ -1,0 +1,14 @@
+created: 20240318134436777
+modified: 20240318134836048
+tags: 
+title: Examples of clickable links to navigate within TW
+type: text/vnd.tiddlywiki.mermaid
+
+flowchart LR
+    A-->B
+    B-->C
+    C-->D
+    click A "#Gitgraph Forest Theme" "Gitgraph Forest Theme Tiddler" _blank
+    click B "#Automata 3" "Automata 3" _blank
+    click C href "#sequenceDiagram 1" "sequenceDiagram 1 Tiddler" _blank
+    click D href "#Larger flowchart with some styling" "Larger flowchart with some styling Tiddler" _blank

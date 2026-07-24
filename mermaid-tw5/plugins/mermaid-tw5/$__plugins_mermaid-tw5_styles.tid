@@ -1,0 +1,10 @@
+title: $:/plugins/orange/mermaid-tw5/styles
+type: text/css
+tags: $:/tags/Stylesheet
+
+/* Hide any stray Mermaid error SVGs ("bomb" icons) in document */
+svg[aria-roledescription="error"],
+svg.error-icon,
+svg:has(.error-icon) {
+    display: none !important;
+}

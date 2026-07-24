@@ -1,0 +1,23 @@
+created: 20211011025908941
+modified: 20211011025926244
+tags: Examples
+title: Composite states
+type: text/vnd.tiddlywiki.mermaid
+
+stateDiagram-v2
+    [*] --> First
+    First --> Second
+    First --> Third
+
+    state First {
+        [*] --> fir
+        fir --> [*]
+    }
+    state Second {
+        [*] --> sec
+        sec --> [*]
+    }
+    state Third {
+        [*] --> thi
+        thi --> [*]
+    }

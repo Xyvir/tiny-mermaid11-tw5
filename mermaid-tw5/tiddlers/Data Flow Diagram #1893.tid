@@ -1,0 +1,9 @@
+created: 20220507134104278
+modified: 20220507134105802
+tags: Examples
+title: Data Flow Diagram #1893
+type: text/vnd.tiddlywiki.mermaid
+
+graph LR
+    DataStore[Database] -->|input| Process((System)) -->|output| Entity[Customer]
+    style DataStore stroke-dasharray: 88.5 44

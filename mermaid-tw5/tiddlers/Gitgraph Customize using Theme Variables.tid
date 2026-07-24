@@ -1,0 +1,19 @@
+created: 20220508205045377
+modified: 20220508205045377
+tags: Examples
+title: Gitgraph Customize using Theme Variables
+type: text/vnd.tiddlywiki.mermaid
+
+%%{init: { 'logLevel': 'debug', 'theme': 'default' } }%%
+       gitGraph
+       commit
+       branch develop
+       commit tag:"v1.0.0"
+       commit
+       checkout main
+       commit type: HIGHLIGHT
+       commit
+       merge develop
+       commit
+       branch featureA
+       commit
