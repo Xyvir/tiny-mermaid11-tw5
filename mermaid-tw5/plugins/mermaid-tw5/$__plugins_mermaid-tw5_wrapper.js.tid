@@ -180,6 +180,9 @@ modified: E Furlan 2022-05-08
             rocklib.getOptions(this, tag, options);
 
             scriptBody = decodeHtmlEntities(scriptBody).trim();
+            // TiddlyWiki's WikiText parser converts -- to en-dash and --- to em-dash
+            // in widget attribute values. Normalize them back for Mermaid arrow syntax.
+            scriptBody = scriptBody.replace(/\u2013/g, '--').replace(/\u2014/g, '---');
 
             // D-02: inject per-widget non-secure config as %%{init}%% PREPENDED
             var perWidgetInit = buildPerWidgetInit(options);
