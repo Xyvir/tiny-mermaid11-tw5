@@ -17,7 +17,7 @@ svg:has(.error-icon) {
 .node ellipse,
 .node path {
     fill: <<colour muted-foreground>> !important;
-    stroke: <<colour foreground>> !important;
+    stroke: <<colour primary>> !important;
     stroke-width: 1.5px !important;
 }
 
@@ -38,14 +38,14 @@ svg:has(.error-icon) {
 path.path,
 .link,
 g.edgePaths path {
-    stroke: <<colour muted-foreground>> !important;
+    stroke: <<colour foreground>> !important;
     stroke-width: 1.5px !important;
 }
 
 /* ── Arrowhead markers ── */
 marker path {
-    fill: <<colour muted-foreground>> !important;
-    stroke: <<colour muted-foreground>> !important;
+    fill: <<colour foreground>> !important;
+    stroke: <<colour foreground>> !important;
 }
 
 /* ── Edge labels ── */
