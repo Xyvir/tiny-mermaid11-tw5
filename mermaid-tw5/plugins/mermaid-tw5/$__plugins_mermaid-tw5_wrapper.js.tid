@@ -59,6 +59,18 @@ modified: E Furlan 2022-05-08
         return frames.join('\n');
     }
 
+    function cleanupStrayErrorSVGs() {
+        if (typeof document === 'undefined') return;
+        try {
+            var errorSvgs = document.querySelectorAll('svg[aria-roledescription="error"], svg.error-icon');
+            for (var i = 0; i < errorSvgs.length; i++) {
+                if (errorSvgs[i] && errorSvgs[i].parentNode) {
+                    errorSvgs[i].parentNode.removeChild(errorSvgs[i]);
+                }
+            }
+        } catch (e) {}
+    }
+
     var SECURE_KEYS = ['secure', 'securityLevel', 'startOnLoad',
                        'maxTextSize', 'maxEdges', 'suppressErrorRendering'];
 
@@ -175,18 +187,6 @@ modified: E Furlan 2022-05-08
             if (perWidgetInit) {
                 scriptBody = '%%{init: ' + JSON.stringify(perWidgetInit) + '}%%\n' + scriptBody;
             }
-
-    function cleanupStrayErrorSVGs() {
-        if (typeof document === 'undefined') return;
-        try {
-            var errorSvgs = document.querySelectorAll('svg[aria-roledescription="error"], svg.error-icon');
-            for (var i = 0; i < errorSvgs.length; i++) {
-                if (errorSvgs[i] && errorSvgs[i].parentNode) {
-                    errorSvgs[i].parentNode.removeChild(errorSvgs[i]);
-                }
-            }
-        } catch (e) {}
-    }
 
             var renderDiagram = function() {
                 var svgId = divNode.id + '_svg';
