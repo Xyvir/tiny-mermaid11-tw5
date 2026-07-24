@@ -2,11 +2,13 @@
 
 *Last edited: 2026-04-27*
 
+This is a fork of a fork that uses mermaid-tiny (~ 1 MB) instead of full mermaid library (~3 MB)
+
 This is a **fork** of the original [mermaid-tw5](https://github.com/efurlanm/mermaid-tw5) plugin that upgrades Mermaid.js from **9.3.0 to 11.14.0**.
 
 **Trade-off:** This fork is **~3.3 MB larger** than the original (~3.0 MB vs ~0.9 MB for Mermaid alone). If you only need basic diagrams (flowcharts, sequences, class diagrams, etc.), the original plugin is smaller and faster. If you need **mindmaps, timelines, Sankey diagrams, XY charts, block diagrams, Wardley maps,** and other modern types, this is the fork for you.
 
-**Live demo:** <https://asophila.github.io/mermaid-tw5>  
+**Live demo:** <https://xyvir.github.io/tiny-mermaid11-tw5/>
 **Install:** Open the demo and drag the `$:/plugins/orange/mermaid-tw5` tiddler into your wiki.
 
 ---
