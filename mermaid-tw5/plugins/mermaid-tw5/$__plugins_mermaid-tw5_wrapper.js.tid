@@ -94,6 +94,7 @@ modified: E Furlan 2022-05-08
             startOnLoad: false,
             securityLevel: 'loose',
             suppressErrorRendering: true,
+            deterministicIds: true,
             flowchart: { useMaxWidth: true, htmlLabels: true }
         };
         var configTitle = '$:/plugins/orange/mermaid-tw5/config';
@@ -192,11 +193,23 @@ modified: E Furlan 2022-05-08
 
             var renderDiagram = function() {
                 var svgId = divNode.id + '_svg';
-                var result = mermaidAPI.render(svgId, scriptBody);
-                if (result && typeof result.then === 'function') {
-                    result.then(function(res) {
+                
+                // Mermaid 10/11 async render() is not thread-safe.
+                // We must queue render requests to prevent concurrent execution.
+                if (typeof window !== 'undefined') {
+                    window.$tw_mermaid_queue = window.$tw_mermaid_queue || [];
+                    window.$tw_mermaid_is_rendering = window.$tw_mermaid_is_rendering || false;
+                }
+                
+                var queue = (typeof window !== 'undefined') ? window.$tw_mermaid_queue : [];
+                
+                var task = {
+                    svgId: svgId,
+                    scriptBody: scriptBody,
+                    onSuccess: function(res) {
                         _insertSVG(res.svg, res.bindFunctions);
-                    }).catch(function(renderErr) {
+                    },
+                    onError: function(ex) {
                         cleanupStrayErrorSVGs();
                         var errorHtml = '<div style="border-left:3px solid #ff4444;background:#fff0f0;padding:8px 12px;">' +
                             '<p><strong>Mermaid diagram could not be rendered.</strong> The diagram syntax may contain an error.</p>' +
@@ -205,13 +218,60 @@ modified: E Furlan 2022-05-08
                             '</pre>' +
                             '<details>' +
                             '<summary style="cursor:pointer;color:#666;font-size:12px;">Technical details</summary>' +
-                            '<p style="margin:8px 0 0 0;font-size:12px;"><strong>' + escapeHtml(renderErr.name || 'Error') + ':</strong> ' +
-                            escapeHtml(renderErr.message || String(renderErr)) + '</p>' +
-                            '<pre style="margin:4px 0 0 0;font-size:11px;overflow:auto;">' + escapeHtml(getSimpleStack(renderErr)) + '</pre>' +
+                            '<p style="margin:8px 0 0 0;font-size:12px;"><strong>' + escapeHtml(ex.name || 'Error') + ':</strong> ' +
+                            escapeHtml(ex.message || String(ex)) + '</p>' +
+                            '<pre style="margin:4px 0 0 0;font-size:11px;overflow:auto;">' + escapeHtml(getSimpleStack(ex)) + '</pre>' +
                             '</details>' +
                             '</div>';
                         divNode.innerHTML = errorHtml;
-                    });
+                    }
+                };
+
+                var processQueue = function() {
+                    if (typeof window === 'undefined') return;
+                    if (window.$tw_mermaid_is_rendering || window.$tw_mermaid_queue.length === 0) return;
+                    
+                    window.$tw_mermaid_is_rendering = true;
+                    var currentTask = window.$tw_mermaid_queue.shift();
+                    
+                    var result;
+                    try {
+                        result = mermaidAPI.render(currentTask.svgId, currentTask.scriptBody);
+                    } catch (ex) {
+                        currentTask.onError(ex);
+                        window.$tw_mermaid_is_rendering = false;
+                        setTimeout(processQueue, 0);
+                        return;
+                    }
+
+                    if (result && typeof result.then === 'function') {
+                        result.then(function(res) {
+                            currentTask.onSuccess(res);
+                        }).catch(function(err) {
+                            currentTask.onError(err);
+                        }).finally(function() {
+                            window.$tw_mermaid_is_rendering = false;
+                            setTimeout(processQueue, 0);
+                        });
+                    } else {
+                        currentTask.onSuccess({ svg: result });
+                        window.$tw_mermaid_is_rendering = false;
+                        setTimeout(processQueue, 0);
+                    }
+                };
+
+                if (typeof window !== 'undefined') {
+                    window.$tw_mermaid_queue.push(task);
+                    processQueue();
+                } else {
+                    // Fallback for node environment (though we abort earlier for node)
+                    try {
+                        var res = mermaidAPI.render(svgId, scriptBody);
+                        if (res && res.then) res.then(task.onSuccess).catch(task.onError);
+                        else task.onSuccess({ svg: res });
+                    } catch (e) {
+                        task.onError(e);
+                    }
                 }
             };
 
