@@ -58,12 +58,14 @@ export default mermaid;
   const tidHeader = `module-type: library\ntitle: $:/plugins/orange/mermaid-tw5/mermaid.min.js\ntype: application/javascript\n\n`;
   const bundleJs = fs.readFileSync('bundle.js', 'utf8');
 
-  const twExportFooter = `\nvar m = (typeof window !== "undefined" && window.mermaid) || (typeof globalThis !== "undefined" && globalThis.mermaid) || (typeof __esbuild_esm_mermaid_nm !== "undefined" && __esbuild_esm_mermaid_nm.mermaid && __esbuild_esm_mermaid_nm.mermaid.default) || (typeof __esbuild_esm_mermaid_nm !== "undefined" && __esbuild_esm_mermaid_nm.mermaid);
-if (typeof globalThis !== "undefined") { globalThis.mermaid = m; }
-if (typeof window !== "undefined") { window.mermaid = m; }
+  const twExportFooter = `\nvar m = (typeof __esbuild_esm_mermaid_nm !== "undefined" && (__esbuild_esm_mermaid_nm.default || __esbuild_esm_mermaid_nm.mermaid || __esbuild_esm_mermaid_nm)) || (typeof window !== "undefined" && window.mermaid) || (typeof globalThis !== "undefined" && globalThis.mermaid);
+if (m && !m.mermaidAPI) { m.mermaidAPI = m; }
+if (typeof globalThis !== "undefined") { globalThis.mermaid = m; globalThis.mermaidAPI = m; }
+if (typeof window !== "undefined") { window.mermaid = m; window.mermaidAPI = m; }
 if (typeof exports !== "undefined") {
   exports.mermaid = m;
-  exports.mermaidAPI = m ? (m.mermaidAPI || m) : null;
+  exports.mermaidAPI = m;
+  exports.default = m;
   if (typeof module !== "undefined" && module.exports) {
     module.exports = m;
   }
