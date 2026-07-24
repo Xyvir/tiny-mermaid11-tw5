@@ -32,7 +32,7 @@ modified: E Furlan 2022-05-08
         if (!text) return text;
         var el = document.createElement('textarea');
         el.innerHTML = text;
-        return el.value;
+        return el.value !== undefined ? el.value : (el.innerHTML || text);
     }
 
     function getSimpleStack(ex) {

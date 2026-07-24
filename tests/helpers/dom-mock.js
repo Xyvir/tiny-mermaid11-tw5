@@ -10,6 +10,17 @@ function MockElement(tagName) {
     this._listeners = {};
 }
 
+Object.defineProperty(MockElement.prototype, 'value', {
+    get: function() {
+        return this._value !== undefined ? this._value : this.innerHTML;
+    },
+    set: function(val) {
+        this._value = String(val);
+    },
+    configurable: true,
+    enumerable: true
+});
+
 MockElement.prototype.setAttribute = function(name, value) {
     this.attributes[name] = String(value);
 };
